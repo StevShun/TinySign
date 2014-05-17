@@ -3,7 +3,7 @@
 Public Class mapHandler
 
     'Converts byte array to a string
-    Public Sub arrayToString(array As Byte())
+    Public Sub findBytes(array As Byte())
         Dim charArray(20) As Char
 
         'put the byte array into a char array

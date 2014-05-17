@@ -23,19 +23,28 @@ Public Class MainWindow
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Try
                 mapStream = openFileDialog1.OpenFile()
+
+                'Read the .map file
                 If (mapStream IsNot Nothing) Then
                     If mapStream.CanRead Then
+
+                        'Gets the original bytes
                         Dim nameLocation(20) As Byte
                         mapStream.Position = 408
                         mapStream.Read(nameLocation, 0, 20)
+
+                        'Give me those bytes that need to be changed!!
                         Dim map As New mapHandler()
-                        map.arrayToString(nameLocation)
-                        MsgBox("Yes")
+                        map.findBytes(nameLocation)
+
+                        'mapStream write the bytes that we changed
+
                     End If
 
                     'Dim mapFileStream As New System.IO.FileStream(mapStream, FileMode.Open)
                     ' Insert code to read the stream here. 
                 End If
+
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
             Finally

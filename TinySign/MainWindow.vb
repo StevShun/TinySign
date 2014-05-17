@@ -10,7 +10,7 @@ Public Class MainWindow
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
         'File Streams: http://msdn.microsoft.com/en-us/magazine/cc163710.aspx
-        Dim mapStream As Stream = Nothing
+        Dim mapStream As FileStream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
         Dim desktopDirectory As String
 
@@ -24,7 +24,20 @@ Public Class MainWindow
             Try
                 mapStream = openFileDialog1.OpenFile()
                 If (mapStream IsNot Nothing) Then
+<<<<<<< HEAD
+                    ' Insert code to read the stream here.
+=======
+                    If mapStream.CanRead Then
+                        Dim nameLocation(20) As Byte
+                        mapStream.Position = 408
+                        mapStream.Read(nameLocation, 0, 20)
+                        Dim map As New mapHandler()
+                        map.arrayToString(nameLocation)
+                        MsgBox("Yes")
+                    End If
+
                     ' Insert code to read the stream here. 
+>>>>>>> 3365112cd23ba3c1f86bdaecd94160f22c7d549e
                 End If
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)

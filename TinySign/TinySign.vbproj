@@ -76,6 +76,7 @@
     <Compile Include="AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="mapHandler.vb" />
     <Compile Include="MapInfo.Designer.vb">
       <DependentUpon>MapInfo.vb</DependentUpon>
     </Compile>

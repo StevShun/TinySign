@@ -9,7 +9,7 @@ Public Class MainWindow
     Public Sub OpenMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpenMapToolStripMenuItem.Click
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
-        'File Streams: http://msdn.microsoft.com/en-us/magazine/cc163710.aspx
+        'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
         Dim mapStream As FileStream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
         Dim desktopDirectory As String
@@ -29,6 +29,8 @@ Public Class MainWindow
                     If mapStream.CanRead Then
 
                         'Gets the original bytes
+                        'Decimal positions:
+                        '408 = internal name, 444 = scenario path, 720 = signature addr
                         Dim nameLocation(20) As Byte
                         mapStream.Position = 408
                         mapStream.Read(nameLocation, 0, 20)
@@ -44,7 +46,6 @@ Public Class MainWindow
                     'Dim mapFileStream As New System.IO.FileStream(mapStream, FileMode.Open)
                     ' Insert code to read the stream here. 
                 End If
-
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
             Finally

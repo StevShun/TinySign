@@ -33,7 +33,6 @@ Public Class MainWindow
                         MsgBox("Yes")
                     End If
 
-                    'Dim mapFileStream As New System.IO.FileStream(mapStream, FileMode.Open)
                     ' Insert code to read the stream here. 
                 End If
             Catch Ex As Exception

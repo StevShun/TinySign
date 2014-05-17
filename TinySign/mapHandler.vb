@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Object
 
 Public Class mapHandler
 
@@ -6,8 +7,8 @@ Public Class mapHandler
         Dim charArray(20) As Char
 
         Dim index As Integer = 0
-        Do
-            MsgBox(array(index))
+        Do Until index < 20
+            'array(index) = Decimal.op
             index += 1
         Loop
 

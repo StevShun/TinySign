@@ -25,8 +25,11 @@ Public Class MainWindow
                 mapStream = openFileDialog1.OpenFile()
                 If (mapStream IsNot Nothing) Then
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ' Insert code to read the stream here.
 =======
+=======
+>>>>>>> 3365112cd23ba3c1f86bdaecd94160f22c7d549e
                     If mapStream.CanRead Then
                         Dim nameLocation(20) As Byte
                         mapStream.Position = 408

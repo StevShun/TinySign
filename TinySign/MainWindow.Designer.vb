@@ -38,9 +38,15 @@ Partial Class MainWindow
         Me.ApplySigTextBox = New System.Windows.Forms.TextBox()
         Me.MapIconBox = New System.Windows.Forms.PictureBox()
 <<<<<<< HEAD
+<<<<<<< HEAD
         Me.MenuStrip.SuspendLayout()
         CType(Me.MapIconBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+=======
+        Me.MenuStrip.SuspendLayout
+        CType(Me.MapIconBox,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
+>>>>>>> 3365112cd23ba3c1f86bdaecd94160f22c7d549e
 =======
         Me.MenuStrip.SuspendLayout
         CType(Me.MapIconBox,System.ComponentModel.ISupportInitialize).BeginInit
@@ -128,7 +134,11 @@ Partial Class MainWindow
         Me.MapIconBox.InitialImage = Global.TinySign.My.Resources.Resources.Unknown_Map
         Me.MapIconBox.Name = "MapIconBox"
 <<<<<<< HEAD
+<<<<<<< HEAD
         Me.MapIconBox.TabStop = False
+=======
+        Me.MapIconBox.TabStop = false
+>>>>>>> 3365112cd23ba3c1f86bdaecd94160f22c7d549e
 =======
         Me.MapIconBox.TabStop = false
 >>>>>>> 3365112cd23ba3c1f86bdaecd94160f22c7d549e

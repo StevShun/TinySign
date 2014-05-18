@@ -37,9 +37,11 @@ Public Class MainWindow
 
                         'Give me those bytes that need to be changed!!
                         Dim map As New mapHandler()
-                        map.findBytes(nameLocation)
+                        Dim mapInformation As String()
+                        mapInformation = map.findBytes(nameLocation)
 
                         'mapStream write the bytes that we changed
+
 
                     End If
 

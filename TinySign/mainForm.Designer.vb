@@ -102,22 +102,24 @@ Partial Class mainForm
         '
         'currentSigTextBox
         '
-        Me.currentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         resources.ApplyResources(Me.currentSigTextBox, "currentSigTextBox")
+        Me.currentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.currentSigTextBox.Name = "currentSigTextBox"
         Me.currentSigTextBox.ReadOnly = True
         '
         'applySigTextBox
         '
-        Me.applySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         resources.ApplyResources(Me.applySigTextBox, "applySigTextBox")
+        Me.applySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.applySigTextBox.Name = "applySigTextBox"
         Me.applySigTextBox.ReadOnly = True
         '
         'mapIconBox
         '
         resources.ApplyResources(Me.mapIconBox, "mapIconBox")
-        Me.mapIconBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.mapIconBox.BackColor = System.Drawing.SystemColors.Control
+        Me.mapIconBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.mapIconBox.Cursor = System.Windows.Forms.Cursors.Hand
         Me.mapIconBox.Image = Global.TinySign.My.Resources.Resources.Unknown_Map
         Me.mapIconBox.InitialImage = Global.TinySign.My.Resources.Resources.Unknown_Map
         Me.mapIconBox.Name = "mapIconBox"

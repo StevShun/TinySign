@@ -22,7 +22,7 @@ Public Class mapHandler
     End Function
 
     'Compares map name from file to excel map 
-    Private Function compareToName(name As String)
+    Public Function compareToName(name As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
         Dim line As String
@@ -79,6 +79,5 @@ Public Class mapHandler
         Return mapSignatureString
 
     End Function
-
 
 End Class

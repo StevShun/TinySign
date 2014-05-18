@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class MainWindow
+Public Class mainForm
     Dim mapInformation As String()
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -24,8 +24,8 @@ Public Class MainWindow
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Try
                 mapStream = openFileDialog1.OpenFile()
-
                 'Read the .map file
+
                 If (mapStream IsNot Nothing) Then
                     If mapStream.CanRead Then
 
@@ -50,8 +50,6 @@ Public Class MainWindow
                         'mapStream write the bytes that we changed
 
                     End If
-
-
                     ' Insert code to read the stream here. 
                 End If
             Catch Ex As Exception
@@ -79,13 +77,13 @@ Public Class MainWindow
 
     Private Sub MapInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MapInfoToolStripMenuItem.Click
 
-        Dim mapInfoBox As New MapInfo
+        Dim mapInfoBox As New mapInfoForm
         mapInfoBox.updateValues(mapInformation)
-        MapInfo.Show()
+        mapInfoForm.Show()
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        AboutBox.Show()
+        aboutBoxForm.Show()
     End Sub
 
 End Class

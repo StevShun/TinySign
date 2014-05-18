@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class MainWindow
+Partial Class mainForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class MainWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(mainForm))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,9 +37,9 @@ Partial Class MainWindow
         Me.CurrentSigTextBox = New System.Windows.Forms.TextBox()
         Me.ApplySigTextBox = New System.Windows.Forms.TextBox()
         Me.MapIconBox = New System.Windows.Forms.PictureBox()
-        Me.MenuStrip.SuspendLayout
-        CType(Me.MapIconBox,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.MenuStrip.SuspendLayout()
+        CType(Me.MapIconBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'MenuStrip
         '
@@ -105,14 +105,14 @@ Partial Class MainWindow
         Me.CurrentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         resources.ApplyResources(Me.CurrentSigTextBox, "CurrentSigTextBox")
         Me.CurrentSigTextBox.Name = "CurrentSigTextBox"
-        Me.CurrentSigTextBox.ReadOnly = true
+        Me.CurrentSigTextBox.ReadOnly = True
         '
         'ApplySigTextBox
         '
         Me.ApplySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
         resources.ApplyResources(Me.ApplySigTextBox, "ApplySigTextBox")
         Me.ApplySigTextBox.Name = "ApplySigTextBox"
-        Me.ApplySigTextBox.ReadOnly = true
+        Me.ApplySigTextBox.ReadOnly = True
         '
         'MapIconBox
         '
@@ -121,7 +121,7 @@ Partial Class MainWindow
         Me.MapIconBox.Image = Global.TinySign.My.Resources.Resources.Unknown_Map
         Me.MapIconBox.InitialImage = Global.TinySign.My.Resources.Resources.Unknown_Map
         Me.MapIconBox.Name = "MapIconBox"
-        Me.MapIconBox.TabStop = false
+        Me.MapIconBox.TabStop = False
         '
         'MainWindow
         '
@@ -135,15 +135,15 @@ Partial Class MainWindow
         Me.Controls.Add(Me.MenuStrip)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MainMenuStrip = Me.MenuStrip
-        Me.MaximizeBox = false
+        Me.MaximizeBox = False
         Me.Name = "MainWindow"
-        Me.MenuStrip.ResumeLayout(false)
-        Me.MenuStrip.PerformLayout
-        CType(Me.MapIconBox,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.MenuStrip.ResumeLayout(False)
+        Me.MenuStrip.PerformLayout()
+        CType(Me.MapIconBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

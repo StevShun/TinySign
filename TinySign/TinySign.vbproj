@@ -70,24 +70,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox.Designer.vb">
-      <DependentUpon>AboutBox.vb</DependentUpon>
+    <Compile Include="aboutBoxForm.Designer.vb">
+      <DependentUpon>aboutBoxForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="AboutBox.vb">
+    <Compile Include="aboutBoxForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mapHandler.vb" />
-    <Compile Include="MapInfo.Designer.vb">
-      <DependentUpon>MapInfo.vb</DependentUpon>
+    <Compile Include="mapInfoForm.Designer.vb">
+      <DependentUpon>mapInfoForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="MapInfo.vb">
+    <Compile Include="mapInfoForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.vb">
+    <Compile Include="mainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.vb">
-      <DependentUpon>MainWindow.vb</DependentUpon>
+    <Compile Include="mainForm.Designer.vb">
+      <DependentUpon>mainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -107,17 +107,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutBox.resx">
-      <DependentUpon>AboutBox.vb</DependentUpon>
+    <EmbeddedResource Include="aboutBoxForm.resx">
+      <DependentUpon>aboutBoxForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapInfo.resx">
-      <DependentUpon>MapInfo.vb</DependentUpon>
+    <EmbeddedResource Include="mapInfoForm.resx">
+      <DependentUpon>mapInfoForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.en.resx">
-      <DependentUpon>MainWindow.vb</DependentUpon>
+    <EmbeddedResource Include="mainForm.en.resx">
+      <DependentUpon>mainForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
-      <DependentUpon>MainWindow.vb</DependentUpon>
+    <EmbeddedResource Include="mainForm.resx">
+      <DependentUpon>mainForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

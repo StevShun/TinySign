@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class MapInfo
+Partial Class mapInfoForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -32,11 +32,11 @@ Partial Class MapInfo
         Me.CorrectSignatureBox = New System.Windows.Forms.TextBox()
         Me.CorrectScenarioPathLabel = New System.Windows.Forms.Label()
         Me.CorrectScenarioPathTextBox = New System.Windows.Forms.TextBox()
-        Me.SuspendLayout
+        Me.SuspendLayout()
         '
         'MapNameLabel
         '
-        Me.MapNameLabel.AutoSize = true
+        Me.MapNameLabel.AutoSize = True
         Me.MapNameLabel.Location = New System.Drawing.Point(12, 9)
         Me.MapNameLabel.Name = "MapNameLabel"
         Me.MapNameLabel.Size = New System.Drawing.Size(62, 13)
@@ -45,7 +45,7 @@ Partial Class MapInfo
         '
         'InternalNameLabel
         '
-        Me.InternalNameLabel.AutoSize = true
+        Me.InternalNameLabel.AutoSize = True
         Me.InternalNameLabel.Location = New System.Drawing.Point(12, 48)
         Me.InternalNameLabel.Name = "InternalNameLabel"
         Me.InternalNameLabel.Size = New System.Drawing.Size(76, 13)
@@ -56,7 +56,7 @@ Partial Class MapInfo
         '
         Me.MapNameBox.Location = New System.Drawing.Point(15, 25)
         Me.MapNameBox.Name = "MapNameBox"
-        Me.MapNameBox.ReadOnly = true
+        Me.MapNameBox.ReadOnly = True
         Me.MapNameBox.Size = New System.Drawing.Size(240, 20)
         Me.MapNameBox.TabIndex = 2
         '
@@ -64,13 +64,13 @@ Partial Class MapInfo
         '
         Me.InternalNameBox.Location = New System.Drawing.Point(15, 64)
         Me.InternalNameBox.Name = "InternalNameBox"
-        Me.InternalNameBox.ReadOnly = true
+        Me.InternalNameBox.ReadOnly = True
         Me.InternalNameBox.Size = New System.Drawing.Size(240, 20)
         Me.InternalNameBox.TabIndex = 3
         '
         'CurrentScenarioPathLabel
         '
-        Me.CurrentScenarioPathLabel.AutoSize = true
+        Me.CurrentScenarioPathLabel.AutoSize = True
         Me.CurrentScenarioPathLabel.Location = New System.Drawing.Point(11, 87)
         Me.CurrentScenarioPathLabel.Name = "CurrentScenarioPathLabel"
         Me.CurrentScenarioPathLabel.Size = New System.Drawing.Size(114, 13)
@@ -81,13 +81,13 @@ Partial Class MapInfo
         '
         Me.ScenarioPathBox.Location = New System.Drawing.Point(15, 103)
         Me.ScenarioPathBox.Name = "ScenarioPathBox"
-        Me.ScenarioPathBox.ReadOnly = true
+        Me.ScenarioPathBox.ReadOnly = True
         Me.ScenarioPathBox.Size = New System.Drawing.Size(240, 20)
         Me.ScenarioPathBox.TabIndex = 3
         '
         'CorrectSignatureLabel
         '
-        Me.CorrectSignatureLabel.AutoSize = true
+        Me.CorrectSignatureLabel.AutoSize = True
         Me.CorrectSignatureLabel.Location = New System.Drawing.Point(11, 165)
         Me.CorrectSignatureLabel.Name = "CorrectSignatureLabel"
         Me.CorrectSignatureLabel.Size = New System.Drawing.Size(92, 13)
@@ -98,13 +98,13 @@ Partial Class MapInfo
         '
         Me.CorrectSignatureBox.Location = New System.Drawing.Point(14, 181)
         Me.CorrectSignatureBox.Name = "CorrectSignatureBox"
-        Me.CorrectSignatureBox.ReadOnly = true
+        Me.CorrectSignatureBox.ReadOnly = True
         Me.CorrectSignatureBox.Size = New System.Drawing.Size(240, 20)
         Me.CorrectSignatureBox.TabIndex = 3
         '
         'CorrectScenarioPathLabel
         '
-        Me.CorrectScenarioPathLabel.AutoSize = true
+        Me.CorrectScenarioPathLabel.AutoSize = True
         Me.CorrectScenarioPathLabel.Location = New System.Drawing.Point(10, 126)
         Me.CorrectScenarioPathLabel.Name = "CorrectScenarioPathLabel"
         Me.CorrectScenarioPathLabel.Size = New System.Drawing.Size(114, 13)
@@ -115,13 +115,13 @@ Partial Class MapInfo
         '
         Me.CorrectScenarioPathTextBox.Location = New System.Drawing.Point(14, 142)
         Me.CorrectScenarioPathTextBox.Name = "CorrectScenarioPathTextBox"
-        Me.CorrectScenarioPathTextBox.ReadOnly = true
+        Me.CorrectScenarioPathTextBox.ReadOnly = True
         Me.CorrectScenarioPathTextBox.Size = New System.Drawing.Size(240, 20)
         Me.CorrectScenarioPathTextBox.TabIndex = 3
         '
         'MapInfo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(267, 218)
         Me.Controls.Add(Me.CorrectSignatureBox)
@@ -134,17 +134,17 @@ Partial Class MapInfo
         Me.Controls.Add(Me.CurrentScenarioPathLabel)
         Me.Controls.Add(Me.InternalNameLabel)
         Me.Controls.Add(Me.MapNameLabel)
-        Me.MaximizeBox = false
-        Me.MinimizeBox = false
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "MapInfo"
-        Me.ShowInTaskbar = false
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Map Information"
-        Me.TopMost = true
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.TopMost = True
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents MapNameLabel As System.Windows.Forms.Label
     Friend WithEvents InternalNameLabel As System.Windows.Forms.Label
     Friend WithEvents MapNameBox As System.Windows.Forms.TextBox

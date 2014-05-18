@@ -56,7 +56,6 @@ Public Class mapHandler
     End Function
 
     '@Return hex value in a string of the maps signature
-    'TODO: try and make this not lose leading '0'
     Public Function getCurrentSig(mapStream As FileStream)
         Dim mapSignatureBytes(4) As Byte
         mapStream.Position() = 720
@@ -68,6 +67,11 @@ Public Class mapHandler
         Dim index = 0
         Do Until index = 4
             temp = Hex(mapSignatureBytes(index))
+
+            'if the hex value is <= F then add a zero infront to keep form
+            If (temp.Length = 1) Then
+                temp = "0" + temp
+            End If
             mapSignatureString = mapSignatureString + temp
             index += 1
         Loop

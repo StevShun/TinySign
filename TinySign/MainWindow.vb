@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 
 Public Class MainWindow
+    Dim mapInformation As String()
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -37,15 +38,20 @@ Public Class MainWindow
 
                         'Give me those bytes that need to be changed!!
                         Dim map As New mapHandler()
-                        Dim mapInformation As String()
                         mapInformation = map.findBytes(nameLocation)
 
-                        'mapStream write the bytes that we changed
+                        'Displays current signature of map
                         CurrentSigTextBox.Text = map.getCurrentSig(mapStream)
+
+                        'Displays image of map
+                        Dim ResourceContents As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
+                        MapIconBox.Image = ResourceContents
+
+                        'mapStream write the bytes that we changed
 
                     End If
 
-                    'Dim mapFileStream As New System.IO.FileStream(mapStream, FileMode.Open)
+
                     ' Insert code to read the stream here. 
                 End If
             Catch Ex As Exception
@@ -60,8 +66,11 @@ Public Class MainWindow
 
     End Sub
 
+    'TODO actually close the map
     Public Sub CloseMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CloseMapToolStripMenuItem.Click
-
+        MapIconBox.Image = My.Resources.Unknown_Map
+        CurrentSigTextBox.Text = ""
+        ApplySigTextBox.Text = ""
     End Sub
 
     Private Sub ResignMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ResignMapToolStripMenuItem.Click
@@ -69,6 +78,9 @@ Public Class MainWindow
     End Sub
 
     Private Sub MapInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MapInfoToolStripMenuItem.Click
+
+        Dim mapInfoBox As New MapInfo
+        mapInfoBox.updateValues(mapInformation)
         MapInfo.Show()
     End Sub
 

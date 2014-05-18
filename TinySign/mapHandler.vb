@@ -38,7 +38,7 @@ Public Class mapHandler
             line = _textStreamReader.ReadLine()
             stringArray = Split(line, ",")
 
-            'string compare link http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
+            'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
             While (String.Compare(name, stringArray(0)) <> 0)
                 line = _textStreamReader.ReadLine()
                 stringArray = Split(line, ",")

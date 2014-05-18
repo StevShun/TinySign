@@ -265,7 +265,10 @@
     <None Include="Resources\zanzibar.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Map_Signature_Research.txt" />
+    <EmbeddedResource Include="mapList.txt" />
+    <Content Include="Resources\Map_Signature_Research.txt">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

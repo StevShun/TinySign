@@ -44,8 +44,8 @@ Public Class mainForm
                         CurrentSigTextBox.Text = map.getCurrentSig(mapStream)
 
                         'Displays image of map
-                        Dim ResourceContents As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
-                        MapIconBox.Image = ResourceContents
+                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
+                        MapIconBox.Image = mapImage
 
                         'mapStream write the bytes that we changed
 

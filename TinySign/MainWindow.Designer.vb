@@ -34,7 +34,7 @@ Partial Class MainWindow
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CurrentSignatureLabel = New System.Windows.Forms.Label()
         Me.ApplySignatureLabel = New System.Windows.Forms.Label()
-        Me.CurrentSigText = New System.Windows.Forms.TextBox()
+        Me.CurrentSigTextBox = New System.Windows.Forms.TextBox()
         Me.ApplySigTextBox = New System.Windows.Forms.TextBox()
         Me.MapIconBox = New System.Windows.Forms.PictureBox()
         Me.MenuStrip.SuspendLayout
@@ -100,12 +100,12 @@ Partial Class MainWindow
         resources.ApplyResources(Me.ApplySignatureLabel, "ApplySignatureLabel")
         Me.ApplySignatureLabel.Name = "ApplySignatureLabel"
         '
-        'CurrentSigText
+        'CurrentSigTextBox
         '
-        Me.CurrentSigText.BackColor = System.Drawing.SystemColors.ButtonFace
-        resources.ApplyResources(Me.CurrentSigText, "CurrentSigText")
-        Me.CurrentSigText.Name = "CurrentSigText"
-        Me.CurrentSigText.ReadOnly = true
+        Me.CurrentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
+        resources.ApplyResources(Me.CurrentSigTextBox, "CurrentSigTextBox")
+        Me.CurrentSigTextBox.Name = "CurrentSigTextBox"
+        Me.CurrentSigTextBox.ReadOnly = true
         '
         'ApplySigTextBox
         '
@@ -128,7 +128,7 @@ Partial Class MainWindow
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ApplySigTextBox)
-        Me.Controls.Add(Me.CurrentSigText)
+        Me.Controls.Add(Me.CurrentSigTextBox)
         Me.Controls.Add(Me.ApplySignatureLabel)
         Me.Controls.Add(Me.CurrentSignatureLabel)
         Me.Controls.Add(Me.MapIconBox)
@@ -154,7 +154,7 @@ End Sub
     Friend WithEvents MapIconBox As System.Windows.Forms.PictureBox
     Friend WithEvents CurrentSignatureLabel As System.Windows.Forms.Label
     Friend WithEvents ApplySignatureLabel As System.Windows.Forms.Label
-    Friend WithEvents CurrentSigText As System.Windows.Forms.TextBox
+    Friend WithEvents CurrentSigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ApplySigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

@@ -1,6 +1,6 @@
 ﻿Public Class MapInfo
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles InternalNameLabel.Click
-
+    Private Sub mainWindow_refocus(sender As Object, e As EventArgs) Handles Me.FormClosed
+        MainWindow.Activate()
     End Sub
 End Class

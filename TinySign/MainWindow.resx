@@ -122,13 +122,13 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="OpenMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="OpenMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Open Map</value>
   </data>
   <data name="CloseMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="CloseMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Close Map</value>
@@ -258,28 +258,28 @@
   <data name="&gt;&gt;ApplySignatureLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="CurrentSigText.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="CurrentSigTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 53</value>
   </data>
-  <data name="CurrentSigText.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CurrentSigTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 20</value>
   </data>
-  <data name="CurrentSigText.TabIndex" type="System.Int32, mscorlib">
+  <data name="CurrentSigTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="CurrentSigText.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="CurrentSigTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
-  <data name="&gt;&gt;CurrentSigText.Name" xml:space="preserve">
-    <value>CurrentSigText</value>
+  <data name="&gt;&gt;CurrentSigTextBox.Name" xml:space="preserve">
+    <value>CurrentSigTextBox</value>
   </data>
-  <data name="&gt;&gt;CurrentSigText.Type" xml:space="preserve">
+  <data name="&gt;&gt;CurrentSigTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CurrentSigText.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CurrentSigTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CurrentSigText.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CurrentSigTextBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="ApplySigTextBox.Location" type="System.Drawing.Point, System.Drawing">

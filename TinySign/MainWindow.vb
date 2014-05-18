@@ -41,7 +41,7 @@ Public Class MainWindow
                         mapInformation = map.findBytes(nameLocation)
 
                         'mapStream write the bytes that we changed
-
+                        CurrentSigTextBox.Text = map.getCurrentSig(mapStream)
 
                     End If
 

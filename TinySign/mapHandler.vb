@@ -51,6 +51,29 @@ Public Class mapHandler
             MessageBox.Show("Resource wasn't found!", "Error")
         End Try
 
+        Return "Something Bad Happened"
+
+    End Function
+
+    '@Return hex value in a string of the maps signature
+    'TODO: try and make this not lose leading '0'
+    Public Function getCurrentSig(mapStream As FileStream)
+        Dim mapSignatureBytes(4) As Byte
+        mapStream.Position() = 720
+        mapStream.Read(mapSignatureBytes, 0, 4)
+        Dim mapSignatureString As String = ""
+
+        'adds hex values into a single string
+        Dim temp As String
+        Dim index = 0
+        Do Until index = 4
+            temp = Hex(mapSignatureBytes(index))
+            mapSignatureString = mapSignatureString + temp
+            index += 1
+        Loop
+
+        Return mapSignatureString
+
     End Function
 
 

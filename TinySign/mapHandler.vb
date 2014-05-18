@@ -4,7 +4,7 @@ Imports System.Reflection
 Public Class mapHandler
 
     'Converts byte array to a string
-    Public Function findBytes(array As Byte())
+    Public Function findInternalName(array As Byte())
         Dim charArray(20) As Char
 
         'put the byte array into a char array

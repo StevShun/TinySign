@@ -37,7 +37,7 @@ Partial Class mapInfoForm
         'MapNameLabel
         '
         Me.MapNameLabel.AutoSize = True
-        Me.MapNameLabel.Location = New System.Drawing.Point(12, 9)
+        Me.MapNameLabel.Location = New System.Drawing.Point(11, 9)
         Me.MapNameLabel.Name = "MapNameLabel"
         Me.MapNameLabel.Size = New System.Drawing.Size(62, 13)
         Me.MapNameLabel.TabIndex = 0
@@ -46,7 +46,7 @@ Partial Class mapInfoForm
         'InternalNameLabel
         '
         Me.InternalNameLabel.AutoSize = True
-        Me.InternalNameLabel.Location = New System.Drawing.Point(12, 48)
+        Me.InternalNameLabel.Location = New System.Drawing.Point(11, 48)
         Me.InternalNameLabel.Name = "InternalNameLabel"
         Me.InternalNameLabel.Size = New System.Drawing.Size(76, 13)
         Me.InternalNameLabel.TabIndex = 1
@@ -105,7 +105,7 @@ Partial Class mapInfoForm
         'CorrectScenarioPathLabel
         '
         Me.CorrectScenarioPathLabel.AutoSize = True
-        Me.CorrectScenarioPathLabel.Location = New System.Drawing.Point(10, 126)
+        Me.CorrectScenarioPathLabel.Location = New System.Drawing.Point(11, 126)
         Me.CorrectScenarioPathLabel.Name = "CorrectScenarioPathLabel"
         Me.CorrectScenarioPathLabel.Size = New System.Drawing.Size(114, 13)
         Me.CorrectScenarioPathLabel.TabIndex = 1
@@ -119,11 +119,11 @@ Partial Class mapInfoForm
         Me.CorrectScenarioPathTextBox.Size = New System.Drawing.Size(240, 20)
         Me.CorrectScenarioPathTextBox.TabIndex = 3
         '
-        'MapInfo
+        'mapInfoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(267, 218)
+        Me.ClientSize = New System.Drawing.Size(267, 213)
         Me.Controls.Add(Me.CorrectSignatureBox)
         Me.Controls.Add(Me.CorrectScenarioPathTextBox)
         Me.Controls.Add(Me.ScenarioPathBox)
@@ -136,7 +136,7 @@ Partial Class mapInfoForm
         Me.Controls.Add(Me.MapNameLabel)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "MapInfo"
+        Me.Name = "mapInfoForm"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Map Information"

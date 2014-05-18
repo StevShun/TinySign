@@ -24,139 +24,139 @@ Partial Class mainForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(mainForm))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ResignMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MapInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.fileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.openMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.closeMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.toolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.resignMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mapInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.aboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CurrentSignatureLabel = New System.Windows.Forms.Label()
-        Me.ApplySignatureLabel = New System.Windows.Forms.Label()
-        Me.CurrentSigTextBox = New System.Windows.Forms.TextBox()
-        Me.ApplySigTextBox = New System.Windows.Forms.TextBox()
-        Me.MapIconBox = New System.Windows.Forms.PictureBox()
+        Me.currentSignatureLabel = New System.Windows.Forms.Label()
+        Me.applySignatureLabel = New System.Windows.Forms.Label()
+        Me.currentSigTextBox = New System.Windows.Forms.TextBox()
+        Me.applySigTextBox = New System.Windows.Forms.TextBox()
+        Me.mapIconBox = New System.Windows.Forms.PictureBox()
         Me.MenuStrip.SuspendLayout()
-        CType(Me.MapIconBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.mapIconBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip
         '
         Me.MenuStrip.BackColor = System.Drawing.SystemColors.MenuBar
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem1})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.toolsToolStripMenuItem, Me.aboutToolStripMenuItem, Me.ToolStripMenuItem1})
         resources.ApplyResources(Me.MenuStrip, "MenuStrip")
         Me.MenuStrip.Name = "MenuStrip"
         '
-        'FileToolStripMenuItem
+        'fileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMapToolStripMenuItem, Me.CloseMapToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        resources.ApplyResources(Me.FileToolStripMenuItem, "FileToolStripMenuItem")
+        Me.fileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.openMapToolStripMenuItem, Me.closeMapToolStripMenuItem})
+        Me.fileToolStripMenuItem.Name = "fileToolStripMenuItem"
+        resources.ApplyResources(Me.fileToolStripMenuItem, "fileToolStripMenuItem")
         '
-        'OpenMapToolStripMenuItem
+        'openMapToolStripMenuItem
         '
-        Me.OpenMapToolStripMenuItem.Name = "OpenMapToolStripMenuItem"
-        resources.ApplyResources(Me.OpenMapToolStripMenuItem, "OpenMapToolStripMenuItem")
+        Me.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem"
+        resources.ApplyResources(Me.openMapToolStripMenuItem, "openMapToolStripMenuItem")
         '
-        'CloseMapToolStripMenuItem
+        'closeMapToolStripMenuItem
         '
-        Me.CloseMapToolStripMenuItem.Name = "CloseMapToolStripMenuItem"
-        resources.ApplyResources(Me.CloseMapToolStripMenuItem, "CloseMapToolStripMenuItem")
+        Me.closeMapToolStripMenuItem.Name = "closeMapToolStripMenuItem"
+        resources.ApplyResources(Me.closeMapToolStripMenuItem, "closeMapToolStripMenuItem")
         '
-        'ToolsToolStripMenuItem
+        'toolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResignMapToolStripMenuItem, Me.MapInfoToolStripMenuItem})
-        Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        resources.ApplyResources(Me.ToolsToolStripMenuItem, "ToolsToolStripMenuItem")
+        Me.toolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.resignMapToolStripMenuItem, Me.mapInfoToolStripMenuItem})
+        Me.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem"
+        resources.ApplyResources(Me.toolsToolStripMenuItem, "toolsToolStripMenuItem")
         '
-        'ResignMapToolStripMenuItem
+        'resignMapToolStripMenuItem
         '
-        Me.ResignMapToolStripMenuItem.Name = "ResignMapToolStripMenuItem"
-        resources.ApplyResources(Me.ResignMapToolStripMenuItem, "ResignMapToolStripMenuItem")
+        Me.resignMapToolStripMenuItem.Name = "resignMapToolStripMenuItem"
+        resources.ApplyResources(Me.resignMapToolStripMenuItem, "resignMapToolStripMenuItem")
         '
-        'MapInfoToolStripMenuItem
+        'mapInfoToolStripMenuItem
         '
-        Me.MapInfoToolStripMenuItem.Name = "MapInfoToolStripMenuItem"
-        resources.ApplyResources(Me.MapInfoToolStripMenuItem, "MapInfoToolStripMenuItem")
+        Me.mapInfoToolStripMenuItem.Name = "mapInfoToolStripMenuItem"
+        resources.ApplyResources(Me.mapInfoToolStripMenuItem, "mapInfoToolStripMenuItem")
         '
-        'AboutToolStripMenuItem
+        'aboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        resources.ApplyResources(Me.AboutToolStripMenuItem, "AboutToolStripMenuItem")
+        Me.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem"
+        resources.ApplyResources(Me.aboutToolStripMenuItem, "aboutToolStripMenuItem")
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
-        'CurrentSignatureLabel
+        'currentSignatureLabel
         '
-        resources.ApplyResources(Me.CurrentSignatureLabel, "CurrentSignatureLabel")
-        Me.CurrentSignatureLabel.Name = "CurrentSignatureLabel"
+        resources.ApplyResources(Me.currentSignatureLabel, "currentSignatureLabel")
+        Me.currentSignatureLabel.Name = "currentSignatureLabel"
         '
-        'ApplySignatureLabel
+        'applySignatureLabel
         '
-        resources.ApplyResources(Me.ApplySignatureLabel, "ApplySignatureLabel")
-        Me.ApplySignatureLabel.Name = "ApplySignatureLabel"
+        resources.ApplyResources(Me.applySignatureLabel, "applySignatureLabel")
+        Me.applySignatureLabel.Name = "applySignatureLabel"
         '
-        'CurrentSigTextBox
+        'currentSigTextBox
         '
-        Me.CurrentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
-        resources.ApplyResources(Me.CurrentSigTextBox, "CurrentSigTextBox")
-        Me.CurrentSigTextBox.Name = "CurrentSigTextBox"
-        Me.CurrentSigTextBox.ReadOnly = True
+        Me.currentSigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
+        resources.ApplyResources(Me.currentSigTextBox, "currentSigTextBox")
+        Me.currentSigTextBox.Name = "currentSigTextBox"
+        Me.currentSigTextBox.ReadOnly = True
         '
-        'ApplySigTextBox
+        'applySigTextBox
         '
-        Me.ApplySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
-        resources.ApplyResources(Me.ApplySigTextBox, "ApplySigTextBox")
-        Me.ApplySigTextBox.Name = "ApplySigTextBox"
-        Me.ApplySigTextBox.ReadOnly = True
+        Me.applySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
+        resources.ApplyResources(Me.applySigTextBox, "applySigTextBox")
+        Me.applySigTextBox.Name = "applySigTextBox"
+        Me.applySigTextBox.ReadOnly = True
         '
-        'MapIconBox
+        'mapIconBox
         '
-        resources.ApplyResources(Me.MapIconBox, "MapIconBox")
-        Me.MapIconBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.MapIconBox.Image = Global.TinySign.My.Resources.Resources.Unknown_Map
-        Me.MapIconBox.InitialImage = Global.TinySign.My.Resources.Resources.Unknown_Map
-        Me.MapIconBox.Name = "MapIconBox"
-        Me.MapIconBox.TabStop = False
+        resources.ApplyResources(Me.mapIconBox, "mapIconBox")
+        Me.mapIconBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.mapIconBox.Image = Global.TinySign.My.Resources.Resources.Unknown_Map
+        Me.mapIconBox.InitialImage = Global.TinySign.My.Resources.Resources.Unknown_Map
+        Me.mapIconBox.Name = "mapIconBox"
+        Me.mapIconBox.TabStop = False
         '
-        'MainWindow
+        'mainForm
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ApplySigTextBox)
-        Me.Controls.Add(Me.CurrentSigTextBox)
-        Me.Controls.Add(Me.ApplySignatureLabel)
-        Me.Controls.Add(Me.CurrentSignatureLabel)
-        Me.Controls.Add(Me.MapIconBox)
+        Me.Controls.Add(Me.applySigTextBox)
+        Me.Controls.Add(Me.currentSigTextBox)
+        Me.Controls.Add(Me.applySignatureLabel)
+        Me.Controls.Add(Me.currentSignatureLabel)
+        Me.Controls.Add(Me.mapIconBox)
         Me.Controls.Add(Me.MenuStrip)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MainMenuStrip = Me.MenuStrip
         Me.MaximizeBox = False
-        Me.Name = "MainWindow"
+        Me.Name = "mainForm"
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
-        CType(Me.MapIconBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.mapIconBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
-    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OpenMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CloseMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ResignMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents MapInfoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents MapIconBox As System.Windows.Forms.PictureBox
-    Friend WithEvents CurrentSignatureLabel As System.Windows.Forms.Label
-    Friend WithEvents ApplySignatureLabel As System.Windows.Forms.Label
-    Friend WithEvents CurrentSigTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents ApplySigTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents fileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents openMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents closeMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents resignMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mapInfoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mapIconBox As System.Windows.Forms.PictureBox
+    Friend WithEvents currentSignatureLabel As System.Windows.Forms.Label
+    Friend WithEvents applySignatureLabel As System.Windows.Forms.Label
+    Friend WithEvents currentSigTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents applySigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents aboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

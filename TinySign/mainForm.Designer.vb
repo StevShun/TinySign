@@ -23,7 +23,7 @@ Partial Class mainForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(mainForm))
-        Me.MenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.menuStrip = New System.Windows.Forms.MenuStrip()
         Me.fileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.openMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.closeMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -31,21 +31,24 @@ Partial Class mainForm
         Me.resignMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mapInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.aboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.currentSignatureLabel = New System.Windows.Forms.Label()
-        Me.applySignatureLabel = New System.Windows.Forms.Label()
+        Me.currentSigLabel = New System.Windows.Forms.Label()
+        Me.applySigLabel = New System.Windows.Forms.Label()
         Me.currentSigTextBox = New System.Windows.Forms.TextBox()
         Me.applySigTextBox = New System.Windows.Forms.TextBox()
         Me.mapIconBox = New System.Windows.Forms.PictureBox()
-        Me.MenuStrip.SuspendLayout()
+        Me.statusStrip = New System.Windows.Forms.StatusStrip()
+        Me.toolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.menuStrip.SuspendLayout()
         CType(Me.mapIconBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.statusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
-        'MenuStrip
+        'menuStrip
         '
-        Me.MenuStrip.BackColor = System.Drawing.SystemColors.MenuBar
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.toolsToolStripMenuItem, Me.aboutToolStripMenuItem})
-        resources.ApplyResources(Me.MenuStrip, "MenuStrip")
-        Me.MenuStrip.Name = "MenuStrip"
+        Me.menuStrip.BackColor = System.Drawing.SystemColors.MenuBar
+        Me.menuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.toolsToolStripMenuItem, Me.aboutToolStripMenuItem})
+        resources.ApplyResources(Me.menuStrip, "menuStrip")
+        Me.menuStrip.Name = "menuStrip"
         '
         'fileToolStripMenuItem
         '
@@ -84,15 +87,15 @@ Partial Class mainForm
         Me.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem"
         resources.ApplyResources(Me.aboutToolStripMenuItem, "aboutToolStripMenuItem")
         '
-        'currentSignatureLabel
+        'currentSigLabel
         '
-        resources.ApplyResources(Me.currentSignatureLabel, "currentSignatureLabel")
-        Me.currentSignatureLabel.Name = "currentSignatureLabel"
+        resources.ApplyResources(Me.currentSigLabel, "currentSigLabel")
+        Me.currentSigLabel.Name = "currentSigLabel"
         '
-        'applySignatureLabel
+        'applySigLabel
         '
-        resources.ApplyResources(Me.applySignatureLabel, "applySignatureLabel")
-        Me.applySignatureLabel.Name = "applySignatureLabel"
+        resources.ApplyResources(Me.applySigLabel, "applySigLabel")
+        Me.applySigLabel.Name = "applySigLabel"
         '
         'currentSigTextBox
         '
@@ -120,28 +123,47 @@ Partial Class mainForm
         Me.mapIconBox.Name = "mapIconBox"
         Me.mapIconBox.TabStop = False
         '
+        'statusStrip
+        '
+        resources.ApplyResources(Me.statusStrip, "statusStrip")
+        Me.statusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolStripStatusLabel})
+        Me.statusStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
+        Me.statusStrip.Name = "statusStrip"
+        Me.statusStrip.ShowItemToolTips = True
+        Me.statusStrip.SizingGrip = False
+        '
+        'toolStripStatusLabel
+        '
+        Me.toolStripStatusLabel.AutoToolTip = True
+        Me.toolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.toolStripStatusLabel.Name = "toolStripStatusLabel"
+        resources.ApplyResources(Me.toolStripStatusLabel, "toolStripStatusLabel")
+        '
         'mainForm
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.statusStrip)
         Me.Controls.Add(Me.applySigTextBox)
         Me.Controls.Add(Me.currentSigTextBox)
-        Me.Controls.Add(Me.applySignatureLabel)
-        Me.Controls.Add(Me.currentSignatureLabel)
+        Me.Controls.Add(Me.applySigLabel)
+        Me.Controls.Add(Me.currentSigLabel)
         Me.Controls.Add(Me.mapIconBox)
-        Me.Controls.Add(Me.MenuStrip)
+        Me.Controls.Add(Me.menuStrip)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
-        Me.MainMenuStrip = Me.MenuStrip
+        Me.MainMenuStrip = Me.menuStrip
         Me.MaximizeBox = False
         Me.Name = "mainForm"
-        Me.MenuStrip.ResumeLayout(False)
-        Me.MenuStrip.PerformLayout()
+        Me.menuStrip.ResumeLayout(False)
+        Me.menuStrip.PerformLayout()
         CType(Me.mapIconBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.statusStrip.ResumeLayout(False)
+        Me.statusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
+    Friend WithEvents menuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents fileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents openMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents closeMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -149,10 +171,12 @@ Partial Class mainForm
     Friend WithEvents resignMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mapInfoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mapIconBox As System.Windows.Forms.PictureBox
-    Friend WithEvents currentSignatureLabel As System.Windows.Forms.Label
-    Friend WithEvents applySignatureLabel As System.Windows.Forms.Label
+    Friend WithEvents currentSigLabel As System.Windows.Forms.Label
+    Friend WithEvents applySigLabel As System.Windows.Forms.Label
     Friend WithEvents currentSigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents applySigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents aboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents statusStrip As System.Windows.Forms.StatusStrip
+    Friend WithEvents toolStripStatusLabel As System.Windows.Forms.ToolStripStatusLabel
 
 End Class

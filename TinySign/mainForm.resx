@@ -117,34 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 24</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
+  <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="MenuStrip.Text" xml:space="preserve">
+  <data name="menuStrip.Text" xml:space="preserve">
     <value>MenuStrip1</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
-    <value>MenuStrip</value>
+  <data name="&gt;&gt;menuStrip.Name" xml:space="preserve">
+    <value>menuStrip</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.Parent" xml:space="preserve">
+  <data name="&gt;&gt;menuStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -153,13 +153,13 @@
     <value>File</value>
   </data>
   <data name="openMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="openMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Open Map</value>
   </data>
   <data name="closeMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="closeMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Close Map</value>
@@ -171,13 +171,13 @@
     <value>Tools</value>
   </data>
   <data name="resignMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="resignMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Resign Map</value>
   </data>
   <data name="mapInfoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="mapInfoToolStripMenuItem.Text" xml:space="preserve">
     <value>Map Info</value>
@@ -189,86 +189,86 @@
     <value>About</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="currentSignatureLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="currentSigLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom</value>
   </data>
-  <data name="currentSignatureLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="currentSigLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="currentSignatureLabel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="currentSigLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="currentSignatureLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="currentSigLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="currentSignatureLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 29</value>
+  <data name="currentSigLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 23</value>
   </data>
-  <data name="currentSignatureLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="currentSigLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 15</value>
   </data>
-  <data name="currentSignatureLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="currentSigLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="currentSignatureLabel.Text" xml:space="preserve">
+  <data name="currentSigLabel.Text" xml:space="preserve">
     <value>Current Signature:</value>
   </data>
-  <data name="&gt;&gt;currentSignatureLabel.Name" xml:space="preserve">
-    <value>currentSignatureLabel</value>
+  <data name="&gt;&gt;currentSigLabel.Name" xml:space="preserve">
+    <value>currentSigLabel</value>
   </data>
-  <data name="&gt;&gt;currentSignatureLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;currentSigLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;currentSignatureLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;currentSigLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;currentSignatureLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;currentSigLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="applySignatureLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="applySigLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom</value>
   </data>
-  <data name="applySignatureLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="applySigLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="applySignatureLabel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="applySigLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="applySignatureLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="applySigLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="applySignatureLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 81</value>
+  <data name="applySigLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 68</value>
   </data>
-  <data name="applySignatureLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="applySigLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 15</value>
   </data>
-  <data name="applySignatureLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="applySigLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="applySignatureLabel.Text" xml:space="preserve">
+  <data name="applySigLabel.Text" xml:space="preserve">
     <value>Signature to Apply:</value>
   </data>
-  <data name="&gt;&gt;applySignatureLabel.Name" xml:space="preserve">
-    <value>applySignatureLabel</value>
+  <data name="&gt;&gt;applySigLabel.Name" xml:space="preserve">
+    <value>applySigLabel</value>
   </data>
-  <data name="&gt;&gt;applySignatureLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;applySigLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;applySignatureLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;applySigLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;applySignatureLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;applySigLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="currentSigTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top, Bottom</value>
   </data>
   <data name="currentSigTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="currentSigTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 47</value>
+    <value>14, 41</value>
   </data>
   <data name="currentSigTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 20</value>
@@ -289,16 +289,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;currentSigTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="applySigTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top, Bottom</value>
   </data>
   <data name="applySigTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="applySigTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 99</value>
+    <value>14, 86</value>
   </data>
   <data name="applySigTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 20</value>
@@ -319,10 +319,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;applySigTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="mapIconBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top</value>
   </data>
   <data name="mapIconBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -331,7 +331,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapIconBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 136</value>
+    <value>14, 117</value>
   </data>
   <data name="mapIconBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 207</value>
@@ -349,7 +349,46 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mapIconBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
+  </data>
+  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>125, 17</value>
+  </metadata>
+  <data name="statusStrip.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusStrip.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 7pt</value>
+  </data>
+  <data name="toolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 14</value>
+  </data>
+  <data name="toolStripStatusLabel.Text" xml:space="preserve">
+    <value>//No Map loaded.</value>
+  </data>
+  <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 335</value>
+  </data>
+  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 17</value>
+  </data>
+  <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="statusStrip.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Name" xml:space="preserve">
+    <value>statusStrip</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -358,7 +397,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>249, 363</value>
+    <value>249, 352</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>TinySign</value>
@@ -404,6 +443,12 @@
   </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripStatusLabel.Name" xml:space="preserve">
+    <value>toolStripStatusLabel</value>
+  </data>
+  <data name="&gt;&gt;toolStripStatusLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>mainForm</value>

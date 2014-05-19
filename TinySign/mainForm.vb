@@ -17,9 +17,8 @@ Public Class mainForm
         'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
         Dim mapStream As FileStream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
-        Dim desktopDirectory As String
+        Dim desktopDirectory As String = My.Computer.FileSystem.SpecialDirectories.Desktop
 
-        desktopDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
         openFileDialog1.InitialDirectory = desktopDirectory
         openFileDialog1.Filter = "Halo 2 map files (*.map)|*.map"
         openFileDialog1.FilterIndex = 1
@@ -57,13 +56,13 @@ Public Class mainForm
                             If Str.Contains(currentSig) Then
                                 'If the current signature matches
                                 applySigTextBox.Text = currentSig
-                                applySignatureLabel.ForeColor = Color.Green
-                                currentSignatureLabel.ForeColor = Color.Green
+                                applySigLabel.ForeColor = Color.Green
+                                currentSigLabel.ForeColor = Color.Green
                             Else
                                 'If the current signature does not match
                                 applySigTextBox.Text = actualSig
-                                applySignatureLabel.ForeColor = Color.Red
-                                currentSignatureLabel.ForeColor = Color.Red
+                                applySigLabel.ForeColor = Color.Red
+                                currentSigLabel.ForeColor = Color.Red
                             End If
                         Next
 
@@ -71,15 +70,24 @@ Public Class mainForm
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
                         mapIconBox.Image = mapImage
 
-                        'Enable buttons
-                        closeMapToolStripMenuItem.Enabled = True
-                        resignMapToolStripMenuItem.Enabled = True
-                        mapInfoToolStripMenuItem.Enabled = True
+                        'Update toolstrip
+                        Dim mapPath As String = openFileDialog1.FileName
+                        If mapPath.Length > 47 Then
+                            Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 47)
+                            toolStripStatusLabel.Text = "..." & mapPathShortened
+                            toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
+                        Else
+                            toolStripStatusLabel.Text = mapPath
+                            toolStripStatusLabel.ToolTipText = mapPath
+                        End If
 
-                        'mapStream write the bytes that we changed
+                    'Enable buttons
+                    closeMapToolStripMenuItem.Enabled = True
+                    resignMapToolStripMenuItem.Enabled = True
+                    mapInfoToolStripMenuItem.Enabled = True
 
-                    End If
                     'Insert code to read the stream here. 
+                    End If
                 End If
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
@@ -98,14 +106,17 @@ Public Class mainForm
         'Clean up the UI
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
-        currentSignatureLabel.ForeColor = Color.Black
+        currentSigLabel.ForeColor = Color.Black
         applySigTextBox.Text = ""
-        applySignatureLabel.ForeColor = Color.Black
+        applySigLabel.ForeColor = Color.Black
         resignMapToolStripMenuItem.Enabled = False
         mapInfoToolStripMenuItem.Enabled = False
         closeMapToolStripMenuItem.Enabled = False
+        'Tool Strip formatting: http://stackoverflow.com/questions/16189893/cut-status-strip-label-to-width-of-form
+        toolStripStatusLabel.Text = "//Map unloaded."
+        toolStripStatusLabel.ToolTipText = "//Map unloaded."
 
-        'Close the file
+        'Close the file?
 
     End Sub
 

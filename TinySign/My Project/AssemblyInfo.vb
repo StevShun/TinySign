@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("TinySign")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyDescription("TinySign is a lighweight, open source Halo 2 map resigner. It was developed by Komet and Mugz12 and used as a VB learning tool. Enjoy.")> 
+<Assembly: AssemblyCompany("StevShun")> 
 <Assembly: AssemblyProduct("TinySign")> 
-<Assembly: AssemblyCopyright("Copyright ©  2014")> 
+<Assembly: AssemblyCopyright("Copyright ©  lol")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

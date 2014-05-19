@@ -17,12 +17,12 @@ Public Class mapHandler
 
         'Process char array into a string
         Dim mapName As New String(charArray)
-        Return compareToName(Trim(mapName))
+        Return compareToMapList(Trim(mapName))
 
     End Function
 
-    'Compares map name from file to excel map 
-    Public Function compareToName(name As String)
+    'Compares map name from file to map list in Resources folder
+    Public Function compareToMapList(queryItem As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
         Dim line As String
@@ -39,7 +39,7 @@ Public Class mapHandler
             stringArray = Split(line, ",")
 
             'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            While (String.Compare(name, stringArray(0)) <> 0)
+            While (String.Compare(queryItem, stringArray(0)) <> 0)
                 line = _textStreamReader.ReadLine()
                 stringArray = Split(line, ",")
                 index += 1

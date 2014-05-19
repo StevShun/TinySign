@@ -40,13 +40,25 @@ Public Class mainForm
                         Dim map As New mapHandler()
                         mapInformation = map.readInternalName(nameLocation)
 
-                        'Displays current signature of map
+                        'Display current signature of map
                         currentSigTextBox.Text = map.readCurrentSig(mapStream)
 
                         'Display what the signature should be
-                        'applySigTextBox.Text = map.compareSignature(mapStream)
+                        'Dim currentSig As String
+                        'currentSig = map.readCurrentSig(mapStream)
+                        'Dim Value As String = String.Join(",", map.compareToMapList(currentSig))
+                        'Dim sigQuery As String
+                        'MsgBox("[{0}]", Value)
 
-                        'Displays image of map
+                        'sigQuery = map.compareToMapList("dune")
+
+                        'If sigQuery.Length < 1 Then
+                        'applySigTextBox.Text = "Needs to be resigned."
+                        'Else
+                        'applySigTextBox.Text = currentSig
+                        'End If
+
+                        'Display image of map
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
                         mapIconBox.Image = mapImage
 

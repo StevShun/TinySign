@@ -44,7 +44,7 @@ Public Class mainForm
                         currentSigTextBox.Text = map.readCurrentSig(mapStream)
 
                         'Display what the signature should be
-                        applySigTextBox.Text = map.compareSignature(mapStream)
+                        'applySigTextBox.Text = map.compareSignature(mapStream)
 
                         'Displays image of map
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))

@@ -105,6 +105,7 @@ Partial Class mainForm
         '
         resources.ApplyResources(Me.applySigTextBox, "applySigTextBox")
         Me.applySigTextBox.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.applySigTextBox.ForeColor = System.Drawing.SystemColors.WindowText
         Me.applySigTextBox.Name = "applySigTextBox"
         Me.applySigTextBox.ReadOnly = True
         '

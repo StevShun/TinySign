@@ -47,7 +47,7 @@ Public Class mapHandler
             End While
 
             Dim stringArrayContents As String = String.Join(",", stringArray)
-            'MsgBox("This is the first stringArrayContents from mapQuery" & " " & stringArrayContents)
+            'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
             Return stringArray
 
         Catch ex As Exception
@@ -79,14 +79,6 @@ Public Class mapHandler
         Loop
 
         Return mapCurrentSignatureString
-
-    End Function
-
-    Public Function compareSignature(mapStream As FileStream)
-
-
-
-        Return "blah"
 
     End Function
 

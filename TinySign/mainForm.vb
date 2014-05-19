@@ -1,12 +1,16 @@
 ﻿Imports System.IO
 
 Public Class mainForm
+
     Dim mapInformation As String()
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        closeMapToolStripMenuItem.Enabled = False
+        resignMapToolStripMenuItem.Enabled = False
+        mapInfoToolStripMenuItem.Enabled = False
     End Sub
 
+    'TODO: Fix the crazy stuff going on in this sub
     Public Sub OpenMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles openMapToolStripMenuItem.Click
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
@@ -40,31 +44,37 @@ Public Class mainForm
                         Dim map As New mapHandler()
                         mapInformation = map.readInternalName(nameLocation)
 
-                        'Display current signature of map
-                        currentSigTextBox.Text = map.readCurrentSig(mapStream)
-
-                        'Display what the signature should be
+                        'Update the UI
+                        'Display what the current signature is and what it should be
                         'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
-                        'Dim currentSigToArray As Char() = currentSig.Take(7).ToArray
                         Dim queryResults As String() = map.queryMapList(mapInformation(0))
-                        'Dim queryArrayContents As String = String.Join(",", queryResults)
-                        'MsgBox("This is what OpenFD sees:" & " " & queryArrayContents)
                         Dim currentSig As String = map.readCurrentSig(mapStream)
+                        Dim actualSig As String = queryResults(4)
+
+                        currentSigTextBox.Text = currentSig
+
                         For Each Str As String In queryResults
                             If Str.Contains(currentSig) Then
+                                'If the current signature matches
                                 applySigTextBox.Text = currentSig
-                                MsgBox("Found " & currentSig & " at index " &
-                                       Str.IndexOf(currentSig))
+                                applySignatureLabel.ForeColor = Color.Green
+                                currentSignatureLabel.ForeColor = Color.Green
                             Else
-                                applySigTextBox.Text = "b;ah:"
+                                'If the current signature does not match
+                                applySigTextBox.Text = actualSig
+                                applySignatureLabel.ForeColor = Color.Red
+                                currentSignatureLabel.ForeColor = Color.Red
                             End If
                         Next
-                        'Dim search As Integer = queryArrayContents.IndexOf(currentSig)
-                        'MsgBox(search)
 
                         'Display image of map
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
                         mapIconBox.Image = mapImage
+
+                        'Enable buttons
+                        closeMapToolStripMenuItem.Enabled = True
+                        resignMapToolStripMenuItem.Enabled = True
+                        mapInfoToolStripMenuItem.Enabled = True
 
                         'mapStream write the bytes that we changed
 
@@ -85,9 +95,18 @@ Public Class mainForm
 
     'TODO actually close the map
     Public Sub CloseMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles closeMapToolStripMenuItem.Click
+        'Clean up the UI
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
+        currentSignatureLabel.ForeColor = Color.Black
         applySigTextBox.Text = ""
+        applySignatureLabel.ForeColor = Color.Black
+        resignMapToolStripMenuItem.Enabled = False
+        mapInfoToolStripMenuItem.Enabled = False
+        closeMapToolStripMenuItem.Enabled = False
+
+        'Close the file
+
     End Sub
 
     Private Sub ResignMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles resignMapToolStripMenuItem.Click

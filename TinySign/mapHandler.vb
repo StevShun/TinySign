@@ -79,7 +79,6 @@ Public Class mapHandler
         Loop
 
         Return mapCurrentSignatureString
-
     End Function
 
 End Class

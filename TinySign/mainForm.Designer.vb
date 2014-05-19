@@ -31,7 +31,6 @@ Partial Class mainForm
         Me.resignMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mapInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.aboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.currentSignatureLabel = New System.Windows.Forms.Label()
         Me.applySignatureLabel = New System.Windows.Forms.Label()
         Me.currentSigTextBox = New System.Windows.Forms.TextBox()
@@ -44,7 +43,7 @@ Partial Class mainForm
         'MenuStrip
         '
         Me.MenuStrip.BackColor = System.Drawing.SystemColors.MenuBar
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.toolsToolStripMenuItem, Me.aboutToolStripMenuItem, Me.ToolStripMenuItem1})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.toolsToolStripMenuItem, Me.aboutToolStripMenuItem})
         resources.ApplyResources(Me.MenuStrip, "MenuStrip")
         Me.MenuStrip.Name = "MenuStrip"
         '
@@ -84,11 +83,6 @@ Partial Class mainForm
         '
         Me.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem"
         resources.ApplyResources(Me.aboutToolStripMenuItem, "aboutToolStripMenuItem")
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
         'currentSignatureLabel
         '
@@ -158,7 +152,6 @@ Partial Class mainForm
     Friend WithEvents applySignatureLabel As System.Windows.Forms.Label
     Friend WithEvents currentSigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents applySigTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents aboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

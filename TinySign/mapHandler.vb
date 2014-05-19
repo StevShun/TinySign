@@ -17,12 +17,13 @@ Public Class mapHandler
 
         'Process char array into a string
         Dim mapName As New String(charArray)
-        Return compareToMapList(Trim(mapName))
+        'MsgBox("The map name is:" & " " & mapName)
+        Return queryMapList(Trim(mapName))
 
     End Function
 
     'Compares map name from file to map list in Resources folder
-    Public Function compareToMapList(queryItem As String)
+    Public Function queryMapList(queryItem As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
         Dim line As String
@@ -45,6 +46,8 @@ Public Class mapHandler
                 index += 1
             End While
 
+            Dim stringArrayContents As String = String.Join(",", stringArray)
+            'MsgBox("This is the first stringArrayContents from mapQuery" & " " & stringArrayContents)
             Return stringArray
 
         Catch ex As Exception

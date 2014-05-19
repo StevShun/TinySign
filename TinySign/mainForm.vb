@@ -44,19 +44,23 @@ Public Class mainForm
                         currentSigTextBox.Text = map.readCurrentSig(mapStream)
 
                         'Display what the signature should be
-                        'Dim currentSig As String
-                        'currentSig = map.readCurrentSig(mapStream)
-                        'Dim Value As String = String.Join(",", map.compareToMapList(currentSig))
-                        'Dim sigQuery As String
-                        'MsgBox("[{0}]", Value)
-
-                        'sigQuery = map.compareToMapList("dune")
-
-                        'If sigQuery.Length < 1 Then
-                        'applySigTextBox.Text = "Needs to be resigned."
-                        'Else
-                        'applySigTextBox.Text = currentSig
-                        'End If
+                        'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
+                        'Dim currentSigToArray As Char() = currentSig.Take(7).ToArray
+                        Dim queryResults As String() = map.queryMapList(mapInformation(0))
+                        'Dim queryArrayContents As String = String.Join(",", queryResults)
+                        'MsgBox("This is what OpenFD sees:" & " " & queryArrayContents)
+                        Dim currentSig As String = map.readCurrentSig(mapStream)
+                        For Each Str As String In queryResults
+                            If Str.Contains(currentSig) Then
+                                applySigTextBox.Text = currentSig
+                                MsgBox("Found " & currentSig & " at index " &
+                                       Str.IndexOf(currentSig))
+                            Else
+                                applySigTextBox.Text = "b;ah:"
+                            End If
+                        Next
+                        'Dim search As Integer = queryArrayContents.IndexOf(currentSig)
+                        'MsgBox(search)
 
                         'Display image of map
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))

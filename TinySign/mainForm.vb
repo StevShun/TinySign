@@ -38,10 +38,13 @@ Public Class mainForm
 
                         'Give me those bytes that need to be changed!!
                         Dim map As New mapHandler()
-                        mapInformation = map.findInternalName(nameLocation)
+                        mapInformation = map.readInternalName(nameLocation)
 
                         'Displays current signature of map
-                        currentSigTextBox.Text = map.getCurrentSig(mapStream)
+                        currentSigTextBox.Text = map.readCurrentSig(mapStream)
+
+                        'Display what the signature should be
+                        applySigTextBox.Text = map.compareSignature(mapStream)
 
                         'Displays image of map
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))

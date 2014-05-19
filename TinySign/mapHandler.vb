@@ -4,10 +4,10 @@ Imports System.Reflection
 Public Class mapHandler
 
     'Converts byte array to a string
-    Public Function findInternalName(array As Byte())
+    Public Function readInternalName(array As Byte())
         Dim charArray(20) As Char
 
-        'put the byte array into a char array
+        'Put the byte array into a char array
         Dim index As Integer = 0
         Do Until index = 19
             If array(index) = 0 Then Exit Do
@@ -15,7 +15,7 @@ Public Class mapHandler
             index += 1
         Loop
 
-        'make char array into a string
+        'Process char array into a string
         Dim mapName As New String(charArray)
         Return compareToName(Trim(mapName))
 
@@ -50,17 +50,16 @@ Public Class mapHandler
         Catch ex As Exception
             MessageBox.Show("Resource wasn't found!", "Error")
         End Try
-
-        Return "Something Bad Happened"
+        Return "Something Bad Happened, lol."
 
     End Function
 
     '@Return hex value in a string of the maps signature
-    Public Function getCurrentSig(mapStream As FileStream)
+    Public Function readCurrentSig(mapStream As FileStream)
         Dim mapSignatureBytes(4) As Byte
         mapStream.Position() = 720
         mapStream.Read(mapSignatureBytes, 0, 4)
-        Dim mapSignatureString As String = ""
+        Dim mapCurrentSignatureString As String = ""
 
         'adds hex values into a single string
         Dim temp As String
@@ -68,15 +67,23 @@ Public Class mapHandler
         Do Until index = 4
             temp = Hex(mapSignatureBytes(index))
 
-            'if the hex value is <= F then add a zero infront to keep form
+            'if the hex value is <= F then add a zero infront to preserve form
             If (temp.Length = 1) Then
                 temp = "0" + temp
             End If
-            mapSignatureString = mapSignatureString + temp
+            mapCurrentSignatureString = mapCurrentSignatureString + temp
             index += 1
         Loop
 
-        Return mapSignatureString
+        Return mapCurrentSignatureString
+
+    End Function
+
+    Public Function compareSignature(mapStream As FileStream)
+
+
+
+        Return "blah"
 
     End Function
 

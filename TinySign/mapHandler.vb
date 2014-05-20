@@ -46,7 +46,7 @@ Public Class mapHandler
                 index += 1
             End While
 
-            Dim stringArrayContents As String = String.Join(",", stringArray)
+            'Dim stringArrayContents As String = String.Join(",", stringArray)
             'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
             Return stringArray
 
@@ -64,13 +64,13 @@ Public Class mapHandler
         mapStream.Read(mapSignatureBytes, 0, 4)
         Dim mapCurrentSignatureString As String = ""
 
-        'adds hex values into a single string
+        'Adds hex values into a single string
         Dim temp As String
         Dim index = 0
         Do Until index = 4
             temp = Hex(mapSignatureBytes(index))
 
-            'if the hex value is <= F then add a zero infront to preserve form
+            'If the hex value is <= F then add a zero infront to preserve form
             If (temp.Length = 1) Then
                 temp = "0" + temp
             End If

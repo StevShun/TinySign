@@ -66,14 +66,14 @@ Public Class mainForm
                             End If
                         Next
 
-                        'Display image of map
+                        'Display the map image
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
                         mapIconBox.Image = mapImage
 
-                        'Update toolstrip
+                        'Update toolstrip status
                         Dim mapPath As String = openFileDialog1.FileName
-                        If mapPath.Length > 47 Then
-                            Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 47)
+                        If mapPath.Length > 45 Then
+                            Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
                             toolStripStatusLabel.Text = "..." & mapPathShortened
                             toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
                         Else
@@ -81,12 +81,11 @@ Public Class mainForm
                             toolStripStatusLabel.ToolTipText = mapPath
                         End If
 
-                    'Enable buttons
-                    closeMapToolStripMenuItem.Enabled = True
-                    resignMapToolStripMenuItem.Enabled = True
-                    mapInfoToolStripMenuItem.Enabled = True
+                        'Enable menu buttons
+                        closeMapToolStripMenuItem.Enabled = True
+                        resignMapToolStripMenuItem.Enabled = True
+                        mapInfoToolStripMenuItem.Enabled = True
 
-                    'Insert code to read the stream here. 
                     End If
                 End If
             Catch Ex As Exception

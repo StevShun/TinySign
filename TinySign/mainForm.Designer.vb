@@ -114,8 +114,8 @@ Partial Class mainForm
         '
         'mapIconBox
         '
-        resources.ApplyResources(Me.mapIconBox, "mapIconBox")
         Me.mapIconBox.BackColor = System.Drawing.SystemColors.Control
+        resources.ApplyResources(Me.mapIconBox, "mapIconBox")
         Me.mapIconBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.mapIconBox.Cursor = System.Windows.Forms.Cursors.Hand
         Me.mapIconBox.Image = Global.TinySign.My.Resources.Resources.Unknown_Map

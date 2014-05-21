@@ -3,6 +3,29 @@ Imports System.Reflection
 
 Public Class mapHandler
 
+    'Test the file's header to make sure it is a valid Halo 2 map file
+    Public Function inspectMapFile(array As Byte())
+        Dim charArray(4) As Char
+
+        Dim index As Integer = 0
+        Do Until index = 4
+            If array(index) = 0 Then Exit Do
+            charArray(index) = Convert.ToChar(array(index))
+            index += 1
+        Loop
+
+        Dim mapHeaderArray As New String(charArray)
+
+        Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
+
+        If mapHeader = "daeh" Then
+            Return "Valid"
+        Else
+            Return "Invalid"
+        End If
+
+    End Function
+
     'Converts byte array to a string
     Public Function readInternalName(array As Byte())
         Dim charArray(20) As Char

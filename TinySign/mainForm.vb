@@ -2,6 +2,7 @@
 
 Public Class mainForm
 
+    Dim inspectResult As String
     Dim mapInformation As String()
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -32,61 +33,84 @@ Public Class mainForm
                 If (mapStream IsNot Nothing) Then
                     If mapStream.CanRead Then
 
-                        'Gets the original bytes
-                        'Decimal positions:
-                        '408 = internal name, 444 = scenario path, 720 = signature addr
-                        Dim nameLocation(20) As Byte
-                        mapStream.Position = 408
-                        mapStream.Read(nameLocation, 0, 20)
-
-                        'Give me those bytes that need to be changed!!
-                        Dim map As New mapHandler()
-                        mapInformation = map.readInternalName(nameLocation)
-
-                        'Update the UI
-                        'Display what the current signature is and what it should be
-                        'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
-                        Dim queryResults As String() = map.queryMapList(mapInformation(0))
-                        Dim currentSig As String = map.readCurrentSig(mapStream)
-                        Dim actualSig As String = queryResults(4)
-
-                        currentSigTextBox.Text = currentSig
-
-                        For Each Str As String In queryResults
-                            If Str.Contains(currentSig) Then
-                                'If the current signature matches
-                                applySigTextBox.Text = currentSig
-                                applySigLabel.ForeColor = Color.Green
-                                currentSigLabel.ForeColor = Color.Green
-                            Else
-                                'If the current signature does not match
-                                applySigTextBox.Text = actualSig
-                                applySigLabel.ForeColor = Color.Red
-                                currentSigLabel.ForeColor = Color.Red
-                            End If
-                        Next
-
-                        'Display the map image
-                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
-                        mapIconBox.Image = mapImage
-
-                        'Update toolstrip status
-                        Dim mapPath As String = openFileDialog1.FileName
-                        If mapPath.Length > 45 Then
-                            Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
-                            toolStripStatusLabel.Text = "..." & mapPathShortened
-                            toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
+                        'Check to see if the file is a valid Halo 2 .map file
+                        If mapStream.Length < 800 Then
+                            mapStream.Close()
+                            MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
+                            Exit Sub
                         Else
-                            toolStripStatusLabel.Text = mapPath
-                            toolStripStatusLabel.ToolTipText = mapPath
+                            'Pass header onto inspector
+                            Dim tempHandler As New mapHandler()
+                            Dim headerLocation(4) As Byte
+                            mapStream.Position = 0
+                            mapStream.Read(headerLocation, 0, 4)
+                            inspectResult = tempHandler.inspectMapFile(headerLocation)
+                            If inspectResult = "Valid" Then
+                                'Do nothing
+                            Else
+                                mapStream.Close()
+                                MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
+                                toolStripStatusLabel.Text = "//Invalid file. File unloaded."
+                                toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
+                                Exit Sub
+                            End If
                         End If
 
-                        'Enable menu buttons
-                        closeMapToolStripMenuItem.Enabled = True
-                        resignMapToolStripMenuItem.Enabled = True
-                        mapInfoToolStripMenuItem.Enabled = True
+                    'Gets the original bytes
+                    'Decimal positions:
+                    '408 = internal name, 444 = scenario path, 720 = signature addr
+                    Dim nameLocation(20) As Byte
+                    mapStream.Position = 408
+                    mapStream.Read(nameLocation, 0, 20)
 
+                    'Give me those bytes that need to be changed!!
+                    Dim map As New mapHandler()
+                    mapInformation = map.readInternalName(nameLocation)
+
+                    'Update the UI
+                    'Display what the current signature is and what it should be
+                    'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
+                    Dim queryResults As String() = map.queryMapList(mapInformation(0))
+                    Dim currentSig As String = map.readCurrentSig(mapStream)
+                    Dim actualSig As String = queryResults(4)
+
+                    currentSigTextBox.Text = currentSig
+
+                    For Each Str As String In queryResults
+                        If Str.Contains(currentSig) Then
+                            'If the current signature matches
+                            applySigTextBox.Text = currentSig
+                            applySigLabel.ForeColor = Color.Green
+                            currentSigLabel.ForeColor = Color.Green
+                        Else
+                            'If the current signature does not match
+                            applySigTextBox.Text = actualSig
+                            applySigLabel.ForeColor = Color.Red
+                            currentSigLabel.ForeColor = Color.Red
+                        End If
+                    Next
+
+                    'Display the map image
+                    Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapInformation(0))
+                    mapIconBox.Image = mapImage
+
+                    'Update toolstrip status
+                    Dim mapPath As String = openFileDialog1.FileName
+                    If mapPath.Length > 45 Then
+                        Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
+                        toolStripStatusLabel.Text = "..." & mapPathShortened
+                        toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
+                    Else
+                        toolStripStatusLabel.Text = mapPath
+                        toolStripStatusLabel.ToolTipText = mapPath
                     End If
+
+                    'Enable menu buttons
+                    closeMapToolStripMenuItem.Enabled = True
+                    resignMapToolStripMenuItem.Enabled = True
+                    mapInfoToolStripMenuItem.Enabled = True
+
+                End If
                 End If
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
@@ -115,7 +139,7 @@ Public Class mainForm
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
 
-        'Close the file?
+        'The file is closed at the end of OpenFileDialoge sub
 
     End Sub
 

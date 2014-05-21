@@ -15,10 +15,9 @@ Public Class mapHandler
         Loop
 
         Dim mapHeaderArray As New String(charArray)
-
         Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
 
-        If mapHeader = "daeh" Then
+        If mapHeader = "toof" Then
             Return "Valid"
         Else
             Return "Invalid"
@@ -28,11 +27,11 @@ Public Class mapHandler
 
     'Converts byte array to a string
     Public Function readInternalName(array As Byte())
-        Dim charArray(20) As Char
+        Dim charArray(35) As Char
 
         'Put the byte array into a char array
         Dim index As Integer = 0
-        Do Until index = 19
+        Do Until index = 35
             If array(index) = 0 Then Exit Do
             charArray(index) = Convert.ToChar(array(index))
             index += 1

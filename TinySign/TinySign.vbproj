@@ -142,130 +142,130 @@
     <None Include="Resources\Unknown_Map.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\00a_introduction.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01a_tutorial.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01b_spacestation.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\03a_oldmombasa.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\03b_newmombasa.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\04a_gasgiant.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\04b_floodlab.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\05a_deltaapproach.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\05b_deltatowers.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06a_sentinelwalls.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06b_floodzone.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\07a_highcharity.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\07b_forerunnership.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\08a_deltacliffs.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\08b_deltacontrol.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ascension.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\backwash.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\beavercreek.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\burial_mounds.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\coagulation.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\colossus.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\containment.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cyclotron.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\deltatap.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\derelict.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dune.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\elongation.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\foundation.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\gemini.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\headlong.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\highplains2.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lockout.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mainmenu.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\midship.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shared.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\single_player_shared.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\triplicate.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\turf.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\warlock.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\waterworks.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zanzibar.JPG" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="mapList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_00a_introduction.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_01a_tutorial.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_01b_spacestation.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_03a_oldmombasa.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_03b_newmombasa.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_04a_gasgiant.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_04b_floodlab.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_05a_deltaapproach.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_05b_deltatowers.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_06a_sentinelwalls.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_06b_floodzone.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_07a_highcharity.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_07b_forerunnership.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_08a_deltacliffs.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_08b_deltacontrol.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_ascension.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_backwash.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_beavercreek.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_burial_mounds.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_coagulation.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_colossus.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_containment.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_cyclotron.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_deltatap.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_derelict.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_dune.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_elongation.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_foundation.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_gemini.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_headlong.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_highplains2.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_lockout.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_mainmenu.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_midship.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_shared.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_single_player_shared.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_triplicate.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_turf.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_warlock.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_waterworks.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_zanzibar.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

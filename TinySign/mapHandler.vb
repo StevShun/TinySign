@@ -3,21 +3,21 @@ Imports System.Reflection
 
 Public Class mapHandler
 
-    ' Given a file and a start location/end location, return a string of the contents
-    Private Function byteFinder(_start As Integer, _end As Integer, file As FileStream)
-        Dim length As Integer = (_end - _start)
-        file.Position = _start
+    'Given a file and a start location/end location, return a string of the contents
+    Private Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
+        Dim dataLength As Integer = (endByte - startByte)
+        mapStream.Position = startByte
 
-        ' Creates a string of Bytes
-        Dim byteStream(length) As Byte
-        file.Read(byteStream, 0, length)
+        'Creates a string of Bytes
+        Dim byteStream(dataLength) As Byte
+        mapStream.Read(byteStream, 0, dataLength)
 
-        'return a string of Bytes
+        'Return a string of Bytes
         Return byteStream
 
     End Function
 
-    Public Function giveBytes(signiture As String)
+    Public Function byteConverter(signature As String)
         'Dim byteStream() As Byte
         'Dim index As Integer = 0
         'Dim charLocation As Integer = 0
@@ -32,8 +32,8 @@ Public Class mapHandler
 
         'CODE
 
-        'return a string of Bytes
-        Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signiture)
+        'Return a string of Bytes
+        Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
         Return byteStream
 
     End Function

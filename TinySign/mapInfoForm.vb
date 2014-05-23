@@ -1,20 +1,22 @@
 ﻿Public Class mapInfoForm
 
-    ' Points to map inforamtion
-    Private map As String()
+    'Points to map inforamtion
+    Private mapInformation As String()
 
-    ' Gives map informaiton so we can use it here
-    Public Sub updateValues(mapInfo As String())
-        map = mapInfo
+    'Recieves map informaiton so that we can use it in this class
+    Public Sub updateValues(passedInformation As String())
+        mapInformation = passedInformation
     End Sub
 
-    ' Outputs map information to the window and opens window(I think?)
+    'Outputs map information to the window on form activation
     Private Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles Me.Activated
-        MapNameBox.Text = map(1)
+        mapNameTextBox.Text = mapInformation(1)
+        internalNameTextBox.Text = mapInformation(0)
+        correctScenPathLabel.Text = mapInformation(2)
     End Sub
 
-    'WTF is this!?
-    Private Sub mainWindow_refocus(sender As Object, e As EventArgs) Handles Me.FormClosed
+    'Focus on mainForm when mapInfoForm is closed by user
+    Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
         mainForm.Activate()
     End Sub
 

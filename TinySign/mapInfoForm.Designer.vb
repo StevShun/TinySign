@@ -22,118 +22,118 @@ Partial Class mapInfoForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MapNameLabel = New System.Windows.Forms.Label()
-        Me.InternalNameLabel = New System.Windows.Forms.Label()
-        Me.MapNameBox = New System.Windows.Forms.TextBox()
-        Me.InternalNameBox = New System.Windows.Forms.TextBox()
-        Me.CurrentScenarioPathLabel = New System.Windows.Forms.Label()
-        Me.ScenarioPathBox = New System.Windows.Forms.TextBox()
-        Me.CorrectSignatureLabel = New System.Windows.Forms.Label()
-        Me.CorrectSignatureBox = New System.Windows.Forms.TextBox()
-        Me.CorrectScenarioPathLabel = New System.Windows.Forms.Label()
-        Me.CorrectScenarioPathTextBox = New System.Windows.Forms.TextBox()
+        Me.mapNameLabel = New System.Windows.Forms.Label()
+        Me.internalNameLabel = New System.Windows.Forms.Label()
+        Me.mapNameTextBox = New System.Windows.Forms.TextBox()
+        Me.internalNameTextBox = New System.Windows.Forms.TextBox()
+        Me.currentScenPathLabel = New System.Windows.Forms.Label()
+        Me.currentScenPathTextBox = New System.Windows.Forms.TextBox()
+        Me.correctSigLabel = New System.Windows.Forms.Label()
+        Me.correctSigTextBox = New System.Windows.Forms.TextBox()
+        Me.correctScenPathLabel = New System.Windows.Forms.Label()
+        Me.correctScenPathTextBox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'MapNameLabel
+        'mapNameLabel
         '
-        Me.MapNameLabel.AutoSize = True
-        Me.MapNameLabel.Location = New System.Drawing.Point(11, 9)
-        Me.MapNameLabel.Name = "MapNameLabel"
-        Me.MapNameLabel.Size = New System.Drawing.Size(62, 13)
-        Me.MapNameLabel.TabIndex = 0
-        Me.MapNameLabel.Text = "Map Name:"
+        Me.mapNameLabel.AutoSize = True
+        Me.mapNameLabel.Location = New System.Drawing.Point(11, 9)
+        Me.mapNameLabel.Name = "mapNameLabel"
+        Me.mapNameLabel.Size = New System.Drawing.Size(62, 13)
+        Me.mapNameLabel.TabIndex = 0
+        Me.mapNameLabel.Text = "Map Name:"
         '
-        'InternalNameLabel
+        'internalNameLabel
         '
-        Me.InternalNameLabel.AutoSize = True
-        Me.InternalNameLabel.Location = New System.Drawing.Point(11, 48)
-        Me.InternalNameLabel.Name = "InternalNameLabel"
-        Me.InternalNameLabel.Size = New System.Drawing.Size(76, 13)
-        Me.InternalNameLabel.TabIndex = 1
-        Me.InternalNameLabel.Text = "Internal Name:"
+        Me.internalNameLabel.AutoSize = True
+        Me.internalNameLabel.Location = New System.Drawing.Point(11, 48)
+        Me.internalNameLabel.Name = "internalNameLabel"
+        Me.internalNameLabel.Size = New System.Drawing.Size(76, 13)
+        Me.internalNameLabel.TabIndex = 1
+        Me.internalNameLabel.Text = "Internal Name:"
         '
-        'MapNameBox
+        'mapNameTextBox
         '
-        Me.MapNameBox.Location = New System.Drawing.Point(15, 25)
-        Me.MapNameBox.Name = "MapNameBox"
-        Me.MapNameBox.ReadOnly = True
-        Me.MapNameBox.Size = New System.Drawing.Size(240, 20)
-        Me.MapNameBox.TabIndex = 2
+        Me.mapNameTextBox.Location = New System.Drawing.Point(15, 25)
+        Me.mapNameTextBox.Name = "mapNameTextBox"
+        Me.mapNameTextBox.ReadOnly = True
+        Me.mapNameTextBox.Size = New System.Drawing.Size(240, 20)
+        Me.mapNameTextBox.TabIndex = 2
         '
-        'InternalNameBox
+        'internalNameTextBox
         '
-        Me.InternalNameBox.Location = New System.Drawing.Point(15, 64)
-        Me.InternalNameBox.Name = "InternalNameBox"
-        Me.InternalNameBox.ReadOnly = True
-        Me.InternalNameBox.Size = New System.Drawing.Size(240, 20)
-        Me.InternalNameBox.TabIndex = 3
+        Me.internalNameTextBox.Location = New System.Drawing.Point(15, 64)
+        Me.internalNameTextBox.Name = "internalNameTextBox"
+        Me.internalNameTextBox.ReadOnly = True
+        Me.internalNameTextBox.Size = New System.Drawing.Size(240, 20)
+        Me.internalNameTextBox.TabIndex = 3
         '
-        'CurrentScenarioPathLabel
+        'currentScenPathLabel
         '
-        Me.CurrentScenarioPathLabel.AutoSize = True
-        Me.CurrentScenarioPathLabel.Location = New System.Drawing.Point(11, 87)
-        Me.CurrentScenarioPathLabel.Name = "CurrentScenarioPathLabel"
-        Me.CurrentScenarioPathLabel.Size = New System.Drawing.Size(114, 13)
-        Me.CurrentScenarioPathLabel.TabIndex = 1
-        Me.CurrentScenarioPathLabel.Text = "Current Scenario Path:"
+        Me.currentScenPathLabel.AutoSize = True
+        Me.currentScenPathLabel.Location = New System.Drawing.Point(11, 87)
+        Me.currentScenPathLabel.Name = "currentScenPathLabel"
+        Me.currentScenPathLabel.Size = New System.Drawing.Size(114, 13)
+        Me.currentScenPathLabel.TabIndex = 1
+        Me.currentScenPathLabel.Text = "Current Scenario Path:"
         '
-        'ScenarioPathBox
+        'currentScenPathTextBox
         '
-        Me.ScenarioPathBox.Location = New System.Drawing.Point(15, 103)
-        Me.ScenarioPathBox.Name = "ScenarioPathBox"
-        Me.ScenarioPathBox.ReadOnly = True
-        Me.ScenarioPathBox.Size = New System.Drawing.Size(240, 20)
-        Me.ScenarioPathBox.TabIndex = 3
+        Me.currentScenPathTextBox.Location = New System.Drawing.Point(15, 103)
+        Me.currentScenPathTextBox.Name = "currentScenPathTextBox"
+        Me.currentScenPathTextBox.ReadOnly = True
+        Me.currentScenPathTextBox.Size = New System.Drawing.Size(240, 20)
+        Me.currentScenPathTextBox.TabIndex = 3
         '
-        'CorrectSignatureLabel
+        'correctSigLabel
         '
-        Me.CorrectSignatureLabel.AutoSize = True
-        Me.CorrectSignatureLabel.Location = New System.Drawing.Point(11, 165)
-        Me.CorrectSignatureLabel.Name = "CorrectSignatureLabel"
-        Me.CorrectSignatureLabel.Size = New System.Drawing.Size(92, 13)
-        Me.CorrectSignatureLabel.TabIndex = 1
-        Me.CorrectSignatureLabel.Text = "Correct Signature:"
+        Me.correctSigLabel.AutoSize = True
+        Me.correctSigLabel.Location = New System.Drawing.Point(11, 165)
+        Me.correctSigLabel.Name = "correctSigLabel"
+        Me.correctSigLabel.Size = New System.Drawing.Size(92, 13)
+        Me.correctSigLabel.TabIndex = 1
+        Me.correctSigLabel.Text = "Correct Signature:"
         '
-        'CorrectSignatureBox
+        'correctSigTextBox
         '
-        Me.CorrectSignatureBox.Location = New System.Drawing.Point(14, 181)
-        Me.CorrectSignatureBox.Name = "CorrectSignatureBox"
-        Me.CorrectSignatureBox.ReadOnly = True
-        Me.CorrectSignatureBox.Size = New System.Drawing.Size(240, 20)
-        Me.CorrectSignatureBox.TabIndex = 3
+        Me.correctSigTextBox.Location = New System.Drawing.Point(14, 181)
+        Me.correctSigTextBox.Name = "correctSigTextBox"
+        Me.correctSigTextBox.ReadOnly = True
+        Me.correctSigTextBox.Size = New System.Drawing.Size(240, 20)
+        Me.correctSigTextBox.TabIndex = 3
         '
-        'CorrectScenarioPathLabel
+        'correctScenPathLabel
         '
-        Me.CorrectScenarioPathLabel.AutoSize = True
-        Me.CorrectScenarioPathLabel.Location = New System.Drawing.Point(11, 126)
-        Me.CorrectScenarioPathLabel.Name = "CorrectScenarioPathLabel"
-        Me.CorrectScenarioPathLabel.Size = New System.Drawing.Size(114, 13)
-        Me.CorrectScenarioPathLabel.TabIndex = 1
-        Me.CorrectScenarioPathLabel.Text = "Correct Scenario Path:"
+        Me.correctScenPathLabel.AutoSize = True
+        Me.correctScenPathLabel.Location = New System.Drawing.Point(11, 126)
+        Me.correctScenPathLabel.Name = "correctScenPathLabel"
+        Me.correctScenPathLabel.Size = New System.Drawing.Size(114, 13)
+        Me.correctScenPathLabel.TabIndex = 1
+        Me.correctScenPathLabel.Text = "Correct Scenario Path:"
         '
-        'CorrectScenarioPathTextBox
+        'correctScenPathTextBox
         '
-        Me.CorrectScenarioPathTextBox.Location = New System.Drawing.Point(14, 142)
-        Me.CorrectScenarioPathTextBox.Name = "CorrectScenarioPathTextBox"
-        Me.CorrectScenarioPathTextBox.ReadOnly = True
-        Me.CorrectScenarioPathTextBox.Size = New System.Drawing.Size(240, 20)
-        Me.CorrectScenarioPathTextBox.TabIndex = 3
+        Me.correctScenPathTextBox.Location = New System.Drawing.Point(14, 142)
+        Me.correctScenPathTextBox.Name = "correctScenPathTextBox"
+        Me.correctScenPathTextBox.ReadOnly = True
+        Me.correctScenPathTextBox.Size = New System.Drawing.Size(240, 20)
+        Me.correctScenPathTextBox.TabIndex = 3
         '
         'mapInfoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(267, 213)
-        Me.Controls.Add(Me.CorrectSignatureBox)
-        Me.Controls.Add(Me.CorrectScenarioPathTextBox)
-        Me.Controls.Add(Me.ScenarioPathBox)
-        Me.Controls.Add(Me.InternalNameBox)
-        Me.Controls.Add(Me.CorrectSignatureLabel)
-        Me.Controls.Add(Me.MapNameBox)
-        Me.Controls.Add(Me.CorrectScenarioPathLabel)
-        Me.Controls.Add(Me.CurrentScenarioPathLabel)
-        Me.Controls.Add(Me.InternalNameLabel)
-        Me.Controls.Add(Me.MapNameLabel)
+        Me.Controls.Add(Me.correctSigTextBox)
+        Me.Controls.Add(Me.correctScenPathTextBox)
+        Me.Controls.Add(Me.currentScenPathTextBox)
+        Me.Controls.Add(Me.internalNameTextBox)
+        Me.Controls.Add(Me.correctSigLabel)
+        Me.Controls.Add(Me.mapNameTextBox)
+        Me.Controls.Add(Me.correctScenPathLabel)
+        Me.Controls.Add(Me.currentScenPathLabel)
+        Me.Controls.Add(Me.internalNameLabel)
+        Me.Controls.Add(Me.mapNameLabel)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "mapInfoForm"
@@ -145,14 +145,14 @@ Partial Class mapInfoForm
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents MapNameLabel As System.Windows.Forms.Label
-    Friend WithEvents InternalNameLabel As System.Windows.Forms.Label
-    Friend WithEvents MapNameBox As System.Windows.Forms.TextBox
-    Friend WithEvents InternalNameBox As System.Windows.Forms.TextBox
-    Friend WithEvents CurrentScenarioPathLabel As System.Windows.Forms.Label
-    Friend WithEvents ScenarioPathBox As System.Windows.Forms.TextBox
-    Friend WithEvents CorrectSignatureLabel As System.Windows.Forms.Label
-    Friend WithEvents CorrectSignatureBox As System.Windows.Forms.TextBox
-    Friend WithEvents CorrectScenarioPathLabel As System.Windows.Forms.Label
-    Friend WithEvents CorrectScenarioPathTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents mapNameLabel As System.Windows.Forms.Label
+    Friend WithEvents internalNameLabel As System.Windows.Forms.Label
+    Friend WithEvents mapNameTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents internalNameTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents currentScenPathLabel As System.Windows.Forms.Label
+    Friend WithEvents currentScenPathTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents correctSigLabel As System.Windows.Forms.Label
+    Friend WithEvents correctSigTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents correctScenPathLabel As System.Windows.Forms.Label
+    Friend WithEvents correctScenPathTextBox As System.Windows.Forms.TextBox
 End Class

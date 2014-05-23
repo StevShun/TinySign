@@ -4,7 +4,7 @@ Public Class mainForm
 
     Dim inspectResult As String
     Dim mapInformation As String()
-    Dim mapStream As FileStream = Nothing
+    Dim mapStream As FileStream
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         closeMapToolStripMenuItem.Enabled = False
@@ -25,7 +25,8 @@ Public Class mainForm
 
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Try
-                mapStream = openFileDialog1.OpenFile()
+                mapStream = New FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite)
+                MsgBox(mapStream.CanWrite)
                 'Read the .map file
 
                 If (mapStream IsNot Nothing) Then
@@ -152,6 +153,7 @@ Public Class mainForm
         Dim bytesToWrite() As Byte
         bytesToWrite = aMapHandler.giveBytes(mapInformation(4))
 
+        MsgBox(mapStream.CanWrite)
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
             mapStream.Write(bytesToWrite, 0, 4)

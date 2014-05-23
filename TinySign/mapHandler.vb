@@ -3,6 +3,41 @@ Imports System.Reflection
 
 Public Class mapHandler
 
+    ' Given a file and a start location/end location, return a string of the contents
+    Private Function byteFinder(_start As Integer, _end As Integer, file As FileStream)
+        Dim length As Integer = (_end - _start)
+        file.Position = _start
+
+        ' Creates a string of Bytes
+        Dim byteStream(length) As Byte
+        file.Read(byteStream, 0, length)
+
+        'return a string of Bytes
+        Return byteStream
+
+    End Function
+
+    Public Function giveBytes(signiture As String)
+        'Dim byteStream() As Byte
+        'Dim index As Integer = 0
+        'Dim charLocation As Integer = 0
+        'Dim twoBytesAtATime As String = ""
+
+        'Read two of the chars and convert those 2 chars into bytes Store in position of array
+        'Do While index < 8
+        'twoBytesAtATime = twoBytesAtATime + signiture.Chars(charLocation)
+        '   If(index = 1 OR index = 3 OR index = 5 OR index = 7
+        'index += index
+        'Loop
+
+        'CODE
+
+        'return a string of Bytes
+        Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signiture)
+        Return byteStream
+
+    End Function
+
     'Test the file's header to make sure it is a valid Halo 2 map file
     Public Function inspectMapFile(array As Byte())
         Dim charArray(4) As Char

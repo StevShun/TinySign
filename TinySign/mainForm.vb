@@ -4,6 +4,7 @@ Public Class mainForm
 
     Dim inspectResult As String
     Dim mapInformation As String()
+    Dim mapStream As FileStream = Nothing
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         closeMapToolStripMenuItem.Enabled = False
@@ -16,7 +17,6 @@ Public Class mainForm
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
         'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
-        Dim mapStream As FileStream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
 
         openFileDialog1.Filter = "Halo 2 map files (*.map)|*.map"
@@ -116,7 +116,7 @@ Public Class mainForm
             Finally
                 'Check this again, since we need to make sure we didn't throw an exception on open. 
                 If (mapStream IsNot Nothing) Then
-                    mapStream.Close()
+                    'mapStream.Close()
                 End If
 
             End Try
@@ -143,14 +143,28 @@ Public Class mainForm
 
     End Sub
 
+    ' Where it resigns AKA Where it all goes wrong
     Private Sub ResignMapToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles resignMapToolStripMenuItem.Click
+        Dim aMapHandler As New mapHandler
+        mapStream.Position = 720
+
+        ' convert mapInformation sig into an array of bytes
+        Dim bytesToWrite() As Byte
+        bytesToWrite = aMapHandler.giveBytes(mapInformation(4))
+
+        ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
+        Try
+            mapStream.Write(bytesToWrite, 0, 4)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "error")
+        End Try
 
     End Sub
 
     Private Sub MapInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mapInfoToolStripMenuItem.Click
-        Dim mapInfoBox As New mapInfoForm
-        mapInfoBox.updateValues(mapInformation)
-        mapInfoForm.Show()
+        Dim PassMe As New mapInfoForm
+        PassMe.updateValues(mapInformation)
+        PassMe.Show()
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles aboutToolStripMenuItem.Click

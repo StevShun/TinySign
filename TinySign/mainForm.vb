@@ -152,12 +152,11 @@ Public Class mainForm
         Dim bytesToWrite() As Byte
         bytesToWrite = aMapHandler.byteConverter(mapInformation(4))
 
-        MsgBox(mapStream.CanWrite)
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
             mapStream.Write(bytesToWrite, 0, 4)
             Dim currentSig As String = aMapHandler.readCurrentSig(mapStream)
-            applySigTextBox.Text = currentSig
+            currentSigTextBox.Text = currentSig
         Catch ex As Exception
             MessageBox.Show(ex.Message, "error")
         End Try

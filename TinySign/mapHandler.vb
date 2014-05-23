@@ -18,22 +18,30 @@ Public Class mapHandler
     End Function
 
     Public Function byteConverter(signature As String)
-        'Dim byteStream() As Byte
-        'Dim index As Integer = 0
-        'Dim charLocation As Integer = 0
-        'Dim twoBytesAtATime As String = ""
+        Dim byteStream(1000) As Byte
+        Dim hexStream(4) As String
+        Dim tempString As String = ""
+        Dim index As Integer = 0
+        Dim count As Integer = 0
 
-        'Read two of the chars and convert those 2 chars into bytes Store in position of array
-        'Do While index < 8
-        'twoBytesAtATime = twoBytesAtATime + signiture.Chars(charLocation)
-        '   If(index = 1 OR index = 3 OR index = 5 OR index = 7
-        'index += index
-        'Loop
+        ' Fills an array with hex values
+        Do While index < 8
+            tempString = tempString + signature.Chars(index)
+            If ((index Mod 2) = 1) Then
+                hexStream(count) = tempString
+                tempString = ""
+                count += 1
+            End If
+            index += 1
+        Loop
 
-        'CODE
-
+        index = 0
+        Do While index < 4
+            MsgBox(hexStream(index))
+            index += 1
+        Loop
         'Return a string of Bytes
-        Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
+        'Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
         Return byteStream
 
     End Function

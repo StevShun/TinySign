@@ -18,7 +18,7 @@ Public Class mapHandler
     End Function
 
     Public Function byteConverter(signature As String)
-        Dim byteStream(1000) As Byte
+        Dim byteStream(100) As Byte
         Dim hexStream(4) As String
         Dim tempString As String = ""
         Dim index As Integer = 0
@@ -28,18 +28,34 @@ Public Class mapHandler
         Do While index < 8
             tempString = tempString + signature.Chars(index)
             If ((index Mod 2) = 1) Then
-                hexStream(count) = tempString
+                hexStream(count) = CLng("&H" & tempString)
                 tempString = ""
                 count += 1
             End If
             index += 1
         Loop
 
+        count = 0
         index = 0
+        Dim counter As Integer = 0
+        Dim tempByteStream As Byte()
         Do While index < 4
-            MsgBox(hexStream(index))
+            tempByteStream = BitConverter.GetBytes(Convert.ToDouble(hexStream(index)))
+            Do While count < 8
+                byteStream(counter) = tempByteStream(count)
+                count += 1
+                counter += 1
+            Loop
+            count = 0
             index += 1
         Loop
+
+        index = 0
+        Do While index < 32
+            MsgBox(byteStream(index))
+            index += 1
+        Loop
+
         'Return a string of Bytes
         'Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
         Return byteStream

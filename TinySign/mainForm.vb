@@ -25,8 +25,7 @@ Public Class mainForm
 
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Try
-                mapStream = New FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite)
-                MsgBox(mapStream.CanWrite)
+                mapStream = New FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite)
                 'Read the .map file
 
                 If (mapStream IsNot Nothing) Then

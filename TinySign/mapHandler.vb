@@ -18,7 +18,7 @@ Public Class mapHandler
     End Function
 
     Public Function byteConverter(sigToApply As String)
-        Dim byteStream(100) As Byte
+        Dim byteStream(4) As Byte
         Dim hexStream(4) As String
         Dim tempString As String = ""
         Dim index As Integer = 0
@@ -35,26 +35,13 @@ Public Class mapHandler
             index += 1
         Loop
 
-        count = 0
         index = 0
-        Dim counter As Integer = 0
-        Dim tempByteStream As Byte()
         Do While index < 4
-            tempByteStream = BitConverter.GetBytes(Convert.ToDouble(hexStream(index)))
-            Do While count < 8
-                byteStream(counter) = tempByteStream(count)
-                count += 1
-                counter += 1
-            Loop
-            count = 0
+            byteStream(index) = hexStream(index)
             index += 1
         Loop
 
-        index = 0
-        Do While index < 32
-            MsgBox(byteStream(index))
-            index += 1
-        Loop
+
 
         'Return a string of Bytes
         'Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
@@ -75,11 +62,12 @@ Public Class mapHandler
 
         Dim mapHeaderArray As New String(charArray)
         'Dim mapHeader As String = charArrayContents.ToString
+
         Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
 
         For Each letter As Char In charArray
             Dim ns As String = letter.ToString()
-            MsgBox(ns)
+            'MsgBox(ns)
         Next
 
         If mapHeader = "toof" Then

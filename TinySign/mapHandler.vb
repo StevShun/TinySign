@@ -3,8 +3,11 @@ Imports System.Reflection
 
 Public Class mapHandler
 
+    'Decimal positions for relevant map information:
+    '408 = internal name, 444 = scenario path, 720 = signature addr
+
     'Given a file and a start location/end location, return a string of the contents
-    Private Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
+    Public Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
         Dim dataLength As Integer = (endByte - startByte)
         mapStream.Position = startByte
 
@@ -17,38 +20,8 @@ Public Class mapHandler
 
     End Function
 
-    Public Function byteConverter(sigToApply As String)
-        Dim byteStream(4) As Byte
-        Dim hexStream(4) As String
-        Dim tempString As String = ""
-        Dim index As Integer = 0
-        Dim count As Integer = 0
-
-        'Fills an array with hex values
-        Do While index < 8
-            tempString = tempString + sigToApply.Chars(index)
-            If ((index Mod 2) = 1) Then
-                hexStream(count) = CLng("&H" & tempString)
-                tempString = ""
-                count += 1
-            End If
-            index += 1
-        Loop
-
-        index = 0
-        Do While index < 4
-            byteStream(index) = hexStream(index)
-            index += 1
-        Loop
-
-        'Return a string of Bytes
-        'Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)
-        Return byteStream
-
-    End Function
-
     'Test the file's header to make sure it is a valid Halo 2 map file
-    Public Function inspectMapFile(array As Byte())
+    Public Function verifyMapFile(array As Byte())
         Dim charArray(4) As Char
 
         Dim index As Integer = 0
@@ -59,14 +32,7 @@ Public Class mapHandler
         Loop
 
         Dim mapHeaderArray As New String(charArray)
-        'Dim mapHeader As String = charArrayContents.ToString
-
         Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
-
-        For Each letter As Char In charArray
-            Dim ns As String = letter.ToString()
-            'MsgBox(ns)
-        Next
 
         If mapHeader = "toof" Then
             Return "Valid"
@@ -152,6 +118,40 @@ Public Class mapHandler
         Loop
 
         Return mapCurrentSignatureString
+    End Function
+
+    Public Function readCurrentScenPath(mapStream As FileStream)
+
+    End Function
+
+    'Prepare new signature by converting string to bytes
+    Public Function byteConverter(sigToApply As String)
+        Dim byteStream(4) As Byte
+        Dim hexStream(4) As String
+        Dim tempString As String = ""
+        Dim index As Integer = 0
+        Dim count As Integer = 0
+
+        'Fills an array with hex values
+        Do While index < 8
+            tempString = tempString + sigToApply.Chars(index)
+            If ((index Mod 2) = 1) Then
+                hexStream(count) = CLng("&H" & tempString)
+                tempString = ""
+                count += 1
+            End If
+            index += 1
+        Loop
+
+        index = 0
+        Do While index < 4
+            byteStream(index) = hexStream(index)
+            index += 1
+        Loop
+
+        'Return a string of Bytes
+        Return byteStream
+
     End Function
 
 End Class

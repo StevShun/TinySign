@@ -17,11 +17,6 @@
         correctSigTextBox.Text = mapInformation(4)
     End Sub
 
-    'Focus on mainForm when mapInfoForm is closed by user
-    Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
-        mainForm.Activate()
-    End Sub
-
     Private Sub copyToClipboard_mapName(sender As Object, e As EventArgs) Handles mapNameTextBox.Click
         'Identify the current control selected by user
         Dim currentControl As TextBox = Me.ActiveControl
@@ -80,6 +75,11 @@
         'Update UI
         currentControl.SelectAll()
         statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+    End Sub
+
+    'Focus on mainForm when mapInfoForm is closed by user
+    Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
+        mainForm.Activate()
     End Sub
 
 End Class

@@ -2,7 +2,7 @@
 
 Public Class mainForm
 
-    Dim inspectResult As String
+    Dim validityResult As String
     Dim mapStream As FileStream
     Dim mapInformation As String()
     Dim passMe As New mapInfoForm
@@ -31,19 +31,22 @@ Public Class mainForm
 
                 If (mapStream IsNot Nothing) Then
 
+                    '
                     'Check to see if the file is a valid Halo 2 .map file
+                    '
+                    'First, check the length of the file in bytes
                     If mapStream.Length < 10000000 Then
                         mapStream.Close()
                         MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
                         Exit Sub
                     Else
-                        'Pass header onto inspector
+                        'Pass header to the inspector for verification
                         Dim tempHandler As New mapHandler()
                         Dim headerLocation(4) As Byte
                         mapStream.Position = 2044
                         mapStream.Read(headerLocation, 0, 4)
-                        inspectResult = tempHandler.inspectMapFile(headerLocation)
-                        If inspectResult = "Valid" Then
+                        validityResult = tempHandler.verifyMapFile(headerLocation)
+                        If validityResult = "Valid" Then
                             'Do nothing
                         Else
                             mapStream.Close()
@@ -54,18 +57,18 @@ Public Class mainForm
                         End If
                     End If
 
-                    'Gets the original bytes
-                    'Decimal positions:
-                    '408 = internal name, 444 = scenario path, 720 = signature addr
+                    'Identify and read the bytes for the map's internal name
                     Dim nameLocation(35) As Byte
                     mapStream.Position = 408
                     mapStream.Read(nameLocation, 0, 35)
 
-                    'Give me those bytes that need to be changed!!
+                    'Create a pointer variable that enables us to read from our map "database"
                     Dim map As New mapHandler()
                     mapInformation = map.readInternalName(nameLocation)
 
+                    '
                     'Update the UI
+                    '
                     'Display what the current signature is and what it should be
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
                     Dim queryResults As String() = map.queryMapList(mapInformation(0))
@@ -120,7 +123,15 @@ Public Class mainForm
 
     Public Sub closeMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles closeMapMenuItem.Click
 
+        'Reset globals
+        mapInformation = Nothing
+
+        'Close the file
+        mapStream.Close()
+
+        '
         'Clean up the UI
+        '
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
         currentSigLabel.ForeColor = Color.Black
@@ -133,22 +144,18 @@ Public Class mainForm
         'Tool Strip formatting: http://stackoverflow.com/questions/16189893/cut-status-strip-label-to-width-of-form
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
-
-        'Reset globals
-        mapInformation = Nothing
-
+        'Close the mapInfo form
         passMe.Close()
-
-        'Close the file
-        mapStream.Close()
 
     End Sub
 
     Private Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
+
+        'Check if the MapInfo form is already open
         If Application.OpenForms().OfType(Of mapInfoForm).Any Then
             MsgBox("The Map Information window is already open.")
         Else
-            'Dim passMe As New mapInfoForm
+            'If it is not open, pass the data from mapInformation to the form
             passMe.updateValues(mapInformation)
             passMe.Show()
         End If
@@ -157,6 +164,15 @@ Public Class mainForm
 
     'Where it resigns AKA Where it all goes wrong
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
+
+        'Check if the file is already resigned
+        If currentSigTextBox.Text = applySigTextBox.Text Then
+            MsgBox("The current map's signature is valid. There is no need to resign the file.")
+            Exit Sub
+        Else
+            'Do nothing
+        End If
+
         Dim tempHandler As New mapHandler
         mapStream.Position = 720
 
@@ -166,6 +182,7 @@ Public Class mainForm
 
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
+            'Write the new signature
             mapStream.Write(bytesToWrite, 0, 4)
             'Update the UI
             Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
@@ -183,7 +200,7 @@ Public Class mainForm
     End Sub
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
-        'resignMapMenuItem_click()
+
     End Sub
 
 End Class

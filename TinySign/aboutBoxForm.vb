@@ -23,4 +23,9 @@
         Me.Close()
     End Sub
 
+    'Focus on mainForm when aboutBoxForm is closed by user
+    Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
+        mainForm.Activate()
+    End Sub
+
 End Class

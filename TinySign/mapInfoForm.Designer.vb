@@ -54,6 +54,8 @@ Partial Class mapInfoForm
         '
         'mapNameTextBox
         '
+        Me.mapNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.mapNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
         Me.mapNameTextBox.Location = New System.Drawing.Point(15, 25)
         Me.mapNameTextBox.Name = "mapNameTextBox"
         Me.mapNameTextBox.ReadOnly = True
@@ -62,6 +64,8 @@ Partial Class mapInfoForm
         '
         'internalNameTextBox
         '
+        Me.internalNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.internalNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
         Me.internalNameTextBox.Location = New System.Drawing.Point(15, 64)
         Me.internalNameTextBox.Name = "internalNameTextBox"
         Me.internalNameTextBox.ReadOnly = True
@@ -79,6 +83,8 @@ Partial Class mapInfoForm
         '
         'currentScenPathTextBox
         '
+        Me.currentScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.currentScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
         Me.currentScenPathTextBox.Location = New System.Drawing.Point(15, 103)
         Me.currentScenPathTextBox.Name = "currentScenPathTextBox"
         Me.currentScenPathTextBox.ReadOnly = True
@@ -96,6 +102,8 @@ Partial Class mapInfoForm
         '
         'correctSigTextBox
         '
+        Me.correctSigTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.correctSigTextBox.BackColor = System.Drawing.SystemColors.ControlLight
         Me.correctSigTextBox.Location = New System.Drawing.Point(14, 181)
         Me.correctSigTextBox.Name = "correctSigTextBox"
         Me.correctSigTextBox.ReadOnly = True
@@ -113,6 +121,8 @@ Partial Class mapInfoForm
         '
         'correctScenPathTextBox
         '
+        Me.correctScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.correctScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
         Me.correctScenPathTextBox.Location = New System.Drawing.Point(14, 142)
         Me.correctScenPathTextBox.Name = "correctScenPathTextBox"
         Me.correctScenPathTextBox.ReadOnly = True
@@ -135,9 +145,12 @@ Partial Class mapInfoForm
         Me.Controls.Add(Me.internalNameLabel)
         Me.Controls.Add(Me.mapNameLabel)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(483, 251)
         Me.MinimizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(283, 251)
         Me.Name = "mapInfoForm"
         Me.ShowInTaskbar = False
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Map Information"
         Me.TopMost = True

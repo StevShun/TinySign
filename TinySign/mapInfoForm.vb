@@ -12,7 +12,9 @@
     Private Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles Me.Activated
         mapNameTextBox.Text = mapInformation(1)
         internalNameTextBox.Text = mapInformation(0)
-        correctScenPathLabel.Text = mapInformation(2)
+        currentScenPathTextBox.Text = ""
+        correctScenPathTextBox.Text = mapInformation(2)
+        correctSigTextBox.Text = mapInformation(4)
     End Sub
 
     'Focus on mainForm when mapInfoForm is closed by user

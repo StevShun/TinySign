@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Drawing
 
 Public Class mainForm
 
@@ -91,7 +92,6 @@ Public Class mainForm
                         'Display the map image
                         Dim mapNameToString As String = "_" & mapInformation(0).ToString
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
-                        mapIconBox.Image = mapImage
 
                         'Update toolstrip status
                         Dim mapPath As String = openFileDialog1.FileName
@@ -171,6 +171,10 @@ Public Class mainForm
 
     Private Sub aboutMenuItem_click(sender As Object, e As EventArgs) Handles aboutMenuItem.Click
         aboutBoxForm.Show()
+    End Sub
+
+    Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
+        'resignMapMenuItem_click()
     End Sub
 
 End Class

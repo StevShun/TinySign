@@ -68,7 +68,7 @@ Partial Class mainForm
         '
         'toolsToolStripMenuItem
         '
-        Me.toolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.resignMapMenuItem, Me.mapInfoMenuItem})
+        Me.toolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mapInfoMenuItem, Me.resignMapMenuItem})
         Me.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem"
         resources.ApplyResources(Me.toolsToolStripMenuItem, "toolsToolStripMenuItem")
         '

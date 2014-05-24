@@ -17,7 +17,7 @@ Public Class mapHandler
 
     End Function
 
-    Public Function byteConverter(signature As String)
+    Public Function byteConverter(sigToApply As String)
         Dim byteStream(100) As Byte
         Dim hexStream(4) As String
         Dim tempString As String = ""
@@ -26,7 +26,7 @@ Public Class mapHandler
 
         ' Fills an array with hex values
         Do While index < 8
-            tempString = tempString + signature.Chars(index)
+            tempString = tempString + sigToApply.Chars(index)
             If ((index Mod 2) = 1) Then
                 hexStream(count) = CLng("&H" & tempString)
                 tempString = ""
@@ -74,7 +74,13 @@ Public Class mapHandler
         Loop
 
         Dim mapHeaderArray As New String(charArray)
+        'Dim mapHeader As String = charArrayContents.ToString
         Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
+
+        For Each letter As Char In charArray
+            Dim ns As String = letter.ToString()
+            MsgBox(ns)
+        Next
 
         If mapHeader = "toof" Then
             Return "Valid"

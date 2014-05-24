@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-Imports System.Drawing
 
 Public Class mainForm
 
@@ -92,6 +91,7 @@ Public Class mainForm
                         'Display the map image
                         Dim mapNameToString As String = "_" & mapInformation(0).ToString
                         Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
+                        mapIconBox.Image = mapImage
 
                         'Update toolstrip status
                         Dim mapPath As String = openFileDialog1.FileName

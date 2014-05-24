@@ -3,8 +3,9 @@
 Public Class mainForm
 
     Dim inspectResult As String
-    Dim mapInformation As String()
     Dim mapStream As FileStream
+    Dim mapInformation As String()
+    Dim passMe As New mapInfoForm
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
         closeMapMenuItem.Enabled = False
@@ -29,96 +30,89 @@ Public Class mainForm
                 'Read the .map file
 
                 If (mapStream IsNot Nothing) Then
-                    If mapStream.CanRead Then
 
-                        'Check to see if the file is a valid Halo 2 .map file
-                        If mapStream.Length < 10000000 Then
+                    'Check to see if the file is a valid Halo 2 .map file
+                    If mapStream.Length < 10000000 Then
+                        mapStream.Close()
+                        MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
+                        Exit Sub
+                    Else
+                        'Pass header onto inspector
+                        Dim tempHandler As New mapHandler()
+                        Dim headerLocation(4) As Byte
+                        mapStream.Position = 2044
+                        mapStream.Read(headerLocation, 0, 4)
+                        inspectResult = tempHandler.inspectMapFile(headerLocation)
+                        If inspectResult = "Valid" Then
+                            'Do nothing
+                        Else
                             mapStream.Close()
                             MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
+                            toolStripStatusLabel.Text = "//Invalid file. File unloaded."
+                            toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
                             Exit Sub
-                        Else
-                            'Pass header onto inspector
-                            Dim tempHandler As New mapHandler()
-                            Dim headerLocation(4) As Byte
-                            mapStream.Position = 2044
-                            mapStream.Read(headerLocation, 0, 4)
-                            inspectResult = tempHandler.inspectMapFile(headerLocation)
-                            If inspectResult = "Valid" Then
-                                'Do nothing
-                            Else
-                                mapStream.Close()
-                                MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
-                                toolStripStatusLabel.Text = "//Invalid file. File unloaded."
-                                toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
-                                Exit Sub
-                            End If
                         End If
-
-                        'Gets the original bytes
-                        'Decimal positions:
-                        '408 = internal name, 444 = scenario path, 720 = signature addr
-                        Dim nameLocation(35) As Byte
-                        mapStream.Position = 408
-                        mapStream.Read(nameLocation, 0, 35)
-
-                        'Give me those bytes that need to be changed!!
-                        Dim map As New mapHandler()
-                        mapInformation = map.readInternalName(nameLocation)
-
-                        'Update the UI
-                        'Display what the current signature is and what it should be
-                        'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
-                        Dim queryResults As String() = map.queryMapList(mapInformation(0))
-                        Dim currentSig As String = map.readCurrentSig(mapStream)
-                        Dim actualSig As String = queryResults(4)
-
-                        currentSigTextBox.Text = currentSig
-
-                        For Each Str As String In queryResults
-                            If Str.Contains(currentSig) Then
-                                'If the current signature matches
-                                applySigTextBox.Text = currentSig
-                                applySigLabel.ForeColor = Color.Green
-                                currentSigLabel.ForeColor = Color.Green
-                            Else
-                                'If the current signature does not match
-                                applySigTextBox.Text = actualSig
-                                applySigLabel.ForeColor = Color.Red
-                                currentSigLabel.ForeColor = Color.Red
-                            End If
-                        Next
-
-                        'Display the map image
-                        Dim mapNameToString As String = "_" & mapInformation(0).ToString
-                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
-                        mapIconBox.Image = mapImage
-
-                        'Update toolstrip status
-                        Dim mapPath As String = openFileDialog1.FileName
-                        If mapPath.Length > 45 Then
-                            Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
-                            toolStripStatusLabel.Text = "..." & mapPathShortened
-                            toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
-                        Else
-                            toolStripStatusLabel.Text = mapPath
-                            toolStripStatusLabel.ToolTipText = mapPath
-                        End If
-
-                        'Enable / disable button operation
-                        closeMapMenuItem.Enabled = True
-                        resignMapMenuItem.Enabled = True
-                        mapInfoMenuItem.Enabled = True
-
                     End If
+
+                    'Gets the original bytes
+                    'Decimal positions:
+                    '408 = internal name, 444 = scenario path, 720 = signature addr
+                    Dim nameLocation(35) As Byte
+                    mapStream.Position = 408
+                    mapStream.Read(nameLocation, 0, 35)
+
+                    'Give me those bytes that need to be changed!!
+                    Dim map As New mapHandler()
+                    mapInformation = map.readInternalName(nameLocation)
+
+                    'Update the UI
+                    'Display what the current signature is and what it should be
+                    'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
+                    Dim queryResults As String() = map.queryMapList(mapInformation(0))
+                    Dim currentSig As String = map.readCurrentSig(mapStream)
+                    Dim actualSig As String = queryResults(4)
+
+                    currentSigTextBox.Text = currentSig
+
+                    For Each Str As String In queryResults
+                        If Str.Contains(currentSig) Then
+                            'If the current signature matches
+                            applySigTextBox.Text = currentSig
+                            applySigLabel.ForeColor = Color.Green
+                            currentSigLabel.ForeColor = Color.Green
+                        Else
+                            'If the current signature does not match
+                            applySigTextBox.Text = actualSig
+                            applySigLabel.ForeColor = Color.Red
+                            currentSigLabel.ForeColor = Color.Red
+                        End If
+                    Next
+
+                    'Display the map image
+                    Dim mapNameToString As String = "_" & mapInformation(0).ToString
+                    Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
+                    mapIconBox.Image = mapImage
+
+                    'Update toolstrip status
+                    Dim mapPath As String = openFileDialog1.FileName
+                    If mapPath.Length > 45 Then
+                        Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
+                        toolStripStatusLabel.Text = "..." & mapPathShortened
+                        toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
+                    Else
+                        toolStripStatusLabel.Text = mapPath
+                        toolStripStatusLabel.ToolTipText = mapPath
+                    End If
+
+                    'Enable / disable button operation
+                    openMapMenuItem.Enabled = False
+                    closeMapMenuItem.Enabled = True
+                    resignMapMenuItem.Enabled = True
+                    mapInfoMenuItem.Enabled = True
+
                 End If
             Catch Ex As Exception
                 MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
-            Finally
-                'Check this again, since we need to make sure we didn't throw an exception on open. 
-                If (mapStream IsNot Nothing) Then
-                    'mapStream.Close()
-                End If
-
             End Try
         End If
 
@@ -132,6 +126,7 @@ Public Class mainForm
         currentSigLabel.ForeColor = Color.Black
         applySigTextBox.Text = ""
         applySigLabel.ForeColor = Color.Black
+        openMapMenuItem.Enabled = True
         resignMapMenuItem.Enabled = False
         mapInfoMenuItem.Enabled = False
         closeMapMenuItem.Enabled = False
@@ -139,8 +134,24 @@ Public Class mainForm
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
 
+        'Reset globals
+        mapInformation = Nothing
+
+        passMe.Close()
+
         'Close the file
         mapStream.Close()
+
+    End Sub
+
+    Private Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
+        If Application.OpenForms().OfType(Of mapInfoForm).Any Then
+            MsgBox("The Map Information window is already open.")
+        Else
+            'Dim passMe As New mapInfoForm
+            passMe.updateValues(mapInformation)
+            passMe.Show()
+        End If
 
     End Sub
 
@@ -165,12 +176,6 @@ Public Class mainForm
             MessageBox.Show(ex.Message, "Error")
         End Try
 
-    End Sub
-
-    Private Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
-        Dim passMe As New mapInfoForm
-        passMe.updateValues(mapInformation)
-        passMe.Show()
     End Sub
 
     Private Sub aboutMenuItem_click(sender As Object, e As EventArgs) Handles aboutMenuItem.Click

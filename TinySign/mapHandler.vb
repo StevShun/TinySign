@@ -24,7 +24,7 @@ Public Class mapHandler
         Dim index As Integer = 0
         Dim count As Integer = 0
 
-        ' Fills an array with hex values
+        'Fills an array with hex values
         Do While index < 8
             tempString = tempString + sigToApply.Chars(index)
             If ((index Mod 2) = 1) Then
@@ -40,8 +40,6 @@ Public Class mapHandler
             byteStream(index) = hexStream(index)
             index += 1
         Loop
-
-
 
         'Return a string of Bytes
         'Dim byteStream() As Byte = System.Text.Encoding.UTF8.GetBytes(signature)

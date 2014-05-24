@@ -139,26 +139,30 @@ Public Class mainForm
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
 
-        'The file is closed at the end of OpenFileDialoge sub
+        'Close the file
+        mapStream.Close()
 
     End Sub
 
     'Where it resigns AKA Where it all goes wrong
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
-        Dim aMapHandler As New mapHandler
+        Dim tempHandler As New mapHandler
         mapStream.Position = 720
 
-        ' convert mapInformation sig into an array of bytes
+        'Convert mapInformation sig into an array of bytes
         Dim bytesToWrite() As Byte
-        bytesToWrite = aMapHandler.byteConverter(mapInformation(4))
+        bytesToWrite = tempHandler.byteConverter(mapInformation(4))
 
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
             mapStream.Write(bytesToWrite, 0, 4)
-            Dim currentSig As String = aMapHandler.readCurrentSig(mapStream)
+            'Update the UI
+            Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
             currentSigTextBox.Text = currentSig
+            applySigLabel.ForeColor = Color.Green
+            currentSigLabel.ForeColor = Color.Green
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "error")
+            MessageBox.Show(ex.Message, "Error")
         End Try
 
     End Sub

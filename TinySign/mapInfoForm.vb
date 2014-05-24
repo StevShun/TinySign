@@ -22,4 +22,13 @@
         mainForm.Activate()
     End Sub
 
+    Private Sub copyToClipBoard(sender As Object, e As EventArgs) Handles correctScenPathTextBox.Click
+        Clipboard.SetText(correctScenPathTextBox.Text)
+        Dim tt1 As New ToolTip()
+
+        tt1.IsBalloon = True
+        tt1.Active = True
+        tt1.SetToolTip(Me.correctScenPathTextBox, "test")
+    End Sub
+
 End Class

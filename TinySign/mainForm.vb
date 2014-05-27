@@ -5,7 +5,7 @@ Public Class mainForm
     Dim validityResult As String
     Dim mapStream As FileStream
     Dim mapInformation As String()
-    Dim passMe As New mapInfoForm
+    'Dim passMe As New mapInfoForm
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
         closeMapMenuItem.Enabled = False
@@ -145,17 +145,18 @@ Public Class mainForm
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
         'Close the mapInfo form
-        passMe.Close()
+        'passMe.Close()
 
     End Sub
 
-    Private Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
+    Public Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
 
         'Check if the MapInfo form is already open
         If Application.OpenForms().OfType(Of mapInfoForm).Any Then
             MsgBox("The Map Information window is already open.")
         Else
             'If it is not open, pass the data from mapInformation to the form
+            Dim passMe As New mapInfoForm
             passMe.updateValues(mapInformation)
             passMe.Show()
         End If

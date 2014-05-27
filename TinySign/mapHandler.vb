@@ -165,18 +165,24 @@ Public Class mapHandler
         Dim times As Integer = newSize / 4
         Dim result As Integer = 0
         Dim x As Integer
+        Dim binary As New BinaryReader(mapStream)
+        Dim writer As New BinaryWriter(mapStream)
 
         Dim mapData(newSize) As Byte
-        mapStream.Position = 2048
-        mapStream.Read(mapData, 0, newSize)
+        'mapStream.Position = 2048
+        'mapStream.Read(mapData, 0, newSize)
 
-        Do While x = 0
-            If x < times Then
-                x += 1
-                'WIP
-            End If
+        binary.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Do While x < times
+            x += 1
+            result = result Xor binary.ReadInt32()
         Loop
-
+        writer.BaseStream.Seek(720, SeekOrigin.Begin)
+        writer.Write(result)
+        'binary.Close()
+        'FS.Close();
+        'mapstuff.sig.Text=result.ToString("X");
+        MessageBox.Show(result.ToString)
         Return "lolcats" 'think this is supposed to be result
 
     End Function

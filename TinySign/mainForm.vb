@@ -184,7 +184,9 @@ Public Class mainForm
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
             'Write the new signature
+            'tempHandler.rehashMap(mapStream)
             mapStream.Write(bytesToWrite, 0, 4)
+
             'Update the UI
             Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
             currentSigTextBox.Text = currentSig

@@ -154,4 +154,31 @@ Public Class mapHandler
 
     End Function
 
+    Public Function rehashMap(mapStream As FileStream)
+
+        '
+        'We must rehash each integer after 2048. I'll explain later: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
+        '
+
+        Dim mapSize As Integer = mapStream.Length
+        Dim newSize As Integer = mapSize - 2048
+        Dim times As Integer = newSize / 4
+        Dim result As Integer = 0
+        Dim x As Integer
+
+        Dim mapData(newSize) As Byte
+        mapStream.Position = 2048
+        mapStream.Read(mapData, 0, newSize)
+
+        Do While x = 0
+            If x < times Then
+                x += 1
+                'WIP
+            End If
+        Loop
+
+        Return "lolcats" 'think this is supposed to be result
+
+    End Function
+
 End Class

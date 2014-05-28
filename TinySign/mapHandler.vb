@@ -176,10 +176,10 @@ Public Class mapHandler
         Dim _buffer As Byte() = binReader.ReadBytes(bufferSize)
         Dim sizeCheck As Integer = _buffer.Length
 
-        Do While (sizeCheck = bufferSize)
+        Do While sizeCheck = bufferSize
             If x < _buffer.Length Then
-                x += 4
                 result = result Xor BitConverter.ToInt32(_buffer, x)
+                x += 4
             Else
                 MsgBox("Leaving Do")
                 Exit Do

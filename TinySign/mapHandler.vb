@@ -120,9 +120,42 @@ Public Class mapHandler
         Return mapCurrentSignatureString
     End Function
 
-    'Public Function readCurrentScenPath(mapStream As FileStream)
+    Public Function readCurrentScenPath(mapStream As FileStream)
 
-    'End Function
+    End Function
+
+    'Writes hash to map
+    Public Function rehashMap(mapStream As FileStream)
+
+        '
+        'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
+        '
+        Dim mapSize As Integer = mapStream.Length
+        Dim newSize As Integer = mapSize - 2048
+        Dim times As Integer = newSize / 4
+        Dim result As Integer = 0
+        Dim x As Integer
+        Dim binary As New BinaryReader(mapStream)
+        Dim writer As New BinaryWriter(mapStream)
+
+        Dim mapData(newSize) As Byte
+        mapStream.Position = 2048
+        mapStream.Read(mapData, 0, newSize)
+
+        binary.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Do While x < times
+            x += 1
+            result = result Xor binary.ReadInt32()
+        Loop
+        writer.BaseStream.Seek(720, SeekOrigin.Begin)
+        writer.Write(result)
+        'binary.Close()
+        'FS.Close();
+        'mapstuff.sig.Text=result.ToString("X");
+        MsgBox(result)
+        Return mapStream
+
+    End Function
 
     'Prepare new signature by converting string to bytes
     Public Function byteConverter(sigToApply As String)
@@ -151,39 +184,6 @@ Public Class mapHandler
 
         'Return a string of Bytes
         Return byteStream
-
-    End Function
-
-    Public Function rehashMap(mapStream As FileStream)
-
-        '
-        'We must rehash each integer after 2048. I'll explain later: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
-        '
-
-        Dim mapSize As Integer = mapStream.Length
-        Dim newSize As Integer = mapSize - 2048
-        Dim times As Integer = newSize / 4
-        Dim result As Integer = 0
-        Dim x As Integer
-        Dim binary As New BinaryReader(mapStream)
-        Dim writer As New BinaryWriter(mapStream)
-
-        Dim mapData(newSize) As Byte
-        mapStream.Position = 2048
-        mapStream.Read(mapData, 0, newSize)
-
-        binary.BaseStream.Seek(2048, SeekOrigin.Begin)
-        Do While x < times
-            x += 1
-            result = result Xor binary.ReadInt32()
-        Loop
-        writer.BaseStream.Seek(720, SeekOrigin.Begin)
-        writer.Write(result)
-        'binary.Close()
-        'FS.Close();
-        'mapstuff.sig.Text=result.ToString("X");
-        MsgBox(result)
-        Return mapStream 'think this is supposed to be result
 
     End Function
 

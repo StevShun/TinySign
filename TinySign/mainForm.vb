@@ -5,7 +5,6 @@ Public Class mainForm
     Dim validityResult As String
     Dim mapStream As FileStream
     Dim mapInformation As String()
-    'Dim passMe As New mapInfoForm
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
         closeMapMenuItem.Enabled = False
@@ -37,7 +36,10 @@ Public Class mainForm
                     'First, check the length of the file in bytes
                     If mapStream.Length < 10000000 Then
                         mapStream.Close()
+                        System.Media.SystemSounds.Exclamation.Play()
                         MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
+                        toolStripStatusLabel.Text = "//Invalid file. File unloaded."
+                        toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
                         Exit Sub
                     Else
                         'Pass header to the inspector for verification
@@ -50,6 +52,7 @@ Public Class mainForm
                             'Do nothing
                         Else
                             mapStream.Close()
+                            System.Media.SystemSounds.Exclamation.Play()
                             MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
                             toolStripStatusLabel.Text = "//Invalid file. File unloaded."
                             toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
@@ -123,11 +126,9 @@ Public Class mainForm
 
     Public Sub closeMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles closeMapMenuItem.Click
 
-        'Reset globals
-        mapInformation = Nothing
-
-        'Close the file
+        'Clean up resources
         mapStream.Close()
+        mapInformation = Nothing
 
         '
         'Clean up the UI
@@ -144,8 +145,6 @@ Public Class mainForm
         'Tool Strip formatting: http://stackoverflow.com/questions/16189893/cut-status-strip-label-to-width-of-form
         toolStripStatusLabel.Text = "//Map unloaded."
         toolStripStatusLabel.ToolTipText = "//Map unloaded."
-        'Close the mapInfo form
-        'passMe.Close()
 
     End Sub
 
@@ -168,6 +167,7 @@ Public Class mainForm
 
         'Check if the file is already resigned
         If currentSigTextBox.Text = applySigTextBox.Text Then
+            System.Media.SystemSounds.Beep.Play()
             MsgBox("The current map's signature is valid. There is no need to resign the file.")
             Exit Sub
         Else
@@ -192,6 +192,7 @@ Public Class mainForm
             currentSigTextBox.Text = currentSig
             applySigLabel.ForeColor = Color.Green
             currentSigLabel.ForeColor = Color.Green
+            System.Media.SystemSounds.Asterisk.Play()
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error")
         End Try

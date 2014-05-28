@@ -125,7 +125,7 @@ Public Class mapHandler
     End Function
 
     'Writes hash to map
-    Public Function rehashMap(mapStream As FileStream)
+    Public Function rehashMap_OLD(mapStream As FileStream)
 
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
@@ -152,6 +152,44 @@ Public Class mapHandler
         'binary.Close()
         'FS.Close();
         'mapstuff.sig.Text=result.ToString("X");
+        MsgBox(result)
+        Return mapStream
+
+    End Function
+
+    'Writes hash to map
+    Public Function rehashMap(mapStream As FileStream)
+
+        '
+        'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
+        'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
+        '
+        Dim result As Integer = 0
+        Dim x As Integer = 0
+        Dim binReader As New BinaryReader(mapStream)
+        Dim binWriter As New BinaryWriter(mapStream)
+
+        mapStream.Position = 2048
+
+        binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Const bufferSize As Integer = 16384
+        Dim _buffer As Byte() = binReader.ReadBytes(bufferSize)
+        Dim sizeCheck As Integer = _buffer.Length
+
+        Do While (sizeCheck = bufferSize)
+            If x < _buffer.Length Then
+                x += 4
+                result = result Xor BitConverter.ToInt32(_buffer, x)
+            Else
+                MsgBox("Leaving Do")
+                Exit Do
+            End If
+        Loop
+
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        binWriter.Write(result)
+        'binary.Close()
+        'FS.Close();
         MsgBox(result)
         Return mapStream
 

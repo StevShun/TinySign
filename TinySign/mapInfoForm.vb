@@ -26,7 +26,7 @@
 
         'Update UI
         currentControl.SelectAll()
-        statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+        statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
     End Sub
 
     Private Sub copyToClipboard_internalName(sender As Object, e As EventArgs) Handles internalNameTextBox.Click
@@ -38,7 +38,7 @@
 
         'Update UI
         currentControl.SelectAll()
-        statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+        statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
     End Sub
 
     Private Sub copyToClipboard_currentScenPath(sender As Object, e As EventArgs) Handles currentScenPathTextBox.Click
@@ -50,7 +50,7 @@
 
         'Update UI
         currentControl.SelectAll()
-        statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+        statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
     End Sub
 
     Private Sub copyToClipboard_correctScenPathTextBox(sender As Object, e As EventArgs) Handles correctScenPathTextBox.Click
@@ -62,7 +62,7 @@
 
         'Update UI
         currentControl.SelectAll()
-        statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+        statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
     End Sub
 
     Private Sub copyToClipboard_correctSigTextBox(sender As Object, e As EventArgs) Handles correctSigTextBox.Click
@@ -74,7 +74,7 @@
 
         'Update UI
         currentControl.SelectAll()
-        statusLabel.Text = "Copied " & currentControl.Text & " to clipboard."
+        statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
     End Sub
 
     'Focus on mainForm when mapInfoForm is closed by user

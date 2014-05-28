@@ -120,9 +120,9 @@ Public Class mapHandler
         Return mapCurrentSignatureString
     End Function
 
-    Public Function readCurrentScenPath(mapStream As FileStream)
+    'Public Function readCurrentScenPath(mapStream As FileStream)
 
-    End Function
+    'End Function
 
     'Prepare new signature by converting string to bytes
     Public Function byteConverter(sigToApply As String)
@@ -169,8 +169,8 @@ Public Class mapHandler
         Dim writer As New BinaryWriter(mapStream)
 
         Dim mapData(newSize) As Byte
-        'mapStream.Position = 2048
-        'mapStream.Read(mapData, 0, newSize)
+        mapStream.Position = 2048
+        mapStream.Read(mapData, 0, newSize)
 
         binary.BaseStream.Seek(2048, SeekOrigin.Begin)
         Do While x < times
@@ -182,8 +182,8 @@ Public Class mapHandler
         'binary.Close()
         'FS.Close();
         'mapstuff.sig.Text=result.ToString("X");
-        MessageBox.Show(result.ToString)
-        Return "lolcats" 'think this is supposed to be result
+        MsgBox(result)
+        Return mapStream 'think this is supposed to be result
 
     End Function
 

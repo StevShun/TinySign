@@ -175,16 +175,16 @@ Public Class mainForm
         End If
 
         Dim tempHandler As New mapHandler
-        mapStream.Position = 720
 
         'Convert mapInformation sig into an array of bytes
         Dim bytesToWrite() As Byte
-        bytesToWrite = tempHandler.byteConverter(mapInformation(4))
 
         ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
         Try
             'Write the new signature
-            'tempHandler.rehashMap(mapStream)
+            mapStream = tempHandler.rehashMap(mapStream)
+            mapStream.Position = 720
+            bytesToWrite = tempHandler.byteConverter(mapInformation(4))
             mapStream.Write(bytesToWrite, 0, 4)
 
             'Update the UI

@@ -28,8 +28,8 @@ Partial Class mainForm
         Me.openMapMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.closeMapMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.resignMapMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mapInfoMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.resignMapMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.aboutMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.currentSigLabel = New System.Windows.Forms.Label()
         Me.applySigLabel = New System.Windows.Forms.Label()
@@ -72,15 +72,15 @@ Partial Class mainForm
         Me.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem"
         resources.ApplyResources(Me.toolsToolStripMenuItem, "toolsToolStripMenuItem")
         '
-        'resignMapMenuItem
-        '
-        Me.resignMapMenuItem.Name = "resignMapMenuItem"
-        resources.ApplyResources(Me.resignMapMenuItem, "resignMapMenuItem")
-        '
         'mapInfoMenuItem
         '
         Me.mapInfoMenuItem.Name = "mapInfoMenuItem"
         resources.ApplyResources(Me.mapInfoMenuItem, "mapInfoMenuItem")
+        '
+        'resignMapMenuItem
+        '
+        Me.resignMapMenuItem.Name = "resignMapMenuItem"
+        resources.ApplyResources(Me.resignMapMenuItem, "resignMapMenuItem")
         '
         'aboutMenuItem
         '

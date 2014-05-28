@@ -22,6 +22,7 @@ Partial Class mapInfoForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(mapInfoForm))
         Me.mapNameLabel = New System.Windows.Forms.Label()
         Me.internalNameLabel = New System.Windows.Forms.Label()
         Me.mapNameTextBox = New System.Windows.Forms.TextBox()
@@ -142,9 +143,9 @@ Partial Class mapInfoForm
         Me.statusStrip.Enabled = False
         Me.statusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusLabel})
         Me.statusStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
-        Me.statusStrip.Location = New System.Drawing.Point(0, 214)
+        Me.statusStrip.Location = New System.Drawing.Point(0, 216)
         Me.statusStrip.Name = "statusStrip"
-        Me.statusStrip.Size = New System.Drawing.Size(267, 19)
+        Me.statusStrip.Size = New System.Drawing.Size(267, 17)
         Me.statusStrip.TabIndex = 4
         Me.statusStrip.Text = "statusStrip"
         '
@@ -152,8 +153,8 @@ Partial Class mapInfoForm
         '
         Me.statusLabel.Font = New System.Drawing.Font("Segoe UI", 7.0!)
         Me.statusLabel.Name = "statusLabel"
-        Me.statusLabel.Size = New System.Drawing.Size(33, 12)
-        Me.statusLabel.Text = "Status:"
+        Me.statusLabel.Size = New System.Drawing.Size(121, 12)
+        Me.statusLabel.Text = "Status: Ready to copy text."
         '
         'mapInfoForm
         '
@@ -171,6 +172,7 @@ Partial Class mapInfoForm
         Me.Controls.Add(Me.currentScenPathLabel)
         Me.Controls.Add(Me.internalNameLabel)
         Me.Controls.Add(Me.mapNameLabel)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(483, 271)
         Me.MinimizeBox = False

@@ -118,6 +118,7 @@ Public Class mapHandler
         Loop
 
         Return mapCurrentSignatureString
+
     End Function
 
     Public Function readCurrentScenPath(mapStream As FileStream)
@@ -126,7 +127,6 @@ Public Class mapHandler
 
     'Writes hash to map
     Public Function rehashMap_OLD(mapStream As FileStream)
-
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         '
@@ -153,13 +153,13 @@ Public Class mapHandler
         'FS.Close();
         'mapstuff.sig.Text=result.ToString("X");
         MsgBox(result)
+
         Return mapStream
 
     End Function
 
     'Writes hash to map
     Public Function rehashMap(mapStream As FileStream)
-
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
@@ -191,6 +191,7 @@ Public Class mapHandler
         'binary.Close()
         'FS.Close();
         MsgBox(result)
+
         Return mapStream
 
     End Function

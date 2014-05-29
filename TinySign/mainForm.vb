@@ -204,6 +204,11 @@ Public Class mainForm
     End Sub
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
+        Dim sigString As String = "D1D18BAA"
+        Dim charArray As Array = sigString.ToArray
+        Dim hexString As String = Hex(charArray)
+
+        MsgBox(hexString)
 
     End Sub
 

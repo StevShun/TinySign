@@ -158,8 +158,7 @@ Public Class mapHandler
 
     End Function
 
-    'Writes hash to map
-    Public Function rehashMap(mapStream As FileStream)
+    Public Function rehashMap_OLD_Numero_Dos(mapStream As FileStream)
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
@@ -188,6 +187,51 @@ Public Class mapHandler
 
         binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
         binWriter.Write(result)
+        'binary.Close()
+        'FS.Close();
+        MsgBox(result)
+
+        Return mapStream
+
+    End Function
+
+    'Writes hash to map SH 5/29/14
+    Public Function rehashMap(mapStream As FileStream)
+        '
+        'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
+        'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
+        '
+        Dim result As Integer = 0
+        Dim x As Integer = 0
+        Dim binReader As New BinaryReader(mapStream)
+        Dim binWriter As New BinaryWriter(mapStream)
+
+        mapStream.Position = 2048
+
+        binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Const bufferSize As Integer = 16384
+        Dim _buffer As Byte() = binReader.ReadBytes(bufferSize)
+        Dim sizeCheck As Integer = _buffer.Length
+
+        Do While sizeCheck = bufferSize
+            _buffer = binReader.ReadBytes(bufferSize)
+            sizeCheck = _buffer.Length
+            x = 0
+
+            Do While x < _buffer.Length
+                result = result Xor BitConverter.ToInt32(_buffer, x)
+                x += 4
+            Loop
+        Loop
+
+        While sizeCheck = bufferSize
+            binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+            binWriter.Write(result)
+        End While
+
+
+        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        'binWriter.Write(result)
         'binary.Close()
         'FS.Close();
         MsgBox(result)

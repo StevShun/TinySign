@@ -166,13 +166,13 @@ Public Class mainForm
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
 
         'Check if the file is already resigned
-        If currentSigTextBox.Text = applySigTextBox.Text Then
-            System.Media.SystemSounds.Beep.Play()
-            MsgBox("The current map's signature is valid. There is no need to resign the file.")
-            Exit Sub
-        Else
-            'Do nothing
-        End If
+        'If currentSigTextBox.Text = applySigTextBox.Text Then
+        'System.Media.SystemSounds.Beep.Play()
+        'MsgBox("The current map's signature is valid. There is no need to resign the file.")
+        'Exit Sub
+        'Else
+        'Do nothing
+        'End If
 
         Dim tempHandler As New mapHandler
 
@@ -204,11 +204,11 @@ Public Class mainForm
     End Sub
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
-        Dim sigString As String = "D1D18BAA"
-        Dim charArray As Array = sigString.ToArray
-        Dim hexString As String = Hex(charArray)
+        'Dim sigString As String = "D1D18BAA"
+        'Dim charArray As Array = sigString.ToArray
+        'Dim hexString As String = Hex(charArray)
 
-        MsgBox(hexString)
+        'MsgBox(hexString)
 
     End Sub
 

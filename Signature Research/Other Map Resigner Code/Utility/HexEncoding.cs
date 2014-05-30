@@ -40,7 +40,7 @@ namespace Utility
 			}
 			if (text.get_Length() % 2 != 0) // If the text string's length has a remainder greater other than zero
 			{
-				discarded++; // Add to discarded integer
+				discarded++; // Increment discarded integer by 1
 				text = text.Substring(0, text.get_Length() - 1); // Update text string var = starting at substring index position 0, with a total length of the substring - 1
 			}
 			int num = text.get_Length() / 2; // var num integer = length of text string and divides by 2

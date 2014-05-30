@@ -251,8 +251,27 @@ Public Class mapHandler
         Dim i As Integer = 0
         Do While i < hexString.Length()
             Dim c As Char() = hexString.ToCharArray
+            If Uri.IsHexDigit(c) = True Then
+                text = text + c
+            Else
+                erros = erros + 1
+            End If
             i += 1
         Loop
+
+        If text.Length Mod 2 <> 0 Then
+            erros = erros + 1
+            text = text.Substring(0, text.Length - 1)
+        End If
+
+        Dim num0 As Integer = text.Length / 2
+        Dim array(num0) As Byte
+        Dim num1 As Integer = 0
+        Dim j As Integer = 0
+        Do While j < array.Length
+
+        Loop
+
 
     End Function
 

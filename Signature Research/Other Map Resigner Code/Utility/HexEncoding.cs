@@ -35,7 +35,7 @@ namespace Utility
 				}
 				else
 				{
-					discarded++; // If it is not a hex digit, then add to discarded integer?
+					discarded++; // If it is not a hex digit, then increment discarded integer by 1?
 				}
 			}
 			if (text.get_Length() % 2 != 0) // If the text string's length has a remainder greater other than zero

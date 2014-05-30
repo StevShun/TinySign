@@ -125,8 +125,8 @@ Public Class mapHandler
 
     End Function
 
-    'Writes hash to map
-    Public Function rehashMap_OLD(mapStream As FileStream)
+    'v1: Writes hash to map - Based on Darkmatter source
+    Public Function rehashMap_v1(mapStream As FileStream)
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         '
@@ -158,7 +158,8 @@ Public Class mapHandler
 
     End Function
 
-    Public Function rehashMap_OLD_Numero_Dos(mapStream As FileStream)
+    'v2: Based on Entity source
+    Public Function rehashMap_v2(mapStream As FileStream)
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
@@ -195,7 +196,7 @@ Public Class mapHandler
 
     End Function
 
-    'Writes hash to map SH 5/29/14
+    'v3: Sean fixes my "erros" - Writes hash to map SH 5/29/14
     Public Function rehashMap(mapStream As FileStream)
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
@@ -229,7 +230,6 @@ Public Class mapHandler
             binWriter.Write(result)
         End While
 
-
         binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         'binWriter.Write(result)
         'binary.Close()
@@ -237,6 +237,22 @@ Public Class mapHandler
         MsgBox(result)
 
         Return mapStream
+
+    End Function
+
+    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
+    Public Function wtfDoesThisDo(hexString As String, erros As Integer)
+
+        'This only works with Warlock
+        hexString = "E9BE57DA"
+        erros = 0
+
+        Dim text As String = ""
+        Dim i As Integer = 0
+        Do While i < hexString.Length()
+            Dim c As Char() = hexString.ToCharArray
+            i += 1
+        Loop
 
     End Function
 

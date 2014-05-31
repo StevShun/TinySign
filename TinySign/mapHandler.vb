@@ -250,7 +250,7 @@ Public Class mapHandler
         Dim text As String = ""
         Dim i As Integer = 0
         Do While i < hexString.Length()
-            Dim c As Char() = Convert.To
+            Dim c As Char = Convert.ToChar(hexString(i))
             If Uri.IsHexDigit(c) = True Then
                 text = text + c
             Else
@@ -267,11 +267,15 @@ Public Class mapHandler
         Dim num0 As Integer = text.Length / 2
         Dim array(num0) As Byte
         Dim num1 As Integer = 0
+        Dim hex As String = ""
         Dim j As Integer = 0
         Do While j < array.Length
-            Dim hex As String = 
+            hex = New String(Char({Convert.ToChar(num1), Convert.ToChar(num1 + 1)}))
+            array(j) = Convert.ToByte(hex)
+            j += 1
         Loop
 
+        Return array
 
     End Function
 

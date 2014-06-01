@@ -266,7 +266,7 @@ Public Class mapHandler
         Dim hexIndex As Integer = 0
         Do While hexIndex < hexString.Length()
             Dim c As Char = Convert.ToChar(hexString(hexIndex))
-            If Uri.IsHexDigit(c) = True Then
+            If isHexDigit(c) = True Then
                 text = text + c
             Else
                 erros = erros + 1
@@ -286,6 +286,7 @@ Public Class mapHandler
         Dim arrayLength As Integer = (text.Length / 2) - 1
         MsgBox("arrayLength is: " & arrayLength)
         Dim array(arrayLength) As Byte
+        MsgBox("Array is now this long: " & array.Length)
         Dim charPosition As Integer = 0
         Dim hex As String
         Dim arrayIndex As Integer = 0
@@ -301,6 +302,19 @@ Public Class mapHandler
 
     End Function
 
+    Public Function isHexDigit(c As Char)
+
+        'Constants and literals: http://msdn.microsoft.com/en-us/library/dzy06xhf.aspx
+        Dim num0 As Integer = Convert.ToInt32("A"c)
+        Dim num1 As Integer = Convert.ToInt32("0"c)
+        c = Char.ToUpper(c)
+        Dim num2 As Integer = Convert.ToInt32(c)
+
+        'VB.net operators: http://www.tutorialspoint.com/vb.net/vb.net_operators.htm
+        Return (num2 >= num0 AndAlso num2 < num0 + 6) OrElse (num2 >= num1 AndAlso num2 < num1 + 10)
+
+    End Function
+
     Public Function reverseHex(signature() As Byte)
 
         Dim reverseSig(4) As Byte
@@ -309,6 +323,8 @@ Public Class mapHandler
             reverseSig(index) = signature(3 - index)
             index += 1
         Loop
+
+        MsgBox("Reverse sig now: " & reverseSig.Length)
 
         Return reverseSig
 

@@ -203,8 +203,10 @@ Public Class mainForm
 
         signature = tempHandler.wtfDoesThisDo(testStr, testInt)
 
-        mapStream.Position = mapStream.Length - 4
-        mapStream.Write(signature, 0, 4)
+        Dim binWriter As New BinaryWriter(mapStream)
+        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter.Write(signature)
+        binWriter.Close()
 
     End Sub
 

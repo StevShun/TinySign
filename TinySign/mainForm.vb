@@ -200,13 +200,17 @@ Public Class mainForm
         Dim testStr As String = ""
         Dim testInt As Integer = 0
         Dim signature(4) As Byte
+        Dim binWriter As New BinaryWriter(mapStream)
+        Dim array As Byte() = New Byte(3) {}
 
         signature = tempHandler.wtfDoesThisDo(testStr, testInt)
+        binWriter.BaseStream.Seek(mapStream.Length - 4L, SeekOrigin.Begin)
+        binWriter.Write(tempHandler.reverseHex(signature))
+        tempHandler.rehashMap_v2(mapStream)
 
-        Dim binWriter As New BinaryWriter(mapStream)
-        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter.Write(signature)
-        binWriter.Close()
+        array = tempHandler.readCurrentSig_v2(mapStream)
+        binWriter.Write(tempHandler.reverseHex(array))
+        tempHandler.rehashMap_v2(mapStream)
 
     End Sub
 

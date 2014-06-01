@@ -294,17 +294,13 @@ namespace MapResigner
 
                         // This var takes the sig entered by user and returns an array using HexEncoding class
 						signature = HexEncoding.GetBytes(this.siggy.get_Text(), out num);
-
 						// array2 is set equal to the array returned by the Magic function which does something w/ it?
                         array2 = this.Magic(signature);
-
                         // FS is set to 4 bytes before the end of the file
                         fileStream.Seek(fileStream.get_Length() - 4L, 0);
-
                         // Write array2 to last 4 bytes of the file
 						BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 						binaryWriter.Write(array2);
-
                         // Pass FS in blocks of 4096 bytes to signMap function - which writes the signature
 						this.signMap(4096, fileStream);
 
@@ -321,6 +317,7 @@ namespace MapResigner
 						binaryWriter2.Write(this.Magic(array));
                         // XOr through again at 4096 bytes and write signature to 720
 						this.signMap(4096, fileStream);
+
                         // Re-re-read the freakin signature and set the label equal to it
 						array = this.ReadSig(fileStream);
 						text = HexEncoding.ToString(array);

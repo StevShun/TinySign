@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Reflection
+Imports System.Text
 
 Public Class mapHandler
 
@@ -118,6 +119,17 @@ Public Class mapHandler
         Loop
 
         Return mapCurrentSignatureString
+
+    End Function
+
+    Public Function readCurrentSig_v2(mapStream As FileStream)
+        Dim array As Byte() = New Byte(3) {}
+        Dim binReader As New BinaryReader(mapStream)
+
+        mapStream.Seek(720, 0)
+        binReader.Read(array, 0, 3)
+
+        Return reverseHex(array)
 
     End Function
 
@@ -265,7 +277,8 @@ Public Class mapHandler
         Dim text As String = ""
         Dim hexIndex As Integer = 0
         Do While hexIndex < hexString.Length()
-            Dim c As Char = Convert.ToChar(hexString(hexIndex))
+            Dim c As Char = Char.Parse(hexString(hexIndex))
+            'Dim c As Char = GetChar(hexString, hexIndex)
             If isHexDigit(c) = True Then
                 text = text + c
             Else
@@ -274,19 +287,20 @@ Public Class mapHandler
             hexIndex += 1
         Loop
 
-        MsgBox("Text is " & text)
+        'MsgBox("Text is " & text & " Text length is: " & text.Length)
 
         If text.Length Mod 2 <> 0 Then
             erros = erros + 1
             text = text.Substring(0, text.Length - 1)
         End If
 
-        MsgBox("Text is now " & text)
+        'MsgBox("Text is now " & text & " Text length is: " & text.Length)
 
-        Dim arrayLength As Integer = (text.Length / 2) - 1
-        MsgBox("arrayLength is: " & arrayLength)
-        Dim array(arrayLength) As Byte
-        MsgBox("Array is now this long: " & array.Length)
+        Dim arrayLength As Integer = text.Length / 2
+        'MsgBox("arrayLength is: " & arrayLength)
+        'Dim array(arrayLength - 1) As Byte
+        Dim array As Byte() = New Byte(arrayLength - 1) {}
+        'MsgBox("Array is now this long: " & Array.Length)
         Dim charPosition As Integer = 0
         Dim hex As String
         Dim arrayIndex As Integer = 0
@@ -294,11 +308,13 @@ Public Class mapHandler
             hex = New String(Char.Parse(text(charPosition)) & Char.Parse(text(charPosition + 1)))
             array(arrayIndex) = Byte.Parse(hex, 515)
             charPosition = charPosition + 2
-            MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
+            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
             arrayIndex += 1
         Loop
 
-        Return reverseHex(array)
+        'MsgBox("arrayLength is: " & array.Length)
+
+        Return array
 
     End Function
 
@@ -317,14 +333,15 @@ Public Class mapHandler
 
     Public Function reverseHex(signature() As Byte)
 
-        Dim reverseSig(4) As Byte
+        Dim reverseSig(3) As Byte
+        'MsgBox("Reverse sig is: " & reverseSig.Length)
         Dim index As Integer = 0
         Do While index < 4
             reverseSig(index) = signature(3 - index)
             index += 1
         Loop
 
-        MsgBox("Reverse sig now: " & reverseSig.Length)
+        'MsgBox("Reverse sig now: " & reverseSig.Length)
 
         Return reverseSig
 

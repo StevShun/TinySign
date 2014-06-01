@@ -27,8 +27,6 @@ Partial Class mapInfoForm
         Me.internalNameLabel = New System.Windows.Forms.Label()
         Me.mapNameTextBox = New System.Windows.Forms.TextBox()
         Me.internalNameTextBox = New System.Windows.Forms.TextBox()
-        Me.currentScenPathLabel = New System.Windows.Forms.Label()
-        Me.currentScenPathTextBox = New System.Windows.Forms.TextBox()
         Me.correctSigLabel = New System.Windows.Forms.Label()
         Me.correctSigTextBox = New System.Windows.Forms.TextBox()
         Me.correctScenPathLabel = New System.Windows.Forms.Label()
@@ -42,7 +40,7 @@ Partial Class mapInfoForm
         '
         Me.mapNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.mapNameLabel.AutoSize = True
-        Me.mapNameLabel.Location = New System.Drawing.Point(11, 10)
+        Me.mapNameLabel.Location = New System.Drawing.Point(11, 6)
         Me.mapNameLabel.Name = "mapNameLabel"
         Me.mapNameLabel.Size = New System.Drawing.Size(62, 13)
         Me.mapNameLabel.TabIndex = 0
@@ -52,7 +50,7 @@ Partial Class mapInfoForm
         '
         Me.internalNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.internalNameLabel.AutoSize = True
-        Me.internalNameLabel.Location = New System.Drawing.Point(11, 49)
+        Me.internalNameLabel.Location = New System.Drawing.Point(11, 45)
         Me.internalNameLabel.Name = "internalNameLabel"
         Me.internalNameLabel.Size = New System.Drawing.Size(76, 13)
         Me.internalNameLabel.TabIndex = 1
@@ -62,7 +60,7 @@ Partial Class mapInfoForm
         '
         Me.mapNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mapNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.mapNameTextBox.Location = New System.Drawing.Point(15, 26)
+        Me.mapNameTextBox.Location = New System.Drawing.Point(15, 22)
         Me.mapNameTextBox.Name = "mapNameTextBox"
         Me.mapNameTextBox.ReadOnly = True
         Me.mapNameTextBox.Size = New System.Drawing.Size(240, 20)
@@ -72,37 +70,17 @@ Partial Class mapInfoForm
         '
         Me.internalNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.internalNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.internalNameTextBox.Location = New System.Drawing.Point(15, 65)
+        Me.internalNameTextBox.Location = New System.Drawing.Point(15, 61)
         Me.internalNameTextBox.Name = "internalNameTextBox"
         Me.internalNameTextBox.ReadOnly = True
         Me.internalNameTextBox.Size = New System.Drawing.Size(240, 20)
         Me.internalNameTextBox.TabIndex = 3
         '
-        'currentScenPathLabel
-        '
-        Me.currentScenPathLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.currentScenPathLabel.AutoSize = True
-        Me.currentScenPathLabel.Location = New System.Drawing.Point(11, 88)
-        Me.currentScenPathLabel.Name = "currentScenPathLabel"
-        Me.currentScenPathLabel.Size = New System.Drawing.Size(114, 13)
-        Me.currentScenPathLabel.TabIndex = 1
-        Me.currentScenPathLabel.Text = "Current Scenario Path:"
-        '
-        'currentScenPathTextBox
-        '
-        Me.currentScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.currentScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.currentScenPathTextBox.Location = New System.Drawing.Point(15, 104)
-        Me.currentScenPathTextBox.Name = "currentScenPathTextBox"
-        Me.currentScenPathTextBox.ReadOnly = True
-        Me.currentScenPathTextBox.Size = New System.Drawing.Size(240, 20)
-        Me.currentScenPathTextBox.TabIndex = 3
-        '
         'correctSigLabel
         '
         Me.correctSigLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.correctSigLabel.AutoSize = True
-        Me.correctSigLabel.Location = New System.Drawing.Point(11, 166)
+        Me.correctSigLabel.Location = New System.Drawing.Point(11, 123)
         Me.correctSigLabel.Name = "correctSigLabel"
         Me.correctSigLabel.Size = New System.Drawing.Size(92, 13)
         Me.correctSigLabel.TabIndex = 1
@@ -112,7 +90,7 @@ Partial Class mapInfoForm
         '
         Me.correctSigTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.correctSigTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.correctSigTextBox.Location = New System.Drawing.Point(14, 182)
+        Me.correctSigTextBox.Location = New System.Drawing.Point(14, 139)
         Me.correctSigTextBox.Name = "correctSigTextBox"
         Me.correctSigTextBox.ReadOnly = True
         Me.correctSigTextBox.Size = New System.Drawing.Size(240, 20)
@@ -122,7 +100,7 @@ Partial Class mapInfoForm
         '
         Me.correctScenPathLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.correctScenPathLabel.AutoSize = True
-        Me.correctScenPathLabel.Location = New System.Drawing.Point(11, 127)
+        Me.correctScenPathLabel.Location = New System.Drawing.Point(11, 84)
         Me.correctScenPathLabel.Name = "correctScenPathLabel"
         Me.correctScenPathLabel.Size = New System.Drawing.Size(114, 13)
         Me.correctScenPathLabel.TabIndex = 1
@@ -132,7 +110,7 @@ Partial Class mapInfoForm
         '
         Me.correctScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.correctScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.correctScenPathTextBox.Location = New System.Drawing.Point(14, 143)
+        Me.correctScenPathTextBox.Location = New System.Drawing.Point(14, 100)
         Me.correctScenPathTextBox.Name = "correctScenPathTextBox"
         Me.correctScenPathTextBox.ReadOnly = True
         Me.correctScenPathTextBox.Size = New System.Drawing.Size(240, 20)
@@ -143,7 +121,7 @@ Partial Class mapInfoForm
         Me.statusStrip.Enabled = False
         Me.statusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusLabel})
         Me.statusStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
-        Me.statusStrip.Location = New System.Drawing.Point(0, 216)
+        Me.statusStrip.Location = New System.Drawing.Point(0, 167)
         Me.statusStrip.Name = "statusStrip"
         Me.statusStrip.Size = New System.Drawing.Size(267, 17)
         Me.statusStrip.TabIndex = 4
@@ -160,23 +138,21 @@ Partial Class mapInfoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(267, 233)
+        Me.ClientSize = New System.Drawing.Size(267, 184)
         Me.Controls.Add(Me.statusStrip)
         Me.Controls.Add(Me.correctSigTextBox)
         Me.Controls.Add(Me.correctScenPathTextBox)
-        Me.Controls.Add(Me.currentScenPathTextBox)
         Me.Controls.Add(Me.internalNameTextBox)
         Me.Controls.Add(Me.correctSigLabel)
         Me.Controls.Add(Me.mapNameTextBox)
         Me.Controls.Add(Me.correctScenPathLabel)
-        Me.Controls.Add(Me.currentScenPathLabel)
         Me.Controls.Add(Me.internalNameLabel)
         Me.Controls.Add(Me.mapNameLabel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(483, 271)
+        Me.MaximumSize = New System.Drawing.Size(483, 222)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(283, 271)
+        Me.MinimumSize = New System.Drawing.Size(283, 222)
         Me.Name = "mapInfoForm"
         Me.ShowInTaskbar = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
@@ -193,8 +169,6 @@ Partial Class mapInfoForm
     Friend WithEvents internalNameLabel As System.Windows.Forms.Label
     Friend WithEvents mapNameTextBox As System.Windows.Forms.TextBox
     Friend WithEvents internalNameTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents currentScenPathLabel As System.Windows.Forms.Label
-    Friend WithEvents currentScenPathTextBox As System.Windows.Forms.TextBox
     Friend WithEvents correctSigLabel As System.Windows.Forms.Label
     Friend WithEvents correctSigTextBox As System.Windows.Forms.TextBox
     Friend WithEvents correctScenPathLabel As System.Windows.Forms.Label

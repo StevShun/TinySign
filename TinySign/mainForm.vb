@@ -165,15 +165,6 @@ Public Class mainForm
     'Where it resigns AKA Where it all goes wrong
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
 
-        'Check if the file is already resigned
-        'If currentSigTextBox.Text = applySigTextBox.Text Then
-        'System.Media.SystemSounds.Beep.Play()
-        'MsgBox("The current map's signature is valid. There is no need to resign the file.")
-        'Exit Sub
-        'Else
-        'Do nothing
-        'End If
-
         Dim tempHandler As New mapHandler
 
         'Convert mapInformation sig into an array of bytes

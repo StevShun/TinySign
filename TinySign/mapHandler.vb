@@ -96,7 +96,7 @@ Public Class mapHandler
 
     End Function
 
-    '@Return hex value in a string of the maps signature
+    '@Return hex value in a string of the map's signature
     Public Function readCurrentSig(mapStream As FileStream)
         Dim mapSignatureBytes(4) As Byte
         mapStream.Position() = 720
@@ -121,7 +121,22 @@ Public Class mapHandler
 
     End Function
 
-    Public Function readCurrentScenPath(mapStream As FileStream)
+    Public Function readCurrentScenPath(array As Byte())
+        Dim charArray(64) As Char
+
+        'Put the byte array into a char array
+        Dim index As Integer = 0
+        Do Until index = 64
+            If array(index) = 0 Then Exit Do
+            charArray(index) = Convert.ToChar(array(index))
+            index += 1
+        Loop
+
+        'Process char array into a string
+        Dim mapScenarioPath As New String(charArray)
+        'MsgBox("The map name is:" & " " & mapName)
+
+        Return mapScenarioPath
 
     End Function
 
@@ -269,12 +284,14 @@ Public Class mapHandler
         MsgBox("Text is now " & text)
 
         Dim num0 As Integer = text.Length / 2
+        MsgBox("num0 is: " & num0)
         Dim array(num0) As Byte
         Dim num1 As Integer = 0
         Dim hex As String
         Dim j As Integer = 0
         Do While j < array.Length
-            hex = New String({Convert.ToChar(num1), Convert.ToChar(num1 + 1)})
+            hex = New String(Convert.ToChar(text(num1)) & Convert.ToChar(text(num1 + 1)))
+            MsgBox("hex is: " & hex)
             array(j) = Convert.ToByte(hex)
             num1 = num1 + 2
             j += 1

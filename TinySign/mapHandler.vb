@@ -263,15 +263,15 @@ Public Class mapHandler
         erros = 0
 
         Dim text As String = ""
-        Dim i As Integer = 0
-        Do While i < hexString.Length()
-            Dim c As Char = Convert.ToChar(hexString(i))
+        Dim hexIndex As Integer = 0
+        Do While hexIndex < hexString.Length()
+            Dim c As Char = Convert.ToChar(hexString(hexIndex))
             If Uri.IsHexDigit(c) = True Then
                 text = text + c
             Else
                 erros = erros + 1
             End If
-            i += 1
+            hexIndex += 1
         Loop
 
         MsgBox("Text is " & text)
@@ -283,21 +283,34 @@ Public Class mapHandler
 
         MsgBox("Text is now " & text)
 
-        Dim num0 As Integer = text.Length / 2
-        MsgBox("num0 is: " & num0)
-        Dim array(num0) As Byte
-        Dim num1 As Integer = 0
+        Dim arrayLength As Integer = (text.Length / 2) - 1
+        MsgBox("arrayLength is: " & arrayLength)
+        Dim array(arrayLength) As Byte
+        Dim charPosition As Integer = 0
         Dim hex As String
-        Dim j As Integer = 0
-        Do While j < array.Length
-            hex = New String(Convert.ToChar(text(num1)) & Convert.ToChar(text(num1 + 1)))
-            MsgBox("hex is: " & hex)
-            array(j) = Convert.ToByte(hex)
-            num1 = num1 + 2
-            j += 1
+        Dim arrayIndex As Integer = 0
+        Do While arrayIndex < array.Length
+            hex = New String(Char.Parse(text(charPosition)) & Char.Parse(text(charPosition + 1)))
+            array(arrayIndex) = Byte.Parse(hex, 515)
+            charPosition = charPosition + 2
+            MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
+            arrayIndex += 1
         Loop
 
-        Return array
+        Return reverseHex(array)
+
+    End Function
+
+    Public Function reverseHex(signature() As Byte)
+
+        Dim reverseSig(4) As Byte
+        Dim index As Integer = 0
+        Do While index < 4
+            reverseSig(index) = signature(3 - index)
+            index += 1
+        Loop
+
+        Return reverseSig
 
     End Function
 

@@ -196,13 +196,15 @@ Public Class mainForm
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
 
-        Dim futempHandler As New mapHandler
+        Dim tempHandler As New mapHandler
         Dim testStr As String = ""
         Dim testInt As Integer = 0
         Dim signature(4) As Byte
 
-        signature = futempHandler.wtfDoesThisDo(testStr, testInt)
-        MsgBox(signature)
+        signature = tempHandler.wtfDoesThisDo(testStr, testInt)
+
+        mapStream.Position = mapStream.Length - 4
+        mapStream.Write(signature, 0, 4)
 
     End Sub
 

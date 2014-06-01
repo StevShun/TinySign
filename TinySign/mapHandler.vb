@@ -259,10 +259,14 @@ Public Class mapHandler
             i += 1
         Loop
 
+        MsgBox(erros)
+
         If text.Length Mod 2 <> 0 Then
             erros = erros + 1
             text = text.Substring(0, text.Length - 1)
         End If
+
+        MsgBox(text)
 
         Dim num0 As Integer = text.Length / 2
         Dim array(num0) As Byte
@@ -270,8 +274,9 @@ Public Class mapHandler
         Dim hex As String = ""
         Dim j As Integer = 0
         Do While j < array.Length
-            hex = New String(Char({Convert.ToChar(num1), Convert.ToChar(num1 + 1)}))
+            hex = New String({Convert.ToChar(num1), Convert.ToChar(num1 + 1)})
             array(j) = Convert.ToByte(hex)
+            num1 = num1 + 2
             j += 1
         Loop
 

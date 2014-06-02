@@ -175,18 +175,22 @@ Public Class mainForm
         Dim array0 As Byte() = New Byte(3) {}
         Dim array1 As Byte() = New Byte(3) {}
 
-        'Pass 1
-        signature = tempHandler.wtfDoesThisDo(sigString, discardedInt)
-        array0 = tempHandler.reverseHex(signature)
+        'Pass 1: 
+        '1) Prepare a signature for the footer of the map. This
+        ' signature is based off of the map's correct signature and is
+        ' then reversed.
+        '2) Apply the TBC
+        signature = tempHandler.prepareFooterSig(sigString, discardedInt)
+        array0 = tempHandler.reverseSig(signature)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter0.Write(array0)
-        tempHandler.rehashMap(mapStream)
+        tempHandler.writeHeaderSig(mapStream)
 
         'Pass 2
         array1 = tempHandler.readCurrentSig_v2(mapStream)
         binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter1.Write(tempHandler.reverseHex(array1))
-        tempHandler.rehashMap(mapStream)
+        binWriter1.Write(tempHandler.reverseSig(array1))
+        tempHandler.writeHeaderSig(mapStream)
 
         'Update the UI
         Dim currentSig As String = tempHandler.readCurrentSig(mapStream)

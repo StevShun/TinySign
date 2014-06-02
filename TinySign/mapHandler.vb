@@ -268,7 +268,7 @@ Public Class mapHandler
     End Function
 
     'v4: I gave up and used this: http://converter.telerik.com/
-    Public Function rehashMap(mapStream As FileStream)
+    Public Function writeHeaderSig(mapStream As FileStream)
 
         Dim binReader As New BinaryReader(mapStream)
         Dim binWriter As New BinaryWriter(mapStream)
@@ -293,14 +293,14 @@ Public Class mapHandler
     End Function
 
     'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
-    Public Function wtfDoesThisDo(hexString As String, discardedInt As Integer)
+    Public Function prepareFooterSig(sigString As String, discardedInt As Integer)
 
         discardedInt = 0
 
         Dim text As String = ""
         Dim hexIndex As Integer = 0
-        Do While hexIndex < hexString.Length()
-            Dim c As Char = Char.Parse(hexString(hexIndex))
+        Do While hexIndex < sigString.Length()
+            Dim c As Char = Char.Parse(sigString(hexIndex))
             If Uri.IsHexDigit(c) = True Then
                 text = text + c
             Else
@@ -354,19 +354,19 @@ Public Class mapHandler
 
     End Function
 
-    Public Function reverseHex(signature() As Byte)
+    Public Function reverseSig(signature() As Byte)
 
-        Dim reverseSig As Byte() = New Byte(3) {}
+        Dim reverseSigBytes As Byte() = New Byte(3) {}
         'MsgBox("Reverse sig is: " & reverseSig.Length)
         Dim index As Integer = 0
         Do While index < 4
-            reverseSig(index) = signature(3 - index)
+            reverseSigBytes(index) = signature(3 - index)
             index += 1
         Loop
 
         'MsgBox("Reverse sig now: " & reverseSig.Length)
 
-        Return reverseSig
+        Return reverseSigBytes
 
     End Function
 

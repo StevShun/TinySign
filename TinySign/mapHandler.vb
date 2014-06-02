@@ -330,7 +330,7 @@ Public Class mapHandler
             hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
             array(arrayIndex) = Byte.Parse(hex, 515)
             charPosition = charPosition + 2
-            MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
+            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
             arrayIndex += 1
         Loop
 
@@ -364,7 +364,7 @@ Public Class mapHandler
             index += 1
         Loop
 
-        MsgBox("Reverse sig now: " & reverseSig.Length)
+        'MsgBox("Reverse sig now: " & reverseSig.Length)
 
         Return reverseSig
 

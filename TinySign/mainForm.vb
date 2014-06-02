@@ -166,27 +166,34 @@ Public Class mainForm
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
 
         Dim tempHandler As New mapHandler
+        Dim sigString As String = mapInformation(3)
+        MsgBox(mapInformation(3))
+        Dim discardedInt As Integer = 0
+        Dim signature As Byte() = New Byte(3) {}
+        Dim binWriter0 As New BinaryWriter(mapStream)
+        Dim binWriter1 As New BinaryWriter(mapStream)
+        Dim array0 As Byte() = New Byte(3) {}
+        Dim array1 As Byte() = New Byte(3) {}
 
-        'Convert mapInformation sig into an array of bytes
-        Dim bytesToWrite() As Byte
+        'Pass 1
+        signature = tempHandler.wtfDoesThisDo(sigString, discardedInt)
+        array0 = tempHandler.reverseHex(signature)
+        binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter0.Write(array0)
+        tempHandler.rehashMap(mapStream)
 
-        ' array As Byte(), _offset As Integer, _count As Integer _ -> the 4 could be something else, is it 4 bytes long? I think so
-        Try
-            'Write the new signature
-            mapStream = tempHandler.rehashMap(mapStream)
-            mapStream.Position = 720
-            bytesToWrite = tempHandler.byteConverter(mapInformation(4))
-            mapStream.Write(bytesToWrite, 0, 4)
+        'Pass 2
+        array1 = tempHandler.readCurrentSig_v2(mapStream)
+        binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter1.Write(tempHandler.reverseHex(array1))
+        tempHandler.rehashMap(mapStream)
 
-            'Update the UI
-            Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
-            currentSigTextBox.Text = currentSig
-            applySigLabel.ForeColor = Color.Green
-            currentSigLabel.ForeColor = Color.Green
-            System.Media.SystemSounds.Asterisk.Play()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Error")
-        End Try
+        'Update the UI
+        Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
+        currentSigTextBox.Text = currentSig
+        applySigLabel.ForeColor = Color.Green
+        currentSigLabel.ForeColor = Color.Green
+        System.Media.SystemSounds.Asterisk.Play()
 
     End Sub
 
@@ -196,28 +203,15 @@ Public Class mainForm
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
 
-        'This only works with Warlock
-        Dim tempHandler As New mapHandler
-        Dim sigString As String = "E9BE57DA"
-        Dim discardedInt As Integer = 0
-        Dim signature As Byte() = New Byte(3) {}
-        Dim binWriter0 As New BinaryWriter(mapStream)
-        Dim binWriter1 As New BinaryWriter(mapStream)
-        Dim array0 As Byte() = New Byte(3) {}
-        Dim array1 As Byte() = New Byte(3) {}
-
-        signature = tempHandler.wtfDoesThisDo(sigString, discardedInt)
-        array0 = tempHandler.reverseHex(signature)
-        binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter0.Write(array0)
-        tempHandler.rehashMap(mapStream)
-
-        array1 = tempHandler.readCurrentSig_v2(mapStream)
-        binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter1.Write(tempHandler.reverseHex(array1))
-        tempHandler.rehashMap(mapStream)
-
-        mapStream.Close()
+        'Check if the MapInfo form is already open
+        If Application.OpenForms().OfType(Of mapInfoForm).Any Then
+            MsgBox("The Map Information window is already open.")
+        Else
+            'If it is not open, pass the data from mapInformation to the form
+            Dim passMe As New mapInfoForm
+            passMe.updateValues(mapInformation)
+            passMe.Show()
+        End If
 
     End Sub
 

@@ -13,7 +13,7 @@
         mapNameTextBox.Text = mapInformation(1)
         internalNameTextBox.Text = mapInformation(0)
         correctScenPathTextBox.Text = mapInformation(2)
-        correctSigTextBox.Text = mapInformation(4)
+        correctSigTextBox.Text = mapInformation(3)
     End Sub
 
     Private Sub copyToClipboard_mapName(sender As Object, e As EventArgs) Handles mapNameTextBox.Click

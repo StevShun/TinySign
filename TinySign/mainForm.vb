@@ -196,21 +196,28 @@ Public Class mainForm
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
 
+        'This only works with Warlock
         Dim tempHandler As New mapHandler
-        Dim testStr As String = ""
-        Dim testInt As Integer = 0
-        Dim signature(4) As Byte
-        Dim binWriter As New BinaryWriter(mapStream)
-        Dim array As Byte() = New Byte(3) {}
+        Dim sigString As String = "E9BE57DA"
+        Dim discardedInt As Integer = 0
+        Dim signature As Byte() = New Byte(3) {}
+        Dim binWriter0 As New BinaryWriter(mapStream)
+        Dim binWriter1 As New BinaryWriter(mapStream)
+        Dim array0 As Byte() = New Byte(3) {}
+        Dim array1 As Byte() = New Byte(3) {}
 
-        signature = tempHandler.wtfDoesThisDo(testStr, testInt)
-        binWriter.BaseStream.Seek(mapStream.Length - 4L, SeekOrigin.Begin)
-        binWriter.Write(tempHandler.reverseHex(signature))
-        tempHandler.rehashMap_v2(mapStream)
+        signature = tempHandler.wtfDoesThisDo(sigString, discardedInt)
+        array0 = tempHandler.reverseHex(signature)
+        binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter0.Write(array0)
+        tempHandler.rehashMap(mapStream)
 
-        array = tempHandler.readCurrentSig_v2(mapStream)
-        binWriter.Write(tempHandler.reverseHex(array))
-        tempHandler.rehashMap_v2(mapStream)
+        array1 = tempHandler.readCurrentSig_v2(mapStream)
+        binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter1.Write(tempHandler.reverseHex(array1))
+        tempHandler.rehashMap(mapStream)
+
+        mapStream.Close()
 
     End Sub
 

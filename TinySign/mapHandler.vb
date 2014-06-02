@@ -127,7 +127,7 @@ Public Class mapHandler
         Dim binReader As New BinaryReader(mapStream)
 
         mapStream.Seek(720, 0)
-        binReader.Read(array, 0, 3)
+        binReader.Read(array, 0, 4)
 
         Return reverseHex(array)
 
@@ -224,7 +224,7 @@ Public Class mapHandler
     End Function
 
     'v3: Sean fixes my "erros" - Writes hash to map SH 5/29/14
-    Public Function rehashMap(mapStream As FileStream)
+    Public Function rehashMap_v3(mapStream As FileStream)
         '
         'We must rehash each integer after 2048: http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/
         'See this link for new example (Control+F "The Sign"): https://www.dropbox.com/s/2oylcf3bli29a2f/Map.cs
@@ -253,11 +253,11 @@ Public Class mapHandler
         Loop
 
         While sizeCheck = bufferSize
-            binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+            binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
             binWriter.Write(result)
         End While
 
-        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
         'binWriter.Write(result)
         'binary.Close()
         'FS.Close();
@@ -267,22 +267,44 @@ Public Class mapHandler
 
     End Function
 
-    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
-    Public Function wtfDoesThisDo(hexString As String, erros As Integer)
+    'v4: I gave up and used this: http://converter.telerik.com/
+    Public Function rehashMap(mapStream As FileStream)
 
-        'This only works with Warlock
-        hexString = "E9BE57DA"
-        erros = 0
+        Dim binReader As New BinaryReader(mapStream)
+        Dim binWriter As New BinaryWriter(mapStream)
+
+        Dim result As Integer = 0
+        binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Const bufferSize As Integer = 16384
+        Dim sizeCheck As Integer
+        Do
+            Dim buffer As Byte() = binReader.ReadBytes(bufferSize)
+            sizeCheck = buffer.Length
+            For x As Integer = 0 To buffer.Length - 1 Step 4
+                result = result Xor BitConverter.ToInt32(buffer, x)
+            Next
+        Loop While sizeCheck = bufferSize
+
+        MsgBox(result)
+
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        binWriter.Write(result)
+
+    End Function
+
+    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
+    Public Function wtfDoesThisDo(hexString As String, discardedInt As Integer)
+
+        discardedInt = 0
 
         Dim text As String = ""
         Dim hexIndex As Integer = 0
         Do While hexIndex < hexString.Length()
             Dim c As Char = Char.Parse(hexString(hexIndex))
-            'Dim c As Char = GetChar(hexString, hexIndex)
-            If isHexDigit(c) = True Then
+            If Uri.IsHexDigit(c) = True Then
                 text = text + c
             Else
-                erros = erros + 1
+                discardedInt = discardedInt + 1
             End If
             hexIndex += 1
         Loop
@@ -290,7 +312,7 @@ Public Class mapHandler
         'MsgBox("Text is " & text & " Text length is: " & text.Length)
 
         If text.Length Mod 2 <> 0 Then
-            erros = erros + 1
+            discardedInt = discardedInt + 1
             text = text.Substring(0, text.Length - 1)
         End If
 
@@ -305,10 +327,10 @@ Public Class mapHandler
         Dim hex As String
         Dim arrayIndex As Integer = 0
         Do While arrayIndex < array.Length
-            hex = New String(Char.Parse(text(charPosition)) & Char.Parse(text(charPosition + 1)))
+            hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
             array(arrayIndex) = Byte.Parse(hex, 515)
             charPosition = charPosition + 2
-            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
+            MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
             arrayIndex += 1
         Loop
 
@@ -318,6 +340,7 @@ Public Class mapHandler
 
     End Function
 
+    'Now unused
     Public Function isHexDigit(c As Char)
 
         'Constants and literals: http://msdn.microsoft.com/en-us/library/dzy06xhf.aspx
@@ -333,7 +356,7 @@ Public Class mapHandler
 
     Public Function reverseHex(signature() As Byte)
 
-        Dim reverseSig(3) As Byte
+        Dim reverseSig As Byte() = New Byte(3) {}
         'MsgBox("Reverse sig is: " & reverseSig.Length)
         Dim index As Integer = 0
         Do While index < 4
@@ -341,7 +364,7 @@ Public Class mapHandler
             index += 1
         Loop
 
-        'MsgBox("Reverse sig now: " & reverseSig.Length)
+        MsgBox("Reverse sig now: " & reverseSig.Length)
 
         Return reverseSig
 

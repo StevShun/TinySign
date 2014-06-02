@@ -66,7 +66,7 @@
 
     'Focus on mainForm when mapInfoForm is closed by user
     Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
-        mainForm.Show()
+        mainForm.Activate()
     End Sub
 
 End Class

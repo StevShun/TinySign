@@ -69,6 +69,10 @@ Public Class mainForm
                     Dim map As New mapHandler()
                     mapInformation = map.readInternalName(nameLocation)
 
+                    If mapInformation Is Nothing Then
+                        Exit Sub
+                    End If
+
                     '
                     'Update the UI
                     '
@@ -207,14 +211,16 @@ Public Class mainForm
 
     Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
 
-        'Check if the MapInfo form is already open
-        If Application.OpenForms().OfType(Of mapInfoForm).Any Then
-            MsgBox("The Map Information window is already open.")
-        Else
-            'If it is not open, pass the data from mapInformation to the form
-            Dim passMe As New mapInfoForm
-            passMe.updateValues(mapInformation)
-            passMe.Show()
+        If mapStream IsNot Nothing Then
+            'Check if the MapInfo form is already open
+            If Application.OpenForms().OfType(Of mapInfoForm).Any Then
+                MsgBox("The Map Information window is already open.")
+            Else
+                'If it is not open, pass the data from mapInformation to the form
+                Dim passMe As New mapInfoForm
+                passMe.updateValues(mapInformation)
+                passMe.Show()
+            End If
         End If
 
     End Sub

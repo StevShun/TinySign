@@ -86,9 +86,14 @@ Public Class mapHandler
                 index += 1
             End While
 
+            If String.Compare(queryItem, stringArray(0)) = 0 Then
+                Return stringArray
+            Else
+                Return Nothing
+            End If
+
             'Dim stringArrayContents As String = String.Join(",", stringArray)
             'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
-            Return stringArray
 
         Catch ex As Exception
             MessageBox.Show("Resource wasn't found!", "Error")
@@ -129,7 +134,7 @@ Public Class mapHandler
         mapStream.Seek(720, 0)
         binReader.Read(array, 0, 4)
 
-        Return reverseHex(array)
+        Return reverseSig(array)
 
     End Function
 

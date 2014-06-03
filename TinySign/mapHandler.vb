@@ -66,17 +66,20 @@ Public Class mapHandler
             stringArray = Split(line, ",")
 
             'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            While (String.Compare(queryItem, stringArray(0)) <> 0) And index < 35
+            Do While index < 42
                 line = _textStreamReader.ReadLine()
                 stringArray = Split(line, ",")
+                'MsgBox(index)
+                'MsgBox("qItem is: " + queryItem.ToString)
+                'MsgBox("stringA is: " + stringArray(0).ToString)
+                'MsgBox(index)
+                If String.Compare(queryItem, stringArray(0)) = 0 Then
+                    Return stringArray
+                End If
                 index += 1
-            End While
+            Loop
 
-            If String.Compare(queryItem, stringArray(0)) = 0 Then
-                Return stringArray
-            Else
-                Return Nothing
-            End If
+            Return Nothing
 
             'Dim stringArrayContents As String = String.Join(",", stringArray)
             'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)

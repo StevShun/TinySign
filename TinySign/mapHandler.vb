@@ -7,20 +7,6 @@ Public Class mapHandler
     'Decimal positions for relevant map information:
     '408 = internal name, 444 = scenario path, 720 = signature addr
 
-    'Given a file and a start location/end location, return a string of the contents
-    Public Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
-        Dim dataLength As Integer = (endByte - startByte)
-        mapStream.Position = startByte
-
-        'Creates a string of Bytes
-        Dim byteStream(dataLength) As Byte
-        mapStream.Read(byteStream, 0, dataLength)
-
-        'Return a string of Bytes
-        Return byteStream
-
-    End Function
-
     'Test the file's header to make sure it is a valid Halo 2 map file
     Public Function verifyMapFile(array As Byte())
         Dim charArray(4) As Char
@@ -80,7 +66,7 @@ Public Class mapHandler
             stringArray = Split(line, ",")
 
             'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            While (String.Compare(queryItem, stringArray(0)) <> 0)
+            While (String.Compare(queryItem, stringArray(0)) <> 0) And index < 35
                 line = _textStreamReader.ReadLine()
                 stringArray = Split(line, ",")
                 index += 1
@@ -103,7 +89,7 @@ Public Class mapHandler
     End Function
 
     '@Return hex value in a string of the map's signature
-    Public Function readCurrentSig(mapStream As FileStream)
+    Public Function readCurrentSigString(mapStream As FileStream)
         Dim mapSignatureBytes(4) As Byte
         mapStream.Position() = 720
         mapStream.Read(mapSignatureBytes, 0, 4)
@@ -127,7 +113,7 @@ Public Class mapHandler
 
     End Function
 
-    Public Function readCurrentSig_v2(mapStream As FileStream)
+    Public Function readCurrentSigBytes(mapStream As FileStream)
         Dim array As Byte() = New Byte(3) {}
         Dim binReader As New BinaryReader(mapStream)
 
@@ -151,12 +137,103 @@ Public Class mapHandler
 
         'Process char array into a string
         Dim mapScenarioPath As New String(charArray)
-        'MsgBox("The map name is:" & " " & mapName)
 
         Return mapScenarioPath
 
     End Function
 
+    'v4: I gave up and used this: http://converter.telerik.com/
+    Public Function writeHeaderSig(mapStream As FileStream)
+
+        Dim binReader As New BinaryReader(mapStream)
+        Dim binWriter As New BinaryWriter(mapStream)
+
+        Dim result As Integer = 0
+        binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
+        Const bufferSize As Integer = 16384
+        Dim sizeCheck As Integer
+        Do
+            Dim buffer As Byte() = binReader.ReadBytes(bufferSize)
+            sizeCheck = buffer.Length
+            For x As Integer = 0 To buffer.Length - 1 Step 4
+                result = result Xor BitConverter.ToInt32(buffer, x)
+            Next
+        Loop While sizeCheck = bufferSize
+
+        'MsgBox(result)
+
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        binWriter.Write(result)
+
+    End Function
+
+    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
+    Public Function prepareFooterSig(sigString As String, discardedInt As Integer)
+
+        discardedInt = 0
+
+        Dim text As String = ""
+        Dim hexIndex As Integer = 0
+        Do While hexIndex < sigString.Length()
+            Dim c As Char = Char.Parse(sigString(hexIndex))
+            If Uri.IsHexDigit(c) = True Then
+                text = text + c
+            Else
+                discardedInt = discardedInt + 1
+            End If
+            hexIndex += 1
+        Loop
+
+        'MsgBox("Text is " & text & " Text length is: " & text.Length)
+
+        If text.Length Mod 2 <> 0 Then
+            discardedInt = discardedInt + 1
+            text = text.Substring(0, text.Length - 1)
+        End If
+
+        'MsgBox("Text is now " & text & " Text length is: " & text.Length)
+
+        Dim arrayLength As Integer = text.Length / 2
+        'MsgBox("arrayLength is: " & arrayLength)
+        'Dim array(arrayLength - 1) As Byte
+        Dim array As Byte() = New Byte(arrayLength - 1) {}
+        'MsgBox("Array is now this long: " & Array.Length)
+        Dim charPosition As Integer = 0
+        Dim hex As String
+        Dim arrayIndex As Integer = 0
+        Do While arrayIndex < array.Length
+            hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
+            array(arrayIndex) = Byte.Parse(hex, 515)
+            charPosition = charPosition + 2
+            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
+            arrayIndex += 1
+        Loop
+
+        'MsgBox("arrayLength is: " & array.Length)
+
+        Return array
+
+    End Function
+
+    Public Function reverseSig(signature() As Byte)
+
+        Dim reverseSigBytes As Byte() = New Byte(3) {}
+        'MsgBox("Reverse sig is: " & reverseSig.Length)
+        Dim index As Integer = 0
+        Do While index < 4
+            reverseSigBytes(index) = signature(3 - index)
+            index += 1
+        Loop
+
+        'MsgBox("Reverse sig now: " & reverseSig.Length)
+
+        Return reverseSigBytes
+
+    End Function
+
+    '
+    'See below for erros.
+    '
     'v1: Writes hash to map - Based on Darkmatter source
     Public Function rehashMap_v1(mapStream As FileStream)
         '
@@ -272,79 +349,6 @@ Public Class mapHandler
 
     End Function
 
-    'v4: I gave up and used this: http://converter.telerik.com/
-    Public Function writeHeaderSig(mapStream As FileStream)
-
-        Dim binReader As New BinaryReader(mapStream)
-        Dim binWriter As New BinaryWriter(mapStream)
-
-        Dim result As Integer = 0
-        binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
-        Const bufferSize As Integer = 16384
-        Dim sizeCheck As Integer
-        Do
-            Dim buffer As Byte() = binReader.ReadBytes(bufferSize)
-            sizeCheck = buffer.Length
-            For x As Integer = 0 To buffer.Length - 1 Step 4
-                result = result Xor BitConverter.ToInt32(buffer, x)
-            Next
-        Loop While sizeCheck = bufferSize
-
-        MsgBox(result)
-
-        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
-        binWriter.Write(result)
-
-    End Function
-
-    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
-    Public Function prepareFooterSig(sigString As String, discardedInt As Integer)
-
-        discardedInt = 0
-
-        Dim text As String = ""
-        Dim hexIndex As Integer = 0
-        Do While hexIndex < sigString.Length()
-            Dim c As Char = Char.Parse(sigString(hexIndex))
-            If Uri.IsHexDigit(c) = True Then
-                text = text + c
-            Else
-                discardedInt = discardedInt + 1
-            End If
-            hexIndex += 1
-        Loop
-
-        'MsgBox("Text is " & text & " Text length is: " & text.Length)
-
-        If text.Length Mod 2 <> 0 Then
-            discardedInt = discardedInt + 1
-            text = text.Substring(0, text.Length - 1)
-        End If
-
-        'MsgBox("Text is now " & text & " Text length is: " & text.Length)
-
-        Dim arrayLength As Integer = text.Length / 2
-        'MsgBox("arrayLength is: " & arrayLength)
-        'Dim array(arrayLength - 1) As Byte
-        Dim array As Byte() = New Byte(arrayLength - 1) {}
-        'MsgBox("Array is now this long: " & Array.Length)
-        Dim charPosition As Integer = 0
-        Dim hex As String
-        Dim arrayIndex As Integer = 0
-        Do While arrayIndex < array.Length
-            hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
-            array(arrayIndex) = Byte.Parse(hex, 515)
-            charPosition = charPosition + 2
-            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
-            arrayIndex += 1
-        Loop
-
-        'MsgBox("arrayLength is: " & array.Length)
-
-        Return array
-
-    End Function
-
     'Now unused
     Public Function isHexDigit(c As Char)
 
@@ -356,22 +360,6 @@ Public Class mapHandler
 
         'VB.net operators: http://www.tutorialspoint.com/vb.net/vb.net_operators.htm
         Return (num2 >= num0 AndAlso num2 < num0 + 6) OrElse (num2 >= num1 AndAlso num2 < num1 + 10)
-
-    End Function
-
-    Public Function reverseSig(signature() As Byte)
-
-        Dim reverseSigBytes As Byte() = New Byte(3) {}
-        'MsgBox("Reverse sig is: " & reverseSig.Length)
-        Dim index As Integer = 0
-        Do While index < 4
-            reverseSigBytes(index) = signature(3 - index)
-            index += 1
-        Loop
-
-        'MsgBox("Reverse sig now: " & reverseSig.Length)
-
-        Return reverseSigBytes
 
     End Function
 

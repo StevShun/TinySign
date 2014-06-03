@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("TinySign")> 
-<Assembly: AssemblyDescription("TinySign is a lighweight, open source Halo 2 .map resigner. It was developed by Komet and Mugzz12. The goal of this project was to provide general programming experience to the developers and provide greater insight into the workings of VB.net. Enjoy.")> 
+<Assembly: AssemblyDescription("TinySign is a lighweight, open source Halo 2 .map resigner. It was developed by Komet and Mugz. The goal of this project was to gain a better understanding of VB.net and programming in general.")> 
 <Assembly: AssemblyCompany("StevShun")> 
 <Assembly: AssemblyProduct("TinySign")> 
 <Assembly: AssemblyCopyright("Copyright ©  1901 (I think)")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.3.0.0")> 
-<Assembly: AssemblyFileVersion("0.3.0.0")> 
+<Assembly: AssemblyVersion("0.5.0.1")> 
+<Assembly: AssemblyFileVersion("0.5.0.1")> 

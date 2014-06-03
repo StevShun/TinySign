@@ -70,6 +70,8 @@ Public Class mainForm
                     mapInformation = map.readInternalName(nameLocation)
 
                     If mapInformation Is Nothing Then
+                        mapStream.Close()
+                        MsgBox("Erros")
                         Exit Sub
                     End If
 
@@ -79,7 +81,7 @@ Public Class mainForm
                     'Display what the current signature is and what it should be
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
                     Dim queryResults As String() = map.queryMapList(mapInformation(0))
-                    Dim currentSig As String = map.readCurrentSig(mapStream)
+                    Dim currentSig As String = map.readCurrentSigString(mapStream)
                     Dim actualSig As String = queryResults(4)
 
                     currentSigTextBox.Text = currentSig
@@ -171,7 +173,6 @@ Public Class mainForm
 
         Dim tempHandler As New mapHandler
         Dim sigString As String = mapInformation(3)
-        MsgBox(mapInformation(3))
         Dim discardedInt As Integer = 0
         Dim signature As Byte() = New Byte(3) {}
         Dim binWriter0 As New BinaryWriter(mapStream)
@@ -183,7 +184,7 @@ Public Class mainForm
         '1) Prepare a signature for the footer of the map. This
         ' signature is based off of the map's correct signature and is
         ' then reversed.
-        '2) Apply the TBC
+        '2) Write the signature 
         signature = tempHandler.prepareFooterSig(sigString, discardedInt)
         array0 = tempHandler.reverseSig(signature)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
@@ -191,13 +192,13 @@ Public Class mainForm
         tempHandler.writeHeaderSig(mapStream)
 
         'Pass 2
-        array1 = tempHandler.readCurrentSig_v2(mapStream)
+        array1 = tempHandler.readCurrentSigBytes(mapStream)
         binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter1.Write(tempHandler.reverseSig(array1))
         tempHandler.writeHeaderSig(mapStream)
 
         'Update the UI
-        Dim currentSig As String = tempHandler.readCurrentSig(mapStream)
+        Dim currentSig As String = tempHandler.readCurrentSigString(mapStream)
         currentSigTextBox.Text = currentSig
         applySigLabel.ForeColor = Color.Green
         currentSigLabel.ForeColor = Color.Green

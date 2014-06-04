@@ -44,12 +44,12 @@ Public Class mapHandler
         'Process char array into a string
         Dim mapName As New String(charArray)
         'MsgBox("The map name is:" & " " & mapName)
-        Return queryMapList(Trim(mapName))
+        Return queryMapDB(Trim(mapName))
 
     End Function
 
     'Compares map name from file to map list in Resources folder
-    Public Function queryMapList(queryItem As String)
+    Public Function queryMapList_old(queryItem As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
         Dim line As String
@@ -66,23 +66,59 @@ Public Class mapHandler
             stringArray = Split(line, ",")
 
             'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            Do While index < 42
+            While (String.Compare(queryItem, stringArray(0)) <> 0)
                 line = _textStreamReader.ReadLine()
                 stringArray = Split(line, ",")
-                'MsgBox(index)
-                'MsgBox("qItem is: " + queryItem.ToString)
-                'MsgBox("stringA is: " + stringArray(0).ToString)
-                'MsgBox(index)
-                If String.Compare(queryItem, stringArray(0)) = 0 Then
-                    Return stringArray
-                End If
                 index += 1
-            Loop
+            End While
 
-            Return Nothing
+            If String.Compare(queryItem, stringArray(0)) = 0 Then
+                Return stringArray
+            Else
+                Return Nothing
+            End If
 
             'Dim stringArrayContents As String = String.Join(",", stringArray)
             'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
+
+        Catch ex As Exception
+            MessageBox.Show("Resource wasn't found!", "Error")
+        End Try
+        Return "Something Bad Happened, lol."
+
+    End Function
+    'Compares map name from file to map list in Resources folder
+    Public Function queryMapDB(queryItem As String)
+        Dim _textStreamReader As StreamReader
+        Dim _assembly As [Assembly]
+        Dim line As String
+        Dim queryResultArray As String()
+
+        Try
+            'Embedded resources http://support.microsoft.com/kb/319291
+            _assembly = [Assembly].GetExecutingAssembly()
+            _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream("TinySign.mapDB.txt"))
+
+            'Reads in line and checks to see if map name matches
+            Dim index As Integer = 0
+            line = _textStreamReader.ReadLine()
+            queryResultArray = Split(line, ",")
+
+            'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
+            While (String.Compare(queryItem, queryResultArray(0)) <> 0) Or _textStreamReader.EndOfStream = True
+                line = _textStreamReader.ReadLine()
+                queryResultArray = Split(line, ",")
+                index += 1
+            End While
+
+            'Dim stringArrayContents As String = String.Join(",", stringArray)
+            'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
+
+            If queryResultArray Is Nothing Then
+                Return Nothing
+            Else
+                Return queryResultArray
+            End If
 
         Catch ex As Exception
             MessageBox.Show("Resource wasn't found!", "Error")
@@ -123,7 +159,7 @@ Public Class mapHandler
         mapStream.Seek(720, 0)
         binReader.Read(array, 0, 4)
 
-        Return reverseSig(array)
+        Return reverseSigBytes(array)
 
     End Function
 
@@ -218,25 +254,39 @@ Public Class mapHandler
 
     End Function
 
-    Public Function reverseSig(signature() As Byte)
+    Public Function reverseSigBytes(signature() As Byte)
 
-        Dim reverseSigBytes As Byte() = New Byte(3) {}
+        Dim reverseSigBytesArray As Byte() = New Byte(3) {}
         'MsgBox("Reverse sig is: " & reverseSig.Length)
         Dim index As Integer = 0
         Do While index < 4
-            reverseSigBytes(index) = signature(3 - index)
+            reverseSigBytesArray(index) = signature(3 - index)
             index += 1
         Loop
 
         'MsgBox("Reverse sig now: " & reverseSig.Length)
 
-        Return reverseSigBytes
+        Return reverseSigBytesArray
 
     End Function
 
-    '
-    'See below for erros.
-    '
+    ''''''''''''''''''''''''''''''''''''''''''
+    'See below for erros (AKA, old code).
+    ''''''''''''''''''''''''''''''''''''''''''
+    'Given a file and a start location/end location, return a string of the contents
+    Public Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
+        Dim dataLength As Integer = (endByte - startByte)
+        mapStream.Position = startByte
+
+        'Creates a string of Bytes
+        Dim byteStream(dataLength) As Byte
+        mapStream.Read(byteStream, 0, dataLength)
+
+        'Return a string of Bytes
+        Return byteStream
+
+    End Function
+
     'v1: Writes hash to map - Based on Darkmatter source
     Public Function rehashMap_v1(mapStream As FileStream)
         '

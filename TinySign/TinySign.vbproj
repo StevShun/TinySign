@@ -164,7 +164,7 @@
     <None Include="Resources\Unknown_Map.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mapList.txt" />
+    <EmbeddedResource Include="mapDB.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\_00a_introduction.JPG" />

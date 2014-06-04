@@ -71,8 +71,12 @@ Public Class mainForm
 
                     If mapInformation Is Nothing Then
                         mapStream.Close()
-                        MsgBox("Erros")
+                        MsgBox("The map you have loaded is not recognized. Please enter the correct map signature manually.")
+                        applySigTextBox.Enabled = True
+                        applySigTextBox.ReadOnly = False
                         Exit Sub
+                    Else
+                        'Do nothing
                     End If
 
                     '
@@ -80,9 +84,9 @@ Public Class mainForm
                     '
                     'Display what the current signature is and what it should be
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
-                    Dim queryResults As String() = map.queryMapList(mapInformation(0))
+                    Dim queryResults As String() = map.queryMapDB(mapInformation(0))
                     Dim currentSig As String = map.readCurrentSigString(mapStream)
-                    Dim actualSig As String = queryResults(4)
+                    Dim actualSig As String = queryResults(3)
 
                     currentSigTextBox.Text = currentSig
 
@@ -172,9 +176,9 @@ Public Class mainForm
     Private Sub resignMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles resignMapMenuItem.Click
 
         Dim tempHandler As New mapHandler
-        Dim sigString As String = mapInformation(3)
+        Dim sigString As String = applySigTextBox.Text.ToString
         Dim discardedInt As Integer = 0
-        Dim signature As Byte() = New Byte(3) {}
+        Dim signatureBytes As Byte() = New Byte(3) {}
         Dim binWriter0 As New BinaryWriter(mapStream)
         Dim binWriter1 As New BinaryWriter(mapStream)
         Dim array0 As Byte() = New Byte(3) {}
@@ -185,8 +189,8 @@ Public Class mainForm
         ' signature is based off of the map's correct signature and is
         ' then reversed.
         '2) Write the signature 
-        signature = tempHandler.prepareFooterSig(sigString, discardedInt)
-        array0 = tempHandler.reverseSig(signature)
+        signatureBytes = tempHandler.prepareFooterSig(sigString, discardedInt)
+        array0 = tempHandler.reverseSigBytes(signatureBytes)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter0.Write(array0)
         tempHandler.writeHeaderSig(mapStream)
@@ -194,7 +198,7 @@ Public Class mainForm
         'Pass 2
         array1 = tempHandler.readCurrentSigBytes(mapStream)
         binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter1.Write(tempHandler.reverseSig(array1))
+        binWriter1.Write(tempHandler.reverseSigBytes(array1))
         tempHandler.writeHeaderSig(mapStream)
 
         'Update the UI

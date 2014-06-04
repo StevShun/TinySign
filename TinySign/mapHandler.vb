@@ -9,7 +9,7 @@ Public Class mapHandler
 
     'Test the file's header to make sure it is a valid Halo 2 map file
     Public Function verifyMapFile(array As Byte())
-        Dim charArray(4) As Char
+        Dim charArray(3) As Char
 
         Dim index As Integer = 0
         Do Until index = 4
@@ -19,12 +19,12 @@ Public Class mapHandler
         Loop
 
         Dim mapHeaderArray As New String(charArray)
-        Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
+        'Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
 
-        If mapHeader = "toof" Then
-            Return "Valid"
+        If mapHeaderArray = "toof" Then
+            Return "valid"
         Else
-            Return "Invalid"
+            Return "invalid"
         End If
 
     End Function
@@ -42,9 +42,10 @@ Public Class mapHandler
         Loop
 
         'Process char array into a string
-        Dim mapName As New String(charArray)
+        Dim mapNameString As New String(charArray)
+
         'MsgBox("The map name is:" & " " & mapName)
-        Return queryMapDB(Trim(mapName))
+        Return queryMapDB(Trim(mapNameString))
 
     End Function
 
@@ -87,6 +88,7 @@ Public Class mapHandler
         Return "Something Bad Happened, lol."
 
     End Function
+
     'Compares map name from file to map list in Resources folder
     Public Function queryMapDB(queryItem As String)
         Dim _textStreamReader As StreamReader
@@ -152,17 +154,19 @@ Public Class mapHandler
 
     End Function
 
+    'Read the map's current signature in bytes
     Public Function readCurrentSigBytes(mapStream As FileStream)
-        Dim array As Byte() = New Byte(3) {}
+        Dim sigByteArray As Byte() = New Byte(3) {}
         Dim binReader As New BinaryReader(mapStream)
 
         mapStream.Seek(720, 0)
-        binReader.Read(array, 0, 4)
+        binReader.Read(sigByteArray, 0, 4)
 
-        Return reverseSigBytes(array)
+        Return reverseSigBytes(sigByteArray)
 
     End Function
 
+    'Read the map's current scenario path and return a string of text
     Public Function readCurrentScenPath(array As Byte())
         Dim charArray(64) As Char
 
@@ -181,28 +185,30 @@ Public Class mapHandler
 
     End Function
 
-    'v4: I gave up and used this: http://converter.telerik.com/
+    'v4: Based on Entity source code in C#
+    'I gave up and used this to translate it: http://converter.telerik.com/
     Public Function writeHeaderSig(mapStream As FileStream)
 
         Dim binReader As New BinaryReader(mapStream)
         Dim binWriter As New BinaryWriter(mapStream)
 
-        Dim result As Integer = 0
         binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
         Const bufferSize As Integer = 16384
         Dim sizeCheck As Integer
+        Dim xorResult As Integer = 0
+
         Do
             Dim buffer As Byte() = binReader.ReadBytes(bufferSize)
             sizeCheck = buffer.Length
             For x As Integer = 0 To buffer.Length - 1 Step 4
-                result = result Xor BitConverter.ToInt32(buffer, x)
+                xorResult = xorResult Xor BitConverter.ToInt32(buffer, x)
             Next
         Loop While sizeCheck = bufferSize
 
         'MsgBox(result)
 
         binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
-        binWriter.Write(result)
+        binWriter.Write(xorResult)
 
     End Function
 
@@ -270,9 +276,10 @@ Public Class mapHandler
 
     End Function
 
-    ''''''''''''''''''''''''''''''''''''''''''
-    'See below for erros (AKA, old code).
-    ''''''''''''''''''''''''''''''''''''''''''
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    'See below for erros (AKA, old code).'''''''''''''''''''''''''''''''''''''''''''
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
     'Given a file and a start location/end location, return a string of the contents
     Public Function byteReader(startByte As Integer, endByte As Integer, mapStream As FileStream)
         Dim dataLength As Integer = (endByte - startByte)
@@ -402,7 +409,7 @@ Public Class mapHandler
 
     End Function
 
-    'Now unused
+    'Now unused - Determines whether is a char is a hex digit or not
     Public Function isHexDigit(c As Char)
 
         'Constants and literals: http://msdn.microsoft.com/en-us/library/dzy06xhf.aspx

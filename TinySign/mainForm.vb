@@ -30,9 +30,9 @@ Public Class mainForm
 
                 If (mapStream IsNot Nothing) Then
 
-                    '
+                    '''''''''''''''''''''''''''''''''''''''''''''''''''''
                     'Check to see if the file is a valid Halo 2 .map file
-                    '
+                    '''''''''''''''''''''''''''''''''''''''''''''''''''''
                     'First, check the length of the file in bytes
                     If mapStream.Length < 10000000 Then
                         mapStream.Close()
@@ -42,15 +42,16 @@ Public Class mainForm
                         toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
                         Exit Sub
                     Else
-                        'Pass header to the inspector for verification
+                        'Pass first 4 header bytes to the inspector for verification
                         Dim tempHandler As New mapHandler()
                         Dim headerLocation(4) As Byte
                         mapStream.Position = 2044
                         mapStream.Read(headerLocation, 0, 4)
                         validityResult = tempHandler.verifyMapFile(headerLocation)
-                        If validityResult = "Valid" Then
+                        If validityResult = "valid" Then
                             'Do nothing
                         Else
+                            'Close the file stream and inform the user
                             mapStream.Close()
                             System.Media.SystemSounds.Exclamation.Play()
                             MsgBox("The file you are attempting to open is not a valid Halo 2 .map file. File unloaded.")
@@ -60,7 +61,10 @@ Public Class mainForm
                         End If
                     End If
 
-                    'Identify and read the bytes for the map's internal name
+                    '''''''''''''''''''''''''''''''''''''''''
+                    'Gather initial information about the map
+                    '''''''''''''''''''''''''''''''''''''''''
+                    'Identify and read the bytes containing the map's internal name
                     Dim nameLocation(35) As Byte
                     mapStream.Position = 408
                     mapStream.Read(nameLocation, 0, 35)
@@ -69,6 +73,7 @@ Public Class mainForm
                     Dim map As New mapHandler()
                     mapInformation = map.readInternalName(nameLocation)
 
+                    'Check if the map name is recognized
                     If mapInformation Is Nothing Then
                         mapStream.Close()
                         MsgBox("The map you have loaded is not recognized. Please enter the correct map signature manually.")
@@ -79,9 +84,9 @@ Public Class mainForm
                         'Do nothing
                     End If
 
-                    '
+                    ''''''''''''''
                     'Update the UI
-                    '
+                    ''''''''''''''
                     'Display what the current signature is and what it should be
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
                     Dim queryResults As String() = map.queryMapDB(mapInformation(0))
@@ -138,11 +143,12 @@ Public Class mainForm
 
         'Clean up resources
         mapStream.Close()
+        validityResult = Nothing
         mapInformation = Nothing
 
-        '
+        ''''''''''''''''
         'Clean up the UI
-        '
+        ''''''''''''''''
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
         currentSigLabel.ForeColor = Color.Black
@@ -184,18 +190,21 @@ Public Class mainForm
         Dim array0 As Byte() = New Byte(3) {}
         Dim array1 As Byte() = New Byte(3) {}
 
-        'Pass 1: 
-        '1) Prepare a signature for the footer of the map. This
+        '[Pass 1]: 
+        'S1) Prepare a signature for the footer of the map. This
         ' signature is based off of the map's correct signature and is
         ' then reversed.
-        '2) Write the signature 
+        'S2) Write the signature to the last 4 bytes of the .map file
+        'S3) Create and write a signature to the map header (@720). This
+        ' signature is based on the results of XORing through the map's 
+        ' header starting @2048
         signatureBytes = tempHandler.prepareFooterSig(sigString, discardedInt)
         array0 = tempHandler.reverseSigBytes(signatureBytes)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter0.Write(array0)
         tempHandler.writeHeaderSig(mapStream)
 
-        'Pass 2
+        '[Pass 2]:
         array1 = tempHandler.readCurrentSigBytes(mapStream)
         binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter1.Write(tempHandler.reverseSigBytes(array1))

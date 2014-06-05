@@ -12,7 +12,6 @@ Public Class mainForm
         mapInfoMenuItem.Enabled = False
     End Sub
 
-    'TODO: Fix the crazy stuff going on in this sub
     Public Sub openMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles openMapMenuItem.Click
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
@@ -30,9 +29,9 @@ Public Class mainForm
 
                 If (mapStream IsNot Nothing) Then
 
-                    '''''''''''''''''''''''''''''''''''''''''''''''''''''
-                    'Check to see if the file is a valid Halo 2 .map file
-                    '''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    'Check to see if the file is a valid Halo 2 .map file'
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     'First, check the length of the file in bytes
                     If mapStream.Length < 10000000 Then
                         mapStream.Close()
@@ -59,9 +58,9 @@ Public Class mainForm
                         End If
                     End If
 
-                    '''''''''''''''''''''''''''''''''''''''''
-                    'Gather initial information about the map
-                    '''''''''''''''''''''''''''''''''''''''''
+                    ''''''''''''''''''''''''''''''''''''''''''
+                    'Gather initial information about the map'
+                    ''''''''''''''''''''''''''''''''''''''''''
                     'Identify and read the bytes containing the map's internal name
                     Dim nameLocation(35) As Byte
                     mapStream.Position = 408
@@ -71,11 +70,12 @@ Public Class mainForm
                     Dim map As New mapHandler()
                     mapInformation = map.readInternalName(nameLocation)
 
-                    ''''''''''''''
-                    'Update the UI
-                    ''''''''''''''
+                    '''''''''''''''
+                    'Update the UI'
+                    '''''''''''''''
                     'Display what the current signature is and what it should be
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
+                    'Check if the map is recognized
                     If mapInformation Is Nothing Then
                         Dim currentSig As String = map.readCurrentSigString(mapStream)
                         currentSigTextBox.Text = currentSig
@@ -84,23 +84,29 @@ Public Class mainForm
                     Else
                         Dim queryResults As String() = map.queryMapDB(mapInformation(0))
                         Dim currentSig As String = map.readCurrentSigString(mapStream)
-                        Dim applySig As String = queryResults(4)
+                        Dim applySig As String = queryResults(3)
+
+                        MsgBox(queryResults(3) & "fu")
 
                         currentSigTextBox.Text = currentSig
 
                         For Each Str As String In queryResults
                             If Str.Contains(currentSig) Then
+                                MsgBox("lol")
                                 'If the current signature matches
                                 applySigTextBox.Text = currentSig
                                 applySigLabel.ForeColor = Color.Green
                                 currentSigLabel.ForeColor = Color.Green
+                                Exit For
                             Else
                                 'If the current signature does not match
                                 applySigTextBox.Text = applySig
                                 applySigLabel.ForeColor = Color.Red
                                 currentSigLabel.ForeColor = Color.Red
+                                Exit For
                             End If
                         Next
+
                     End If
 
                     'Display the map image
@@ -154,9 +160,9 @@ Public Class mainForm
         validityResult = Nothing
         mapInformation = Nothing
 
-        ''''''''''''''''
-        'Clean up the UI
-        ''''''''''''''''
+        '''''''''''''''''
+        'Clean up the UI'
+        '''''''''''''''''
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
         currentSigLabel.ForeColor = Color.Black

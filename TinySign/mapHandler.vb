@@ -95,43 +95,6 @@ Public Class mapHandler
 
     End Function
 
-    '@Return hex value in a string of the map's signature
-    Public Function readCurrentSigString(mapStream As FileStream)
-        Dim mapSignatureBytes(4) As Byte
-        mapStream.Position() = 720
-        mapStream.Read(mapSignatureBytes, 0, 4)
-        Dim mapCurrentSignatureString As String = ""
-
-        'Adds hex values into a single string
-        Dim temp As String
-        Dim index = 0
-        Do Until index = 4
-            temp = Hex(mapSignatureBytes(index))
-
-            'If the hex value is <= F then add a zero infront to preserve form
-            If (temp.Length = 1) Then
-                temp = "0" + temp
-            End If
-            mapCurrentSignatureString = mapCurrentSignatureString + temp
-            index += 1
-        Loop
-
-        Return mapCurrentSignatureString
-
-    End Function
-
-    'Read the map's current signature in bytes
-    Public Function readCurrentSigBytes(mapStream As FileStream)
-        Dim sigByteArray As Byte() = New Byte(3) {}
-        Dim binReader As New BinaryReader(mapStream)
-
-        mapStream.Seek(720, 0)
-        binReader.Read(sigByteArray, 0, 4)
-
-        Return reverseSigBytes(sigByteArray)
-
-    End Function
-
     'Read the map's current scenario path and return a string of text
     Public Function readCurrentScenPath(array As Byte())
         Dim charArray(64) As Char
@@ -148,6 +111,62 @@ Public Class mapHandler
         Dim mapScenarioPath As New String(charArray)
 
         Return mapScenarioPath
+
+    End Function
+
+    '@Return hex value in a string of the map's signature
+    Public Function readCurrentSigString(mapStream As FileStream)
+        Dim mapSignatureBytes(3) As Byte
+        mapStream.Position() = 720
+        mapStream.Read(mapSignatureBytes, 0, 4)
+        Dim mapCurrentSignatureString As String = ""
+
+        Dim reverseSig As Byte() = reverseSigBytes(mapSignatureBytes)
+
+        'Adds hex values into a single string
+        Dim temp As String
+        Dim index = 0
+        Do Until index = 4
+            temp = Hex(reverseSig(index))
+
+            'If the hex value is <= F then add a zero infront to preserve form
+            If (temp.Length = 1) Then
+                temp = "0" + temp
+            End If
+            mapCurrentSignatureString = mapCurrentSignatureString + temp
+            index += 1
+        Loop
+
+        MsgBox("Current sig string is this long: " & mapCurrentSignatureString.Length)
+        MsgBox(mapCurrentSignatureString & "fu")
+        Return mapCurrentSignatureString
+
+    End Function
+
+    'Read the map's current signature in bytes
+    Public Function readCurrentSigBytes(mapStream As FileStream)
+        Dim sigByteArray As Byte() = New Byte(3) {}
+        Dim binReader As New BinaryReader(mapStream)
+
+        mapStream.Seek(720, 0)
+        binReader.Read(sigByteArray, 0, 4)
+
+        Return reverseSigBytes(sigByteArray)
+
+    End Function
+
+    Public Function reverseSigBytes(signature() As Byte)
+        Dim reverseSigBytesArray As Byte() = New Byte(3) {}
+        'MsgBox("Reverse sig is: " & reverseSig.Length)
+        Dim index As Integer = 0
+        Do While index < 4
+            reverseSigBytesArray(index) = signature(3 - index)
+            index += 1
+        Loop
+
+        MsgBox("Reverse sig now: " & reverseSigBytesArray.Length)
+
+        Return reverseSigBytesArray
 
     End Function
 
@@ -226,37 +245,7 @@ Public Class mapHandler
 
     End Function
 
-    Public Function reverseSigBytes(signature() As Byte)
 
-        Dim reverseSigBytesArray As Byte() = New Byte(3) {}
-        'MsgBox("Reverse sig is: " & reverseSig.Length)
-        Dim index As Integer = 0
-        Do While index < 4
-            reverseSigBytesArray(index) = signature(3 - index)
-            index += 1
-        Loop
-
-        'MsgBox("Reverse sig now: " & reverseSig.Length)
-
-        Return reverseSigBytesArray
-
-    End Function
-
-    Public Function reverseSigString(signature() As String)
-
-        Dim reverseSigStringArray As String() = New String(3) {}
-        'MsgBox("Reverse sig is: " & reverseSig.Length)
-        Dim index As Integer = 0
-        Do While index < 4
-            reverseSigStringArray(index) = signature(3 - index)
-            index += 1
-        Loop
-
-        'MsgBox("Reverse sig now: " & reverseSig.Length)
-
-        Return reverseSigStringArray
-
-    End Function
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'See below for erros (AKA, old code).'''''''''''''''''''''''''''''''''''''''''''

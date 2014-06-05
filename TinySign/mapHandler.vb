@@ -19,7 +19,6 @@ Public Class mapHandler
         Loop
 
         Dim mapHeaderArray As New String(charArray)
-        'Dim mapHeader As String = mapHeaderArray(0).ToString & mapHeaderArray(1).ToString & mapHeaderArray(2).ToString & mapHeaderArray(3).ToString
 
         If mapHeaderArray = "toof" Then
             Return "valid"
@@ -137,8 +136,6 @@ Public Class mapHandler
             index += 1
         Loop
 
-        MsgBox("Current sig string is this long: " & mapCurrentSignatureString.Length)
-        MsgBox(mapCurrentSignatureString & "fu")
         Return mapCurrentSignatureString
 
     End Function
@@ -157,14 +154,12 @@ Public Class mapHandler
 
     Public Function reverseSigBytes(signature() As Byte)
         Dim reverseSigBytesArray As Byte() = New Byte(3) {}
-        'MsgBox("Reverse sig is: " & reverseSig.Length)
         Dim index As Integer = 0
+
         Do While index < 4
             reverseSigBytesArray(index) = signature(3 - index)
             index += 1
         Loop
-
-        MsgBox("Reverse sig now: " & reverseSigBytesArray.Length)
 
         Return reverseSigBytesArray
 
@@ -190,7 +185,7 @@ Public Class mapHandler
             Next
         Loop While sizeCheck = bufferSize
 
-        'MsgBox(result)
+        'MsgBox("XOR result is: " & result)
 
         binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
         binWriter.Write(xorResult)
@@ -224,18 +219,15 @@ Public Class mapHandler
         'MsgBox("Text is now " & text & " Text length is: " & text.Length)
 
         Dim arrayLength As Integer = text.Length / 2
-        'MsgBox("arrayLength is: " & arrayLength)
-        'Dim array(arrayLength - 1) As Byte
         Dim array As Byte() = New Byte(arrayLength - 1) {}
-        'MsgBox("Array is now this long: " & Array.Length)
         Dim charPosition As Integer = 0
         Dim hex As String
         Dim arrayIndex As Integer = 0
+
         Do While arrayIndex < array.Length
             hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
             array(arrayIndex) = Byte.Parse(hex, 515)
             charPosition = charPosition + 2
-            'MsgBox("hex is: " & hex & " @ index position: " & arrayIndex & " array length is: " & array.Length)
             arrayIndex += 1
         Loop
 

@@ -35,6 +35,9 @@ Public Class mainForm
                     'First, check the length of the file in bytes
                     If mapStream.Length < 10000000 Then
                         mapStream.Close()
+                        mapStream = Nothing
+                        validityResult = Nothing
+                        mapInformation = Nothing
                         MsgBox("The file you are attempting to open is not a valid Halo 2 .map file." & vbNewLine & vbNewLine & "File unloaded.", vbExclamation, "Invalid File")
                         toolStripStatusLabel.Text = "//Invalid file. File unloaded."
                         toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
@@ -51,6 +54,9 @@ Public Class mainForm
                         Else
                             'Close the file stream and inform the user
                             mapStream.Close()
+                            mapStream = Nothing
+                            validityResult = Nothing
+                            mapInformation = Nothing
                             MsgBox("The file you are attempting to open is not a valid Halo 2 .map file." & vbNewLine & vbNewLine & "File unloaded.", vbExclamation, "Invalid File")
                             toolStripStatusLabel.Text = "//Invalid file. File unloaded."
                             toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
@@ -86,13 +92,10 @@ Public Class mainForm
                         Dim currentSig As String = map.readCurrentSigString(mapStream)
                         Dim applySig As String = queryResults(3)
 
-                        MsgBox(queryResults(3) & "fu")
-
                         currentSigTextBox.Text = currentSig
 
                         For Each Str As String In queryResults
                             If Str.Contains(currentSig) Then
-                                MsgBox("lol")
                                 'If the current signature matches
                                 applySigTextBox.Text = currentSig
                                 applySigLabel.ForeColor = Color.Green
@@ -103,7 +106,6 @@ Public Class mainForm
                                 applySigTextBox.Text = applySig
                                 applySigLabel.ForeColor = Color.Red
                                 currentSigLabel.ForeColor = Color.Red
-                                Exit For
                             End If
                         Next
 
@@ -155,8 +157,9 @@ Public Class mainForm
 
     Public Sub closeMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles closeMapMenuItem.Click
 
-        'Clean up resources
+        'Clean up global resources
         mapStream.Close()
+        mapStream = Nothing
         validityResult = Nothing
         mapInformation = Nothing
 
@@ -234,10 +237,10 @@ Public Class mainForm
         'S1) Prepare a signature for the footer of the map. This
         ' signature is based off of the map's correct signature and is
         ' then reversed.
-        'S2) Write the signature to the last 4 bytes of the .map file
+        'S2) Write the signature to the last 4 bytes of the .map file.
         'S3) Create and write a signature to the map header (@720). This
         ' signature is based on the results of XORing through the map's 
-        ' header starting @2048
+        ' header starting @2048.
         signatureBytes = tempHandler.prepareFooterSig(sigString, discardedInt)
         array0 = tempHandler.reverseSigBytes(signatureBytes)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)

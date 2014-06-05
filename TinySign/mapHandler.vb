@@ -49,47 +49,7 @@ Public Class mapHandler
 
     End Function
 
-    'Compares map name from file to map list in Resources folder
-    Public Function queryMapList_old(queryItem As String)
-        Dim _textStreamReader As StreamReader
-        Dim _assembly As [Assembly]
-        Dim line As String
-        Dim stringArray As String()
-
-        Try
-            'Embedded resources http://support.microsoft.com/kb/319291
-            _assembly = [Assembly].GetExecutingAssembly()
-            _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream("TinySign.mapList.txt"))
-
-            'Reads in line and checks to see if map name matches
-            Dim index = 0
-            line = _textStreamReader.ReadLine()
-            stringArray = Split(line, ",")
-
-            'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            While (String.Compare(queryItem, stringArray(0)) <> 0)
-                line = _textStreamReader.ReadLine()
-                stringArray = Split(line, ",")
-                index += 1
-            End While
-
-            If String.Compare(queryItem, stringArray(0)) = 0 Then
-                Return stringArray
-            Else
-                Return Nothing
-            End If
-
-            'Dim stringArrayContents As String = String.Join(",", stringArray)
-            'MsgBox("This is the first stringArrayContents from mapQuery:" & " " & stringArrayContents)
-
-        Catch ex As Exception
-            MessageBox.Show("Resource wasn't found!", "Error")
-        End Try
-        Return "Something Bad Happened, lol."
-
-    End Function
-
-    'Compares map name from file to map list in Resources folder
+    'Compares map name from file to map database text file
     Public Function queryMapDB(queryItem As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
@@ -107,9 +67,15 @@ Public Class mapHandler
             queryResultArray = Split(line, ",")
 
             'String compare http://msdn.microsoft.com/en-us/library/fbh501kz(v=vs.110).aspx
-            While (String.Compare(queryItem, queryResultArray(0)) <> 0) Or _textStreamReader.EndOfStream = True
+            While (String.Compare(queryItem, queryResultArray(0)) <> 0)
                 line = _textStreamReader.ReadLine()
                 queryResultArray = Split(line, ",")
+                If index = 43 Then
+                    queryResultArray = Nothing
+                    Exit While
+                Else
+                    'Do nothing
+                End If
                 index += 1
             End While
 
@@ -123,7 +89,7 @@ Public Class mapHandler
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Resource wasn't found!", "Error")
+            MessageBox.Show("MapDB resource could not be located!", "Error")
         End Try
         Return "Something Bad Happened, lol."
 
@@ -273,6 +239,22 @@ Public Class mapHandler
         'MsgBox("Reverse sig now: " & reverseSig.Length)
 
         Return reverseSigBytesArray
+
+    End Function
+
+    Public Function reverseSigString(signature() As String)
+
+        Dim reverseSigStringArray As String() = New String(3) {}
+        'MsgBox("Reverse sig is: " & reverseSig.Length)
+        Dim index As Integer = 0
+        Do While index < 4
+            reverseSigStringArray(index) = signature(3 - index)
+            index += 1
+        Loop
+
+        'MsgBox("Reverse sig now: " & reverseSig.Length)
+
+        Return reverseSigStringArray
 
     End Function
 

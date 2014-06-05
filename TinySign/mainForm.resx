@@ -300,11 +300,14 @@
   <data name="applySigTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 89</value>
   </data>
+  <data name="applySigTextBox.MaxLength" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
   <data name="applySigTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 20</value>
   </data>
   <data name="applySigTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>1</value>
   </data>
   <data name="applySigTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>

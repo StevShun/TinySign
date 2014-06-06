@@ -152,6 +152,8 @@ Public Class mapHandler
 
     End Function
 
+    'Reverses the four bytes containing the map's signature
+    'Based on code from Coolspot31's map resigner
     Public Function reverseSigBytes(signature() As Byte)
         Dim reverseSigBytesArray As Byte() = New Byte(3) {}
         Dim index As Integer = 0
@@ -165,6 +167,7 @@ Public Class mapHandler
 
     End Function
 
+    'XORs through the map header starting @ 2048 and writes the result to @ 720
     'v4: Based on Entity source code in C#
     'I gave up and used this to translate it: http://converter.telerik.com/
     Public Function writeHeaderSig(mapStream As FileStream)
@@ -193,16 +196,17 @@ Public Class mapHandler
     End Function
 
     'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
+    'Based on code from Coolspot31's map resigner
     Public Function prepareFooterSig(sigString As String, discardedInt As Integer)
 
         discardedInt = 0
 
-        Dim text As String = ""
+        Dim sigStringText As String = ""
         Dim hexIndex As Integer = 0
         Do While hexIndex < sigString.Length()
             Dim c As Char = Char.Parse(sigString(hexIndex))
             If Uri.IsHexDigit(c) = True Then
-                text = text + c
+                sigStringText = sigStringText + c
             Else
                 discardedInt = discardedInt + 1
             End If
@@ -211,29 +215,29 @@ Public Class mapHandler
 
         'MsgBox("Text is " & text & " Text length is: " & text.Length)
 
-        If text.Length Mod 2 <> 0 Then
+        If sigStringText.Length Mod 2 <> 0 Then
             discardedInt = discardedInt + 1
-            text = text.Substring(0, text.Length - 1)
+            sigStringText = sigStringText.Substring(0, sigStringText.Length - 1)
         End If
 
         'MsgBox("Text is now " & text & " Text length is: " & text.Length)
 
-        Dim arrayLength As Integer = text.Length / 2
-        Dim array As Byte() = New Byte(arrayLength - 1) {}
+        Dim arrayLength As Integer = sigStringText.Length / 2
+        Dim signatureByteArray As Byte() = New Byte(arrayLength - 1) {}
         Dim charPosition As Integer = 0
-        Dim hex As String
+        Dim hexString As String
         Dim arrayIndex As Integer = 0
 
-        Do While arrayIndex < array.Length
-            hex = New String(New Char() {Char.Parse(text(charPosition)), Char.Parse(text(charPosition + 1))})
-            array(arrayIndex) = Byte.Parse(hex, 515)
+        Do While arrayIndex < signatureByteArray.Length
+            hexString = New String(New Char() {Char.Parse(sigStringText(charPosition)), Char.Parse(sigStringText(charPosition + 1))})
+            signatureByteArray(arrayIndex) = Byte.Parse(hexString, 515)
             charPosition = charPosition + 2
             arrayIndex += 1
         Loop
 
         'MsgBox("arrayLength is: " & array.Length)
 
-        Return array
+        Return signatureByteArray
 
     End Function
 

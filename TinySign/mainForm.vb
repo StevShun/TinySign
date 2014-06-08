@@ -7,6 +7,7 @@ Public Class mainForm
     Dim mapInformation As String()
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Setup the UI
         closeMapMenuItem.Enabled = False
         resignMapMenuItem.Enabled = False
         mapInfoMenuItem.Enabled = False
@@ -16,6 +17,7 @@ Public Class mainForm
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
         'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
+        mapStream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
 
         openFileDialog1.Filter = "Halo 2 map files (*.map)|*.map"
@@ -32,8 +34,13 @@ Public Class mainForm
                     ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     'Check to see if the file is a valid Halo 2 .map file'
                     ''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                    'First, check the length of the file in bytes
-                    If mapStream.Length < 10000000 Then
+                    'Pass the file stream to the verifyMapFile function
+                    Dim tempHandler As New mapHandler()
+                    validityResult = tempHandler.verifyMapFile(mapStream)
+                    If validityResult = "valid" Then
+                        'Do nothing
+                    Else
+                        'Close the file stream and inform the user
                         mapStream.Close()
                         mapStream = Nothing
                         validityResult = Nothing
@@ -42,39 +49,15 @@ Public Class mainForm
                         toolStripStatusLabel.Text = "//Invalid file. File unloaded."
                         toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
                         Exit Sub
-                    Else
-                        'Pass first 4 header bytes to the inspector for verification
-                        Dim tempHandler As New mapHandler()
-                        Dim headerLocation(4) As Byte
-                        mapStream.Position = 2044
-                        mapStream.Read(headerLocation, 0, 4)
-                        validityResult = tempHandler.verifyMapFile(headerLocation)
-                        If validityResult = "valid" Then
-                            'Do nothing
-                        Else
-                            'Close the file stream and inform the user
-                            mapStream.Close()
-                            mapStream = Nothing
-                            validityResult = Nothing
-                            mapInformation = Nothing
-                            MsgBox("The file you are attempting to open is not a valid Halo 2 .map file." & vbNewLine & vbNewLine & "File unloaded.", vbExclamation, "Invalid File")
-                            toolStripStatusLabel.Text = "//Invalid file. File unloaded."
-                            toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
-                            Exit Sub
-                        End If
                     End If
 
                     ''''''''''''''''''''''''''''''''''''''''''
                     'Gather initial information about the map'
                     ''''''''''''''''''''''''''''''''''''''''''
-                    'Identify and read the bytes containing the map's internal name
-                    Dim nameLocation(35) As Byte
-                    mapStream.Position = 408
-                    mapStream.Read(nameLocation, 0, 35)
-
                     'Create a pointer variable that enables us to read from our map "database"
                     Dim map As New mapHandler()
-                    mapInformation = map.readInternalName(nameLocation)
+                    Dim mapName As String = map.readInternalName(mapStream)
+                    mapInformation = map.queryMapDB(mapName)
 
                     '''''''''''''''
                     'Update the UI'

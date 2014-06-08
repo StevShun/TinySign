@@ -4,22 +4,40 @@ Imports System.Text
 
 Public Class mapHandler
 
+    'This class provides the program with a toolbox to 
+    ' parse Halo 2 map files.
     'Decimal positions for relevant map information:
-    '408 = internal name, 444 = scenario path, 720 = signature addr
+    ' 408 = internal name, 444 = scenario path, 720 = signature addr
 
-    'Test the file's header to make sure it is a valid Halo 2 map file
-    Public Function verifyMapFile(array As Byte())
+    'Test the file's size and look for a Halo 2 map header to 
+    ' make sure that the file is a valid Halo 2 map file.
+    Public Function verifyMapFile(mapStream As FileStream)
+
+        'Check the file's size (@ 9.5 MB). 
+        'Maps are generally greater than 20 MB
+        If mapStream.Length < 10000000 Then
+            Return "invalid"
+            Exit Function
+        Else
+            'Do nothing
+        End If
+
+        'Read the header found @ 2044
+        Dim mapHeaderBytes(3) As Byte
+        mapStream.Position = 2044
+        mapStream.Read(mapHeaderBytes, 0, 4)
+
         Dim charArray(3) As Char
-
         Dim index As Integer = 0
         Do Until index = 4
-            If array(index) = 0 Then Exit Do
-            charArray(index) = Convert.ToChar(array(index))
+            If mapHeaderBytes(index) = 0 Then Exit Do
+            charArray(index) = Convert.ToChar(mapHeaderBytes(index))
             index += 1
         Loop
-
         Dim mapHeaderArray As New String(charArray)
 
+        'Determine if the header is valid.
+        'Halo 2 map header's always begin with the string "toof".
         If mapHeaderArray = "toof" Then
             Return "valid"
         Else
@@ -28,27 +46,7 @@ Public Class mapHandler
 
     End Function
 
-    'Converts byte array to a string
-    Public Function readInternalName(array As Byte())
-        Dim charArray(35) As Char
-
-        'Put the byte array into a char array
-        Dim index As Integer = 0
-        Do Until index = 35
-            If array(index) = 0 Then Exit Do
-            charArray(index) = Convert.ToChar(array(index))
-            index += 1
-        Loop
-
-        'Process char array into a string
-        Dim mapNameString As New String(charArray)
-
-        'MsgBox("The map name is:" & " " & mapName)
-        Return queryMapDB(Trim(mapNameString))
-
-    End Function
-
-    'Compares map name from file to map database text file
+    'Compares passed items from main program to map database text file.
     Public Function queryMapDB(queryItem As String)
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
@@ -88,32 +86,59 @@ Public Class mapHandler
             End If
 
         Catch ex As Exception
-            MessageBox.Show("MapDB resource could not be located!", "Error")
+            MessageBox.Show("MapDB resource could not be accessed!", "Error")
         End Try
         Return "Something Bad Happened, lol."
 
     End Function
 
-    'Read the map's current scenario path and return a string of text
-    Public Function readCurrentScenPath(array As Byte())
+    'Reads the map's internal name and returns relative information pertaining to the loaded map.
+    Public Function readInternalName(mapStream As FileStream)
+
+        Dim mapNameBytes(35) As Byte
+        mapStream.Position = 408
+        mapStream.Read(mapNameBytes, 0, 36)
+
+        Dim charArray(35) As Char
+        'Put the byte array into a char array
+        Dim index As Integer = 0
+        Do Until index = 35
+            If mapNameBytes(index) = 0 Then Exit Do
+            charArray(index) = Convert.ToChar(mapNameBytes(index))
+            index += 1
+        Loop
+        Dim mapNameString As New String(charArray)
+        'MsgBox("The map name is:" & " " & mapName)
+
+        Return mapNameString
+
+        'Return queryMapDB(Trim(mapNameString))
+
+    End Function
+
+    'Read the map's current scenario path and return a string of text.
+    Public Function readCurrentScenPath(mapStream As FileStream)
+
+        Dim mapScenarioBytes(63) As Byte
+        mapStream.Position = 444
+        mapStream.Read(mapScenarioBytes, 0, 64)
+
         Dim charArray(64) As Char
 
         'Put the byte array into a char array
         Dim index As Integer = 0
         Do Until index = 64
-            If array(index) = 0 Then Exit Do
-            charArray(index) = Convert.ToChar(array(index))
+            If mapScenarioBytes(index) = 0 Then Exit Do
+            charArray(index) = Convert.ToChar(mapScenarioBytes(index))
             index += 1
         Loop
-
-        'Process char array into a string
         Dim mapScenarioPath As New String(charArray)
 
         Return mapScenarioPath
 
     End Function
 
-    '@Return hex value in a string of the map's signature
+    '@Return hex value in a string of the map's signature.
     Public Function readCurrentSigString(mapStream As FileStream)
         Dim mapSignatureBytes(3) As Byte
         mapStream.Position() = 720
@@ -140,7 +165,7 @@ Public Class mapHandler
 
     End Function
 
-    'Read the map's current signature in bytes
+    '@Return the map's current signature in bytes.
     Public Function readCurrentSigBytes(mapStream As FileStream)
         Dim sigByteArray As Byte() = New Byte(3) {}
         Dim binReader As New BinaryReader(mapStream)
@@ -152,8 +177,8 @@ Public Class mapHandler
 
     End Function
 
-    'Reverses the four bytes containing the map's signature
-    'Based on code from Coolspot31's map resigner
+    '@Return reversed four bytes containing the map's signature.
+    'Based on code from Coolspot31's map resigner.
     Public Function reverseSigBytes(signature() As Byte)
         Dim reverseSigBytesArray As Byte() = New Byte(3) {}
         Dim index As Integer = 0
@@ -167,9 +192,9 @@ Public Class mapHandler
 
     End Function
 
-    'XORs through the map header starting @ 2048 and writes the result to @ 720
-    'v4: Based on Entity source code in C#
-    'I gave up and used this to translate it: http://converter.telerik.com/
+    'XORs through the map header starting @ 2048 and writes the result to @ 720.
+    'v4: Based on Entity source code.
+    '(I gave up and used this to translate it from C#: http://converter.telerik.com/)
     Public Function writeHeaderSig(mapStream As FileStream)
 
         Dim binReader As New BinaryReader(mapStream)
@@ -240,8 +265,6 @@ Public Class mapHandler
         Return signatureByteArray
 
     End Function
-
-
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'See below for erros (AKA, old code).'''''''''''''''''''''''''''''''''''''''''''

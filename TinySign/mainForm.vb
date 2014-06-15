@@ -68,8 +68,8 @@ Public Class mainForm
                     If mapInformation Is Nothing Then
                         Dim currentSig As String = map.readCurrentSigString(mapStream)
                         currentSigTextBox.Text = currentSig
-                        applySigLabel.ForeColor = Color.Red
                         currentSigLabel.ForeColor = Color.Red
+                        applySigLabel.ForeColor = Color.Red
                     Else
                         Dim queryResults As String() = map.queryMapDB(mapInformation(0))
                         Dim currentSig As String = map.readCurrentSigString(mapStream)

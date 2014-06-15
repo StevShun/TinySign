@@ -113,8 +113,6 @@ Public Class mapHandler
 
         Return mapNameString
 
-        'Return queryMapDB(Trim(mapNameString))
-
     End Function
 
     'Read the map's current scenario path and return a string of text.

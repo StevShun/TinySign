@@ -48,6 +48,7 @@ Public Class mapHandler
 
     'Compares passed items from main program to map database text file.
     Public Function queryMapDB(queryItem As String)
+
         Dim _textStreamReader As StreamReader
         Dim _assembly As [Assembly]
         Dim line As String
@@ -140,6 +141,7 @@ Public Class mapHandler
 
     '@Return hex value in a string of the map's signature.
     Public Function readCurrentSigString(mapStream As FileStream)
+
         Dim mapSignatureBytes(3) As Byte
         mapStream.Position() = 720
         mapStream.Read(mapSignatureBytes, 0, 4)
@@ -167,6 +169,7 @@ Public Class mapHandler
 
     '@Return the map's current signature in bytes.
     Public Function readCurrentSigBytes(mapStream As FileStream)
+
         Dim sigByteArray As Byte() = New Byte(3) {}
         Dim binReader As New BinaryReader(mapStream)
 
@@ -180,6 +183,7 @@ Public Class mapHandler
     '@Return reversed four bytes containing the map's signature.
     'Based on code from Coolspot31's map resigner.
     Public Function reverseSigBytes(signature() As Byte)
+
         Dim reverseSigBytesArray As Byte() = New Byte(3) {}
         Dim index As Integer = 0
 

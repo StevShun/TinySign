@@ -10,8 +10,13 @@
 
     'Outputs map information to the window on form activation
     Private Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles Me.Activated
+        'mapNameTextBox.Text = mapInformation(1)
+        'internalNameTextBox.Text = mapInformation(0)
+        'correctScenPathTextBox.Text = mapInformation(2)
+        'correctSigTextBox.Text = mapInformation(3)
+
         mapNameTextBox.Text = mapInformation(1)
-        internalNameTextBox.Text = mapInformation(0)
+        internalNameTextBox.Text = ""
         correctScenPathTextBox.Text = mapInformation(2)
         correctSigTextBox.Text = mapInformation(3)
     End Sub

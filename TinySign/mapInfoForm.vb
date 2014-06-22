@@ -2,23 +2,24 @@
 
     'Points to map inforamtion
     Private mapInformation As String()
+    Private mapInternalName As String
+    Private mapScenarioPath As String
+    Private mapCurrentSig As String
 
     'Recieves map informaiton so that we can use it in this class
-    Public Sub updateValues(passedInformation As String())
-        mapInformation = passedInformation
+    Public Sub updateValues(passedMapDBArray As String(), passedInternalName As String, passedScenarioPath As String, passedCurrentSig As String)
+        mapInformation = passedMapDBArray
+        mapInternalName = passedInternalName
+        mapScenarioPath = passedScenarioPath
+        mapCurrentSig = passedCurrentSig
     End Sub
 
     'Outputs map information to the window on form activation
     Private Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles Me.Activated
-        'mapNameTextBox.Text = mapInformation(1)
-        'internalNameTextBox.Text = mapInformation(0)
-        'correctScenPathTextBox.Text = mapInformation(2)
-        'correctSigTextBox.Text = mapInformation(3)
-
         mapNameTextBox.Text = mapInformation(1)
-        internalNameTextBox.Text = ""
-        correctScenPathTextBox.Text = mapInformation(2)
-        correctSigTextBox.Text = mapInformation(3)
+        internalNameTextBox.Text = mapInternalName
+        stockScenPathTextBox.Text = mapInformation(2)
+        currentScenPathTextBox.Text = mapInformation(3)
     End Sub
 
     Private Sub copyToClipboard_mapName(sender As Object, e As EventArgs) Handles mapNameTextBox.Click
@@ -57,7 +58,7 @@
 
     End Sub
 
-    Private Sub copyToClipboard_correctScenPathTextBox(sender As Object, e As EventArgs) Handles correctScenPathTextBox.Click
+    Private Sub copyToClipboard_correctScenPathTextBox(sender As Object, e As EventArgs) Handles stockScenPathTextBox.Click
         'Identify the current control selected by user
         Dim currentControl As TextBox = Me.ActiveControl
 
@@ -75,7 +76,7 @@
 
     End Sub
 
-    Private Sub copyToClipboard_correctSigTextBox(sender As Object, e As EventArgs) Handles correctSigTextBox.Click
+    Private Sub copyToClipboard_correctSigTextBox(sender As Object, e As EventArgs) Handles currentScenPathTextBox.Click, currentSignatureTextBox.Click, stockSignatureTextBox.Click
         'Identify the current control selected by user
         Dim currentControl As TextBox = Me.ActiveControl
 

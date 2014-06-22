@@ -109,14 +109,15 @@ Public Class mapHandler
             index += 1
         Loop
         Dim mapNameString As New String(charArray)
-        'MsgBox("The map name is:" & " " & mapName)
+        'Dim mapNameString As String = mapNameArray.ToString
+        'MsgBox("The map name is:" & " " & mapNameString & " grrw3")
 
         Return mapNameString
 
     End Function
 
     'Read the map's current scenario path and return a string of text.
-    Public Function readCurrentScenPath(mapStream As FileStream)
+    Public Function readScenarioPath(mapStream As FileStream)
 
         Dim mapScenarioBytes(63) As Byte
         mapStream.Position = 444

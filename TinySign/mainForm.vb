@@ -2,9 +2,11 @@
 
 Public Class mainForm
 
-    Dim validityResult As String
     Dim mapStream As FileStream
+    Dim mapInternalName As String
     Dim mapInformation As String()
+    Dim mapScenarioPath As String
+    Dim mapCurrentSig As String
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Setup the UI
@@ -36,7 +38,7 @@ Public Class mainForm
                     ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     'Pass the file stream to the verifyMapFile function
                     Dim tempHandler As New mapHandler()
-                    validityResult = tempHandler.verifyMapFile(mapStream)
+                    Dim validityResult As String = tempHandler.verifyMapFile(mapStream)
                     If validityResult = "valid" Then
                         'Do nothing
                     Else
@@ -56,8 +58,10 @@ Public Class mainForm
                     ''''''''''''''''''''''''''''''''''''''''''
                     'Create a pointer variable that enables us to read from our map "database"
                     Dim map As New mapHandler()
-                    Dim mapName As String = map.readInternalName(mapStream)
-                    mapInformation = map.queryMapDB(mapName)
+                    mapInternalName = map.readInternalName(mapStream)
+                    mapInformation = map.queryMapDB(mapInternalName)
+                    mapScenarioPath = map.readScenarioPath(mapStream)
+                    mapCurrentSig = map.readCurrentSigString(mapStream)
 
                     '''''''''''''''
                     'Update the UI'
@@ -66,21 +70,19 @@ Public Class mainForm
                     'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
                     'Check if the map is recognized
                     If mapInformation Is Nothing Then
-                        Dim currentSig As String = map.readCurrentSigString(mapStream)
-                        currentSigTextBox.Text = currentSig
+                        currentSigTextBox.Text = mapCurrentSig
                         currentSigLabel.ForeColor = Color.Red
                         applySigLabel.ForeColor = Color.Red
                     Else
                         Dim queryResults As String() = map.queryMapDB(mapInformation(0))
-                        Dim currentSig As String = map.readCurrentSigString(mapStream)
                         Dim applySig As String = queryResults(3)
 
-                        currentSigTextBox.Text = currentSig
+                        currentSigTextBox.Text = mapCurrentSig
 
                         For Each Str As String In queryResults
-                            If Str.Contains(currentSig) Then
+                            If Str.Contains(mapCurrentSig) Then
                                 'If the current signature matches
-                                applySigTextBox.Text = currentSig
+                                applySigTextBox.Text = mapCurrentSig
                                 applySigLabel.ForeColor = Color.Green
                                 currentSigLabel.ForeColor = Color.Green
                                 Exit For
@@ -104,14 +106,14 @@ Public Class mainForm
                     End If
 
                     'Update toolstrip status
-                    Dim mapPath As String = openFileDialog1.FileName
-                    If mapPath.Length > 45 Then
-                        Dim mapPathShortened As String = Microsoft.VisualBasic.Right(mapPath, 45)
-                        toolStripStatusLabel.Text = "..." & mapPathShortened
-                        toolStripStatusLabel.ToolTipText = "..." & mapPathShortened
+                    Dim mapFilePath As String = openFileDialog1.FileName
+                    If mapFilePath.Length > 45 Then
+                        Dim mapFilePathShortened As String = Microsoft.VisualBasic.Right(mapFilePath, 45)
+                        toolStripStatusLabel.Text = "..." & mapFilePathShortened
+                        toolStripStatusLabel.ToolTipText = "..." & mapFilePathShortened
                     Else
-                        toolStripStatusLabel.Text = mapPath
-                        toolStripStatusLabel.ToolTipText = mapPath
+                        toolStripStatusLabel.Text = mapFilePath
+                        toolStripStatusLabel.ToolTipText = mapFilePath
                     End If
 
                     'Enable / disable button operation
@@ -143,8 +145,11 @@ Public Class mainForm
         'Clean up global resources
         mapStream.Close()
         mapStream = Nothing
-        validityResult = Nothing
         mapInformation = Nothing
+        mapInternalName = Nothing
+        mapInformation = Nothing
+        mapScenarioPath = Nothing
+        mapCurrentSig = Nothing
 
         '''''''''''''''''
         'Clean up the UI'
@@ -174,7 +179,7 @@ Public Class mainForm
         Else
             'If it is not open, pass the data from mapInformation to the form
             Dim passMe As New mapInfoForm
-            passMe.updateValues(mapInformation)
+            passMe.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
             passMe.Show()
         End If
 
@@ -189,7 +194,7 @@ Public Class mainForm
             Else
                 'If it is not open, pass the data from mapInformation to the form
                 Dim passMe As New mapInfoForm
-                passMe.updateValues(mapInformation)
+                passMe.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
                 passMe.Show()
             End If
         End If
@@ -203,12 +208,13 @@ Public Class mainForm
             'Do nothing
         Else
             System.Media.SystemSounds.Exclamation.Play()
-            MsgBox("Custom map signatures must be eight characters long and consist of valid hexadecimal digits." & vbNewLine & vbNewLine & "Please re-enter a valid map signature.", vbExclamation, "Invalid Signature")
+            MsgBox("Custom map signatures must be eight characters long and consist of valid hexadecimal digits." _
+                   & vbNewLine & vbNewLine & "Please re-enter a valid map signature.", vbExclamation, "Invalid Signature")
             Exit Sub
         End If
 
         Dim tempHandler As New mapHandler
-        Dim sigString As String = applySigTextBox.Text.ToString
+        Dim applySigString As String = applySigTextBox.Text.ToString
         Dim discardedInt As Integer = 0
         Dim signatureBytes As Byte() = New Byte(3) {}
         Dim binWriter0 As New BinaryWriter(mapStream)
@@ -224,7 +230,7 @@ Public Class mainForm
         'S3) Create and write a signature to the map header (@720). This
         ' signature is based on the results of XORing through the map's 
         ' header starting @2048.
-        signatureBytes = tempHandler.prepareFooterSig(sigString, discardedInt)
+        signatureBytes = tempHandler.prepareFooterSig(applySigString, discardedInt)
         array0 = tempHandler.reverseSigBytes(signatureBytes)
         binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
         binWriter0.Write(array0)
@@ -237,8 +243,8 @@ Public Class mainForm
         tempHandler.writeHeaderSig(mapStream)
 
         'Update the UI
-        Dim currentSig As String = tempHandler.readCurrentSigString(mapStream)
-        currentSigTextBox.Text = currentSig
+        mapCurrentSig = tempHandler.readCurrentSigString(mapStream)
+        currentSigTextBox.Text = mapCurrentSig
         applySigLabel.ForeColor = Color.Green
         currentSigLabel.ForeColor = Color.Green
         System.Media.SystemSounds.Asterisk.Play()

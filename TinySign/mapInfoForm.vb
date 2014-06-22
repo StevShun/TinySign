@@ -19,64 +19,12 @@
         mapNameTextBox.Text = mapInformation(1)
         internalNameTextBox.Text = mapInternalName
         stockScenPathTextBox.Text = mapInformation(2)
-        currentScenPathTextBox.Text = mapInformation(3)
+        currentScenPathTextBox.Text = mapScenarioPath
+        stockSignatureTextBox.Text = mapInformation(3)
+        currentSignatureTextBox.Text = mapCurrentSig
     End Sub
 
-    Private Sub copyToClipboard_mapName(sender As Object, e As EventArgs) Handles mapNameTextBox.Click
-        'Identify the current control selected by user
-        Dim currentControl As TextBox = Me.ActiveControl
-
-        If currentControl.Text = "" Then
-            'Do nothing
-        Else
-
-            'Grab the text
-            Clipboard.SetText(currentControl.Text)
-
-            'Update UI
-            currentControl.SelectAll()
-            statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
-        End If
-
-    End Sub
-
-    Private Sub copyToClipboard_internalName(sender As Object, e As EventArgs) Handles internalNameTextBox.Click
-        'Identify the current control selected by user
-        Dim currentControl As TextBox = Me.ActiveControl
-
-        If currentControl.Text = "" Then
-            'Do nothing
-        Else
-
-            'Grab the text
-            Clipboard.SetText(currentControl.Text)
-
-            'Update UI
-            currentControl.SelectAll()
-            statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
-        End If
-
-    End Sub
-
-    Private Sub copyToClipboard_correctScenPathTextBox(sender As Object, e As EventArgs) Handles stockScenPathTextBox.Click
-        'Identify the current control selected by user
-        Dim currentControl As TextBox = Me.ActiveControl
-
-        If currentControl.Text = "" Then
-            'Do nothing
-        Else
-
-            'Grab the text
-            Clipboard.SetText(currentControl.Text)
-
-            'Update UI
-            currentControl.SelectAll()
-            statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
-        End If
-
-    End Sub
-
-    Private Sub copyToClipboard_correctSigTextBox(sender As Object, e As EventArgs) Handles currentScenPathTextBox.Click, currentSignatureTextBox.Click, stockSignatureTextBox.Click
+    Private Sub copyTextToClipboard(sender As Object, e As EventArgs) Handles mapNameTextBox.Click, internalNameTextBox.Click, stockScenPathTextBox.Click, currentScenPathTextBox.Click, stockSignatureTextBox.Click, currentSignatureTextBox.Click
         'Identify the current control selected by user
         Dim currentControl As TextBox = Me.ActiveControl
 

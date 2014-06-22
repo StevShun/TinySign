@@ -109,7 +109,7 @@ Public Class mapHandler
             index += 1
         Loop
         Dim mapNameString As New String(charArray)
-        'Dim mapNameString As String = mapNameArray.ToString
+
         'MsgBox("The map name is:" & " " & mapNameString & " grrw3")
 
         Return mapNameString

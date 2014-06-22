@@ -151,9 +151,7 @@ Public Class mainForm
         mapScenarioPath = Nothing
         mapCurrentSig = Nothing
 
-        '''''''''''''''''
-        'Clean up the UI'
-        '''''''''''''''''
+        'Clean up the UI
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
         currentSigLabel.ForeColor = Color.Black

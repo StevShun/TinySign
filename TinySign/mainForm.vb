@@ -56,7 +56,6 @@ Public Class mainForm
                     ''''''''''''''''''''''''''''''''''''''''''
                     'Gather initial information about the map'
                     ''''''''''''''''''''''''''''''''''''''''''
-                    'Create a pointer variable that enables us to read from our map "database"
                     Dim map As New mapHandler()
                     mapInternalName = map.readInternalName(mapStream)
                     mapInformation = map.queryMapDB(mapInternalName)
@@ -93,7 +92,6 @@ Public Class mainForm
                                 currentSigLabel.ForeColor = Color.Red
                             End If
                         Next
-
                     End If
 
                     'Display the map image
@@ -169,31 +167,16 @@ Public Class mainForm
 
     End Sub
 
-    Public Sub mapInfoMenuItem_click(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click
-
-        'Check if the MapInfo form is already open
-        If Application.OpenForms().OfType(Of mapInfoForm).Any Then
-            MsgBox("The Map Information window is already open.")
-        Else
-            'If it is not open, pass the data from mapInformation to the form
-            Dim passMe As New mapInfoForm
-            passMe.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
-            passMe.Show()
-        End If
-
-    End Sub
-
-    Private Sub mapIconBox_click(sender As System.Object, e As System.EventArgs) Handles mapIconBox.Click
+    Public Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles mapInfoMenuItem.Click, mapIconBox.Click
 
         If mapStream IsNot Nothing Then
             'Check if the MapInfo form is already open
             If Application.OpenForms().OfType(Of mapInfoForm).Any Then
-                MsgBox("The Map Information window is already open.")
+                mapInfoForm.Activate()
             Else
                 'If it is not open, pass the data from mapInformation to the form
-                Dim passMe As New mapInfoForm
-                passMe.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
-                passMe.Show()
+                mapInfoForm.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
+                mapInfoForm.Show()
             End If
         End If
 

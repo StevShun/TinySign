@@ -31,15 +31,12 @@
         If currentControl.Text = "" Then
             'Do nothing
         Else
-
             'Grab the text
             Clipboard.SetText(currentControl.Text)
-
             'Update UI
             currentControl.SelectAll()
             statusLabel.Text = "Copied " & "'" & currentControl.Text & "'" & " to clipboard."
         End If
-
     End Sub
 
     'Focus on mainForm when mapInfoForm is closed by user

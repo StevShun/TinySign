@@ -103,7 +103,7 @@ Public Class mapHandler
         Dim charArray(35) As Char
         'Put the byte array into a char array
         Dim index As Integer = 0
-        Do Until index = 35
+        Do Until index = 36
             If mapNameBytes(index) = 0 Then Exit Do
             charArray(index) = Convert.ToChar(mapNameBytes(index))
             index += 1
@@ -123,7 +123,7 @@ Public Class mapHandler
         mapStream.Position = 444
         mapStream.Read(mapScenarioBytes, 0, 64)
 
-        Dim charArray(64) As Char
+        Dim charArray(63) As Char
 
         'Put the byte array into a char array
         Dim index As Integer = 0
@@ -132,9 +132,9 @@ Public Class mapHandler
             charArray(index) = Convert.ToChar(mapScenarioBytes(index))
             index += 1
         Loop
-        Dim mapScenarioPath As New String(charArray)
+        Dim mapScenarioPathString As New String(charArray)
 
-        Return mapScenarioPath
+        Return mapScenarioPathString
 
     End Function
 

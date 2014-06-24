@@ -94,15 +94,6 @@ Public Class mainForm
                         Next
                     End If
 
-                    'Display the map image
-                    If mapInformation Is Nothing Then
-                        'Leave icon box alone
-                    Else
-                        Dim mapNameToString As String = "_" & mapInformation(0).ToString
-                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
-                        mapIconBox.Image = mapImage
-                    End If
-
                     'Update toolstrip status
                     Dim mapFilePath As String = openFileDialog1.FileName
                     If mapFilePath.Length > 45 Then
@@ -127,7 +118,10 @@ Public Class mainForm
                         System.Media.SystemSounds.Beep.Play()
                         MsgBox("The map you have loaded is not recognized." & vbNewLine & vbNewLine & "Please enter the correct map signature manually.", MsgBoxStyle.Information, "Unknown Map")
                     Else
-                        'Do nothing
+                        'Display the map image
+                        Dim mapNameToString As String = "_" & mapInformation(0).ToString
+                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
+                        mapIconBox.Image = mapImage
                     End If
 
                 End If
@@ -150,6 +144,7 @@ Public Class mainForm
         mapCurrentSig = Nothing
 
         'Clean up the UI
+        mapInfoForm.Close()
         mapIconBox.Image = My.Resources.Unknown_Map
         currentSigTextBox.Text = ""
         currentSigLabel.ForeColor = Color.Black

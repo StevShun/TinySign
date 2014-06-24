@@ -8,7 +8,11 @@
 
     'Recieves map informaiton so that we can use it in this class
     Public Sub updateValues(passedMapDBArray As String(), passedInternalName As String, passedScenarioPath As String, passedCurrentSig As String)
-        mapInformation = passedMapDBArray
+        If passedMapDBArray Is Nothing Then
+            mapInformation = {"Unknown map name.", "Unknown internal name.", "Unknown stock scenario path.", "Unknown stock signature.", "Unknown stock signature."}
+        Else
+            mapInformation = passedMapDBArray
+        End If
         mapInternalName = passedInternalName
         mapScenarioPath = passedScenarioPath
         mapCurrentSig = passedCurrentSig

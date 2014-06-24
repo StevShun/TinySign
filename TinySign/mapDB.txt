@@ -1,14 +1,14 @@
 ﻿ascension,Ascension,scenarios\multi\ascension\ascension,C99F9A3D,3D9A9FC9
 backwash,Backwash,scenarios\multi\backwash\backwash,DAF43F38,383FF4DA
-beavercreek,Beaver Creek,scenarios\multi\beavercreek\beavercreek,DF0FF20F,0FF20FDF
+beavercreek,Beaver Creek,scenarios\multi\halo\beavercreek\beavercreek,DF0FF20F,0FF20FDF
 burial_mounds,Burial Mounds,scenarios\multi\burial_mounds\burial_mounds,4ABD8BD8,D88BBD4A
-coagulation,Coagulation,scenarios\multi\coagulation\coagulation,D032A055,55A032D0
+coagulation,Coagulation,scenarios\multi\halo\coagulation\coagulation,D032A055,55A032D0
 colossus,Colossus,scenarios\multi\colossus\colossus,A1B7A1D2,D2A1B7A1
 containment,Containment,scenarios\multi\containment\containment,C2C92A58,582AC9C2
-derelict,Desolation,scenarios\multi\derelict\derelict,79BB7689,8976BB79
+derelict,Desolation,scenarios\multi\halo\derelict\derelict,79BB7689,8976BB79
 elongation,Elongation,scenarios\multi\elongation\elongation,5C9AC5FD,FDC59A5C
-foundation,Foundation,scenarios\multi\foundation\foundation,ADBC6638,3866BCAD
-gemini,Gemini,scenarios\multi\gemini\gemini,B3BA50BE,BE50BAB3
+foundation,Foundation,scenarios\multi\marathon\foundation\foundation,ADBC6638,3866BCAD
+gemini,Gemini,scenarios\multi\marathon\gemini\gemini,B3BA50BE,BE50BAB3
 headlong,Headlong,scenarios\multi\headlong\headlong,AAA34C86,864CA3AA
 cyclotron,Ivory Tower,scenarios\multi\cyclotron\cyclotron,31EC9481,8194EC31
 lockout,Lockout,scenarios\multi\lockout\lockout,0C7CCB9B,9BCB7C0C
@@ -16,9 +16,9 @@ midship,Midship,scenarios\multi\midship\midship,58700376,76037058
 dune,Relic,scenarios\multi\dune\dune,41EBDE02,02DEEB41
 deltatap,Sanctuary,scenarios\multi\deltatap\deltatap,AA8BD1D1,D1D18BAA
 triplicate,Terminal,scenarios\multi\triplicate\triplicate,EF1C8ED8,D88E1CEF
-highplains2,Tombstone,scenarios\multi\highplains2\highplains2,BBB7FF9B,9BFFB7BB
+highplains2,Tombstone,scenarios\multi\halo\highplains2\highplains2,BBB7FF9B,9BFFB7BB
 turf,Turf,scenarios\multi\turf\turf,95677C3A,3A7C6795
-warlock,Warlock,scenarios\multi\warlock\warlock,E9BE57DA,DA57BEE9
+warlock,Warlock,scenarios\multi\halo\warlock\warlock,E9BE57DA,DA57BEE9
 waterworks,Waterworks,scenarios\multi\waterworks\waterworks,7B8D3C10,103C8D7B
 zanzibar,Zanzibar,scenarios\multi\zanzibar\zanzibar,5BB97573,7375B95B
 00a_introduction,The Heretic,scenarios\solo\00a_introduction\00a_introduction,2BAE51DB,DB51AE2B

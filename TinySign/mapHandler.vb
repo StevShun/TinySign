@@ -4,11 +4,14 @@ Imports System.Text
 
 Public Class mapHandler
 
-    'This class provides the program with a toolbox to 
-    ' parse Halo 2 map files.
-    'Decimal positions for relevant map information:
-    ' 408 = internal name, 444 = scenario path, 720 = signature addr
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    'This class provides the program with a toolbox to ''''''''''''''
+    ' parse Halo 2 map files.''''''''''''''''''''''''''''''''''''''''
+    'Decimal positions for relevant map information:'''''''''''''''''
+    ' 408 = internal name, 444 = scenario path, 720 = signature addr'
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+    '@Return a value determining if file is a Halo 2 .map in a string.
     'Test the file's size and look for a Halo 2 map header to 
     ' make sure that the file is a valid Halo 2 map file.
     Public Function verifyMapFile(mapStream As FileStream)
@@ -37,7 +40,7 @@ Public Class mapHandler
         Dim mapHeaderArray As New String(charArray)
 
         'Determine if the header is valid.
-        'Halo 2 map header's always begin with the string "toof".
+        'Halo 2 map file headers always begin with the string "toof".
         If mapHeaderArray = "toof" Then
             Return "valid"
         Else
@@ -46,7 +49,8 @@ Public Class mapHandler
 
     End Function
 
-    'Compares passed items from main program to map database text file.
+    '@Return an array containing data relevant to the loaded map.
+    'Compares passed items from loaded map to map database text file (MapDB).
     Public Function queryMapDB(queryItem As String)
 
         Dim _textStreamReader As StreamReader
@@ -93,7 +97,7 @@ Public Class mapHandler
 
     End Function
 
-    'Reads the map's internal name and returns relative information pertaining to the loaded map.
+    '@Return the map's internal name in a string.
     Public Function readInternalName(mapStream As FileStream)
 
         Dim mapNameBytes(35) As Byte
@@ -116,7 +120,7 @@ Public Class mapHandler
 
     End Function
 
-    'Read the map's current scenario path and return a string of text.
+    '@Return the map's current scenario path in a string.
     Public Function readScenarioPath(mapStream As FileStream)
 
         Dim mapScenarioBytes(63) As Byte
@@ -195,7 +199,7 @@ Public Class mapHandler
 
     End Function
 
-    'XORs through the map header starting @ 2048 and writes the result to @ 720.
+    'XORs through the map header starting @ 2048 and write the result to @ 720.
     'v4: Based on Entity source code.
     '(I gave up and used this to translate it from C#: http://converter.telerik.com/)
     Public Function writeHeaderSig(mapStream As FileStream)
@@ -223,6 +227,7 @@ Public Class mapHandler
 
     End Function
 
+    '@Return signature to be written to map file footer in an array of bytes
     'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
     'Based on code from Coolspot31's map resigner
     Public Function prepareFooterSig(sigString As String, discardedInt As Integer)

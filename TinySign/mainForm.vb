@@ -47,7 +47,8 @@ Public Class mainForm
                         mapStream = Nothing
                         validityResult = Nothing
                         mapInformation = Nothing
-                        MsgBox("The file you are attempting to open is not a valid Halo 2 .map file." & vbNewLine & vbNewLine & "File unloaded.", vbExclamation, "Invalid File")
+                        MsgBox("The file you are attempting to open is not a valid Halo 2 .map file." & vbNewLine _
+                               & vbNewLine & "File unloaded.", vbExclamation, "Invalid File")
                         toolStripStatusLabel.Text = "//Invalid file. File unloaded."
                         toolStripStatusLabel.ToolTipText = "//Invalid file. File unloaded."
                         Exit Sub
@@ -116,7 +117,8 @@ Public Class mainForm
                         applySigTextBox.Enabled = True
                         applySigTextBox.ReadOnly = False
                         System.Media.SystemSounds.Beep.Play()
-                        MsgBox("The map you have loaded is not recognized." & vbNewLine & vbNewLine & "Please enter the correct map signature manually.", MsgBoxStyle.Information, "Unknown Map")
+                        MsgBox("The map you have loaded is not recognized." & vbNewLine & vbNewLine & _
+                               "Please enter the correct map signature manually.", MsgBoxStyle.Information, "Unknown Map")
                     Else
                         'Display the map image
                         Dim mapNameToString As String = "_" & mapInformation(0).ToString

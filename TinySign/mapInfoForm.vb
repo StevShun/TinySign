@@ -28,7 +28,8 @@
         currentSignatureTextBox.Text = mapCurrentSig
     End Sub
 
-    Private Sub copyTextToClipboard(sender As Object, e As EventArgs) Handles mapNameTextBox.Click, internalNameTextBox.Click, stockScenPathTextBox.Click, currentScenPathTextBox.Click, stockSignatureTextBox.Click, currentSignatureTextBox.Click
+    Private Sub copyTextToClipboard(sender As Object, e As EventArgs) Handles mapNameTextBox.Click, internalNameTextBox.Click, _
+        stockScenPathTextBox.Click, currentScenPathTextBox.Click, stockSignatureTextBox.Click, currentSignatureTextBox.Click
         'Identify the current control selected by user
         Dim currentControl As TextBox = Me.ActiveControl
 

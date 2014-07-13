@@ -44,7 +44,7 @@ Partial Class mapInfoForm
         '
         Me.mapNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.mapNameLabel.AutoSize = True
-        Me.mapNameLabel.Location = New System.Drawing.Point(11, 6)
+        Me.mapNameLabel.Location = New System.Drawing.Point(11, 8)
         Me.mapNameLabel.Name = "mapNameLabel"
         Me.mapNameLabel.Size = New System.Drawing.Size(62, 13)
         Me.mapNameLabel.TabIndex = 0
@@ -54,7 +54,7 @@ Partial Class mapInfoForm
         '
         Me.internalNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.internalNameLabel.AutoSize = True
-        Me.internalNameLabel.Location = New System.Drawing.Point(11, 45)
+        Me.internalNameLabel.Location = New System.Drawing.Point(11, 47)
         Me.internalNameLabel.Name = "internalNameLabel"
         Me.internalNameLabel.Size = New System.Drawing.Size(76, 13)
         Me.internalNameLabel.TabIndex = 1
@@ -64,7 +64,7 @@ Partial Class mapInfoForm
         '
         Me.mapNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mapNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.mapNameTextBox.Location = New System.Drawing.Point(15, 22)
+        Me.mapNameTextBox.Location = New System.Drawing.Point(15, 24)
         Me.mapNameTextBox.Name = "mapNameTextBox"
         Me.mapNameTextBox.ReadOnly = True
         Me.mapNameTextBox.Size = New System.Drawing.Size(240, 20)
@@ -74,7 +74,7 @@ Partial Class mapInfoForm
         '
         Me.internalNameTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.internalNameTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.internalNameTextBox.Location = New System.Drawing.Point(15, 61)
+        Me.internalNameTextBox.Location = New System.Drawing.Point(15, 63)
         Me.internalNameTextBox.Name = "internalNameTextBox"
         Me.internalNameTextBox.ReadOnly = True
         Me.internalNameTextBox.Size = New System.Drawing.Size(240, 20)
@@ -84,7 +84,7 @@ Partial Class mapInfoForm
         '
         Me.currentScenPathLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.currentScenPathLabel.AutoSize = True
-        Me.currentScenPathLabel.Location = New System.Drawing.Point(11, 123)
+        Me.currentScenPathLabel.Location = New System.Drawing.Point(11, 125)
         Me.currentScenPathLabel.Name = "currentScenPathLabel"
         Me.currentScenPathLabel.Size = New System.Drawing.Size(114, 13)
         Me.currentScenPathLabel.TabIndex = 1
@@ -94,7 +94,7 @@ Partial Class mapInfoForm
         '
         Me.currentScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.currentScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.currentScenPathTextBox.Location = New System.Drawing.Point(14, 139)
+        Me.currentScenPathTextBox.Location = New System.Drawing.Point(14, 141)
         Me.currentScenPathTextBox.Name = "currentScenPathTextBox"
         Me.currentScenPathTextBox.ReadOnly = True
         Me.currentScenPathTextBox.Size = New System.Drawing.Size(240, 20)
@@ -104,7 +104,7 @@ Partial Class mapInfoForm
         '
         Me.stockScenPathLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.stockScenPathLabel.AutoSize = True
-        Me.stockScenPathLabel.Location = New System.Drawing.Point(11, 84)
+        Me.stockScenPathLabel.Location = New System.Drawing.Point(11, 86)
         Me.stockScenPathLabel.Name = "stockScenPathLabel"
         Me.stockScenPathLabel.Size = New System.Drawing.Size(108, 13)
         Me.stockScenPathLabel.TabIndex = 1
@@ -114,7 +114,7 @@ Partial Class mapInfoForm
         '
         Me.stockScenPathTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.stockScenPathTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.stockScenPathTextBox.Location = New System.Drawing.Point(14, 100)
+        Me.stockScenPathTextBox.Location = New System.Drawing.Point(14, 102)
         Me.stockScenPathTextBox.Name = "stockScenPathTextBox"
         Me.stockScenPathTextBox.ReadOnly = True
         Me.stockScenPathTextBox.Size = New System.Drawing.Size(240, 20)
@@ -125,7 +125,7 @@ Partial Class mapInfoForm
         Me.statusStrip.Enabled = False
         Me.statusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusLabel})
         Me.statusStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
-        Me.statusStrip.Location = New System.Drawing.Point(0, 245)
+        Me.statusStrip.Location = New System.Drawing.Point(0, 249)
         Me.statusStrip.Name = "statusStrip"
         Me.statusStrip.Size = New System.Drawing.Size(267, 17)
         Me.statusStrip.TabIndex = 4
@@ -142,7 +142,7 @@ Partial Class mapInfoForm
         '
         Me.stockSignatureLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.stockSignatureLabel.AutoSize = True
-        Me.stockSignatureLabel.Location = New System.Drawing.Point(11, 162)
+        Me.stockSignatureLabel.Location = New System.Drawing.Point(11, 164)
         Me.stockSignatureLabel.Name = "stockSignatureLabel"
         Me.stockSignatureLabel.Size = New System.Drawing.Size(86, 13)
         Me.stockSignatureLabel.TabIndex = 1
@@ -152,7 +152,7 @@ Partial Class mapInfoForm
         '
         Me.stockSignatureTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.stockSignatureTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.stockSignatureTextBox.Location = New System.Drawing.Point(14, 178)
+        Me.stockSignatureTextBox.Location = New System.Drawing.Point(14, 180)
         Me.stockSignatureTextBox.Name = "stockSignatureTextBox"
         Me.stockSignatureTextBox.ReadOnly = True
         Me.stockSignatureTextBox.Size = New System.Drawing.Size(240, 20)
@@ -162,7 +162,7 @@ Partial Class mapInfoForm
         '
         Me.currentSignatureLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.currentSignatureLabel.AutoSize = True
-        Me.currentSignatureLabel.Location = New System.Drawing.Point(11, 201)
+        Me.currentSignatureLabel.Location = New System.Drawing.Point(11, 203)
         Me.currentSignatureLabel.Name = "currentSignatureLabel"
         Me.currentSignatureLabel.Size = New System.Drawing.Size(92, 13)
         Me.currentSignatureLabel.TabIndex = 1
@@ -172,7 +172,7 @@ Partial Class mapInfoForm
         '
         Me.currentSignatureTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.currentSignatureTextBox.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.currentSignatureTextBox.Location = New System.Drawing.Point(14, 217)
+        Me.currentSignatureTextBox.Location = New System.Drawing.Point(14, 219)
         Me.currentSignatureTextBox.Name = "currentSignatureTextBox"
         Me.currentSignatureTextBox.ReadOnly = True
         Me.currentSignatureTextBox.Size = New System.Drawing.Size(240, 20)
@@ -196,6 +196,7 @@ Partial Class mapInfoForm
         Me.Controls.Add(Me.stockScenPathLabel)
         Me.Controls.Add(Me.internalNameLabel)
         Me.Controls.Add(Me.mapNameLabel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(483, 300)

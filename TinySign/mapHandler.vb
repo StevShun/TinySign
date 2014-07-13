@@ -5,9 +5,9 @@ Imports System.Text
 Public Class mapHandler
 
     '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    'This class provides the program with a toolbox to ''''''''''''''
-    ' parse Halo 2 map files.''''''''''''''''''''''''''''''''''''''''
-    'Decimal positions for relevant map information:'''''''''''''''''
+    'This class provides the program with a toolbox to              '
+    ' parse Halo 2 map files.                                       '
+    'Decimal positions for relevant map information:                '
     ' 408 = internal name, 444 = scenario path, 720 = signature addr'
     '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -202,10 +202,10 @@ Public Class mapHandler
     'XORs through the map header starting @ 2048 and write the result to @ 720.
     'v4: Based on Entity source code.
     '(I gave up and used this to translate it from C#: http://converter.telerik.com/)
-    Public Function writeHeaderSig(mapStream As FileStream)
+    Public Function genHeaderSig(mapStream As FileStream)
 
         Dim binReader As New BinaryReader(mapStream)
-        Dim binWriter As New BinaryWriter(mapStream)
+        'Dim binWriter As New BinaryWriter(mapStream)
 
         binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
         Const bufferSize As Integer = 16384
@@ -220,17 +220,19 @@ Public Class mapHandler
             Next
         Loop While sizeCheck = bufferSize
 
-        'MsgBox("XOR result is: " & result)
+        'MsgBox("XOR result is: " & xorResult)
 
-        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
-        binWriter.Write(xorResult)
+        'binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        'binWriter.Write(xorResult)
+
+        Return xorResult
 
     End Function
 
-    '@Return signature to be written to map file footer in an array of bytes
-    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code
-    'Based on code from Coolspot31's map resigner
-    Public Function prepareFooterSig(sigString As String, discardedInt As Integer)
+    '@Return signature to be written to map file footer in an array of bytes.
+    'Instigates voodoo magic by botting a forum post on the Interwebs whichs asks users to correct "erros" in my code.
+    'Based on code from Coolspot31's map resigner.
+    Public Function genFooterSig(sigString As String, discardedInt As Integer)
 
         discardedInt = 0
 

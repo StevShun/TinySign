@@ -20,15 +20,16 @@ Public Class mainForm
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
         'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
         mapStream = Nothing
-        Dim openFileDialog1 As New OpenFileDialog()
+        Dim openMapFileDialog As New OpenFileDialog()
 
-        openFileDialog1.Filter = "Halo 2 map files (*.map)|*.map"
-        openFileDialog1.FilterIndex = 1
-        openFileDialog1.RestoreDirectory = True
+        openMapFileDialog.Title = "Open a Halo 2 Map File"
+        openMapFileDialog.Filter = "Halo 2 map files (*.map)|*.map"
+        openMapFileDialog.FilterIndex = 1
+        openMapFileDialog.RestoreDirectory = True
 
-        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+        If openMapFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Try
-                mapStream = New FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite)
+                mapStream = New FileStream(openMapFileDialog.FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite)
                 'Read the .map file
 
                 If (mapStream IsNot Nothing) Then
@@ -96,7 +97,7 @@ Public Class mainForm
                     End If
 
                     'Update toolstrip status
-                    Dim mapFilePath As String = openFileDialog1.FileName
+                    Dim mapFilePath As String = openMapFileDialog.FileName
                     If mapFilePath.Length > 45 Then
                         Dim mapFilePathShortened As String = Microsoft.VisualBasic.Right(mapFilePath, 45)
                         toolStripStatusLabel.Text = "..." & mapFilePathShortened
@@ -171,7 +172,7 @@ Public Class mainForm
             If Application.OpenForms().OfType(Of mapInfoForm).Any Then
                 mapInfoForm.Activate()
             Else
-                'If it is not open, pass the data from mapInformation to the form
+                'If it is not open, pass the .map data to the form
                 mapInfoForm.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
                 mapInfoForm.Show()
             End If
@@ -194,11 +195,11 @@ Public Class mainForm
         Dim tempHandler As New mapHandler
         Dim applySigString As String = applySigTextBox.Text.ToString
         Dim discardedInt As Integer = 0
-        Dim signatureBytes As Byte() = New Byte(3) {}
-        Dim binWriter0 As New BinaryWriter(mapStream)
-        Dim binWriter1 As New BinaryWriter(mapStream)
-        Dim array0 As Byte() = New Byte(3) {}
-        Dim array1 As Byte() = New Byte(3) {}
+        Dim footerSigBytes As Byte() = New Byte(3) {}
+        Dim binWriter As New BinaryWriter(mapStream)
+        Dim headerSig0 As Integer = 0
+        Dim headerSigBytes As Byte() = New Byte(3) {}
+        Dim headerSig1 As Integer = 0
 
         '[Pass 1]: 
         'S1) Prepare a signature for the footer of the map. This
@@ -208,17 +209,20 @@ Public Class mainForm
         'S3) Create and write a signature to the map header (@720). This
         ' signature is based on the results of XORing through the map's 
         ' header starting @2048.
-        signatureBytes = tempHandler.prepareFooterSig(applySigString, discardedInt)
-        array0 = tempHandler.reverseSigBytes(signatureBytes)
-        binWriter0.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter0.Write(array0)
-        tempHandler.writeHeaderSig(mapStream)
+        footerSigBytes = tempHandler.genFooterSig(applySigString, discardedInt)
+        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter.Write(tempHandler.reverseSigBytes(footerSigBytes))
+        headerSig0 = tempHandler.genHeaderSig(mapStream)
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        binWriter.Write(headerSig0)
 
         '[Pass 2]:
-        array1 = tempHandler.readCurrentSigBytes(mapStream)
-        binWriter1.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
-        binWriter1.Write(tempHandler.reverseSigBytes(array1))
-        tempHandler.writeHeaderSig(mapStream)
+        headerSigBytes = tempHandler.readCurrentSigBytes(mapStream)
+        binWriter.BaseStream.Seek(mapStream.Length - 4, SeekOrigin.Begin)
+        binWriter.Write(tempHandler.reverseSigBytes(headerSigBytes))
+        headerSig1 = tempHandler.genHeaderSig(mapStream)
+        binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
+        binWriter.Write(headerSig1)
 
         'Update the UI
         mapCurrentSig = tempHandler.readCurrentSigString(mapStream)

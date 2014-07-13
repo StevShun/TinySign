@@ -122,13 +122,13 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="openMapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="openMapMenuItem.Text" xml:space="preserve">
     <value>Open Map</value>
   </data>
   <data name="closeMapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="closeMapMenuItem.Text" xml:space="preserve">
     <value>Close Map</value>
@@ -140,13 +140,13 @@
     <value>File</value>
   </data>
   <data name="mapInfoMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>164, 22</value>
   </data>
   <data name="mapInfoMenuItem.Text" xml:space="preserve">
-    <value>Map Info</value>
+    <value>Map Information</value>
   </data>
   <data name="resignMapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>164, 22</value>
   </data>
   <data name="resignMapMenuItem.Text" xml:space="preserve">
     <value>Resign Map</value>

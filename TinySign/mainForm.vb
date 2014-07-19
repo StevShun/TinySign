@@ -22,8 +22,8 @@ Public Class mainForm
         mapStream = Nothing
         Dim openMapFileDialog As New OpenFileDialog()
 
-        openMapFileDialog.Title = "Open a Halo 2 Map File"
-        openMapFileDialog.Filter = "Halo 2 map files (*.map)|*.map"
+        openMapFileDialog.Title = "Open Halo 2 Map File"
+        openMapFileDialog.Filter = "Halo 2 Map Files (*.map)|*.map"
         openMapFileDialog.FilterIndex = 1
         openMapFileDialog.RestoreDirectory = True
 

@@ -205,7 +205,6 @@ Public Class mapHandler
     Public Function genHeaderSig(mapStream As FileStream)
 
         Dim binReader As New BinaryReader(mapStream)
-        'Dim binWriter As New BinaryWriter(mapStream)
 
         binReader.BaseStream.Seek(2048, SeekOrigin.Begin)
         Const bufferSize As Integer = 16384
@@ -219,11 +218,6 @@ Public Class mapHandler
                 xorResult = xorResult Xor BitConverter.ToInt32(buffer, x)
             Next
         Loop While sizeCheck = bufferSize
-
-        'MsgBox("XOR result is: " & xorResult)
-
-        'binWriter.BaseStream.Seek(720, SeekOrigin.Begin)
-        'binWriter.Write(xorResult)
 
         Return xorResult
 

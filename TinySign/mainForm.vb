@@ -7,6 +7,7 @@ Public Class mainForm
     Dim mapInformation As String()
     Dim mapScenarioPath As String
     Dim mapCurrentSig As String
+    Dim mapFilePath As String
 
     Private Sub mainForm_load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Setup the UI
@@ -15,11 +16,77 @@ Public Class mainForm
         mapInfoMenuItem.Enabled = False
     End Sub
 
+    Public Sub updateGUI()
+
+        '''''''''''''''
+        'Update the UI'
+        '''''''''''''''
+        'Display what the current signature is and what it should be
+        'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
+        'Check if the map is recognized
+        Dim map As New mapHandler()
+        If mapInformation Is Nothing Then
+            currentSigTextBox.Text = mapCurrentSig
+            currentSigLabel.ForeColor = Color.Red
+            applySigLabel.ForeColor = Color.Red
+        Else
+            Dim queryResults As String() = map.queryMapDB(mapInformation(0))
+            Dim applySig As String = queryResults(3)
+
+            currentSigTextBox.Text = mapCurrentSig
+
+            For Each Str As String In queryResults
+                If Str.Contains(mapCurrentSig) Then
+                    'If the current signature matches
+                    applySigTextBox.Text = mapCurrentSig
+                    applySigLabel.ForeColor = Color.Green
+                    currentSigLabel.ForeColor = Color.Green
+                    Exit For
+                Else
+                    'If the current signature does not match
+                    applySigTextBox.Text = applySig
+                    applySigLabel.ForeColor = Color.Red
+                    currentSigLabel.ForeColor = Color.Red
+                End If
+            Next
+        End If
+
+        'Update toolstrip status
+        If mapFilePath.Length > 45 Then
+            Dim mapFilePathShortened As String = Microsoft.VisualBasic.Right(mapFilePath, 45)
+            toolStripStatusLabel.Text = "..." & mapFilePathShortened
+            toolStripStatusLabel.ToolTipText = "..." & mapFilePathShortened
+        Else
+            toolStripStatusLabel.Text = mapFilePath
+            toolStripStatusLabel.ToolTipText = mapFilePath
+        End If
+
+        'Enable / disable button operation
+        openMapMenuItem.Enabled = False
+        closeMapMenuItem.Enabled = True
+        resignMapMenuItem.Enabled = True
+        mapInfoMenuItem.Enabled = True
+
+        'Check if the map name is recognized
+        If mapInformation Is Nothing Then
+            applySigTextBox.Enabled = True
+            applySigTextBox.ReadOnly = False
+            System.Media.SystemSounds.Beep.Play()
+            MsgBox("The map you have loaded is not recognized." & vbNewLine & vbNewLine & _
+                   "Please enter the correct map signature manually.", MsgBoxStyle.Information, "Unknown Map")
+        Else
+            'Display the map image
+            Dim mapNameToString As String = "_" & mapInformation(0).ToString
+            Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
+            mapIconBox.Image = mapImage
+        End If
+
+    End Sub
+
     Public Sub openMapMenuItem_click(sender As System.Object, e As System.EventArgs) Handles openMapMenuItem.Click
 
         'Open File Dialogue: http://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog(v=vs.110).aspx
         'File Streams: http://msdn.microsoft.com/en-us/library/system.io.filestream.aspx
-        mapStream = Nothing
         Dim openMapFileDialog As New OpenFileDialog()
 
         openMapFileDialog.Title = "Open Halo 2 Map File"
@@ -41,7 +108,7 @@ Public Class mainForm
                     Dim tempHandler As New mapHandler()
                     Dim validityResult As String = tempHandler.verifyMapFile(mapStream)
                     If validityResult = "valid" Then
-                        'Do nothing
+                        mapFilePath = openMapFileDialog.FileName
                     Else
                         'Close the file stream and inform the user
                         mapStream.Close()
@@ -64,68 +131,7 @@ Public Class mainForm
                     mapScenarioPath = map.readScenarioPath(mapStream)
                     mapCurrentSig = map.readCurrentSigString(mapStream)
 
-                    '''''''''''''''
-                    'Update the UI'
-                    '''''''''''''''
-                    'Display what the current signature is and what it should be
-                    'Finding strings in an array: http://msdn.microsoft.com/en-us/library/vstudio/eefw3xsy(v=vs.100).aspx
-                    'Check if the map is recognized
-                    If mapInformation Is Nothing Then
-                        currentSigTextBox.Text = mapCurrentSig
-                        currentSigLabel.ForeColor = Color.Red
-                        applySigLabel.ForeColor = Color.Red
-                    Else
-                        Dim queryResults As String() = map.queryMapDB(mapInformation(0))
-                        Dim applySig As String = queryResults(3)
-
-                        currentSigTextBox.Text = mapCurrentSig
-
-                        For Each Str As String In queryResults
-                            If Str.Contains(mapCurrentSig) Then
-                                'If the current signature matches
-                                applySigTextBox.Text = mapCurrentSig
-                                applySigLabel.ForeColor = Color.Green
-                                currentSigLabel.ForeColor = Color.Green
-                                Exit For
-                            Else
-                                'If the current signature does not match
-                                applySigTextBox.Text = applySig
-                                applySigLabel.ForeColor = Color.Red
-                                currentSigLabel.ForeColor = Color.Red
-                            End If
-                        Next
-                    End If
-
-                    'Update toolstrip status
-                    Dim mapFilePath As String = openMapFileDialog.FileName
-                    If mapFilePath.Length > 45 Then
-                        Dim mapFilePathShortened As String = Microsoft.VisualBasic.Right(mapFilePath, 45)
-                        toolStripStatusLabel.Text = "..." & mapFilePathShortened
-                        toolStripStatusLabel.ToolTipText = "..." & mapFilePathShortened
-                    Else
-                        toolStripStatusLabel.Text = mapFilePath
-                        toolStripStatusLabel.ToolTipText = mapFilePath
-                    End If
-
-                    'Enable / disable button operation
-                    openMapMenuItem.Enabled = False
-                    closeMapMenuItem.Enabled = True
-                    resignMapMenuItem.Enabled = True
-                    mapInfoMenuItem.Enabled = True
-
-                    'Check if the map name is recognized
-                    If mapInformation Is Nothing Then
-                        applySigTextBox.Enabled = True
-                        applySigTextBox.ReadOnly = False
-                        System.Media.SystemSounds.Beep.Play()
-                        MsgBox("The map you have loaded is not recognized." & vbNewLine & vbNewLine & _
-                               "Please enter the correct map signature manually.", MsgBoxStyle.Information, "Unknown Map")
-                    Else
-                        'Display the map image
-                        Dim mapNameToString As String = "_" & mapInformation(0).ToString
-                        Dim mapImage As Image = My.Resources.ResourceManager.GetObject(mapNameToString)
-                        mapIconBox.Image = mapImage
-                    End If
+                    Me.updateGUI()
 
                 End If
             Catch Ex As Exception
@@ -170,9 +176,10 @@ Public Class mainForm
         If mapStream IsNot Nothing Then
             'Check if the MapInfo form is already open
             If Application.OpenForms().OfType(Of mapInfoForm).Any Then
+                mapInfoForm.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
                 mapInfoForm.Activate()
             Else
-                'If it is not open, pass the .map data to the form
+                'If it is not open, open it and pass the .map data to the form
                 mapInfoForm.updateValues(mapInformation, mapInternalName, mapScenarioPath, mapCurrentSig)
                 mapInfoForm.Show()
             End If

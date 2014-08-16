@@ -20,7 +20,7 @@
 
     'Outputs map information to the window on form activation
     Private Sub mapInfoForm_open(sender As Object, e As EventArgs) Handles Me.Activated
-        Me.Text() = mapInformation(1) & " | " & "Map Information"
+        Me.Text() = "Map Information" & " | " & mapInformation(1)
         mapNameTextBox.Text = mapInformation(1)
         internalNameTextBox.Text = mapInternalName
         stockScenPathTextBox.Text = mapInformation(2)

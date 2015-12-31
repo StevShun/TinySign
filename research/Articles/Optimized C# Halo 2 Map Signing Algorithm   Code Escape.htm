@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0071)http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>Optimized C# Halo 2 Map Signing Algorithm | Code Escape</title>
+
+<link rel="stylesheet" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/saved_resource" type="text/css" media="screen">
+<link rel="stylesheet" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/print.css" type="text/css" media="print">
+
+<link rel="pingback" href="http://codeescape.com/blog/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="Code Escape » Feed" href="http://codeescape.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Code Escape » Comments Feed" href="http://codeescape.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Code Escape » Optimized C# Halo 2 Map Signing Algorithm Comments Feed" href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/feed/">
+<link rel="stylesheet" type="text/css" media="all" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/saved_resource(1)">
+<link rel="stylesheet" type="text/css" media="screen" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/saved_resource(2)">
+<script type="text/javascript" async="" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/ga.js"></script><script type="text/javascript">
+/* <![CDATA[ */
+var shutterSettings = {"msgLoading":"L O A D I N G","msgClose":"Click to Close","imageCount":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://codeescape.com/blog/wp-content/plugins/bwp-minify/min/?f=blog/wp-includes/js/comment-reply.min.js,blog/wp-content/plugins/nextgen-gallery/shutter/shutter-reloaded.js,blog/wp-includes/js/jquery/jquery.js,blog/wp-content/plugins/nextgen-gallery/js/jquery.cycle.all.min.js,blog/wp-content/plugins/nextgen-gallery/js/ngg.slideshow.min.js,blog/wp-content/plugins/google-analyticator/external-tracking.min.js&ver=1365445333"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codeescape.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codeescape.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Yelo: Halo 1 Xbox Trainer" href="http://codeescape.com/2007/10/yelo-halo-1-xbox-trainer/">
+<link rel="next" title="Yelo: Halo 2 Xbox Trainer" href="http://codeescape.com/2010/11/yelo-halo-2-xbox-trainer-hack/">
+<meta name="generator" content="WordPress 3.5">
+<link rel="shortlink" href="http://codeescape.com/?p=10">
+
+<!-- All in One SEO Pack 1.6.15.2 by Michael Torbert of Semper Fi Web Design[292,361] -->
+<meta name="description" content="I was working on an efficient map modification library and figured that this could benefit lots of other people. This small optimization lesson will walk you">
+<link rel="canonical" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/Optimized C# Halo 2 Map Signing Algorithm   Code Escape.htm">
+<!-- /all in one seo pack -->
+	<style type="text/css">
+	.download-info .download-button {
+		background-image: url(http://codeescape.com/blog/wp-content/plugins/download-monitor/page-addon/downloadbutton.gif);
+	}
+	.download-info .more-button {
+		background-image: url(http://codeescape.com/blog/wp-content/plugins/download-monitor/page-addon/morebutton.gif);
+	}
+	</style>
+<!-- <meta name="NextGEN" version="1.9.10" /> -->
+<link rel="stylesheet" type="text/css" media="screen, print" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/gd-recaptcha.css">
+	<!-- WP Dynamic Drive Thumbnail Image Viewer Plugin -->
+	<script type="text/javascript">
+/* <![CDATA[ */
+	var loading_url = 'http://codeescape.com/blog/wp-content/plugins/thumbnail-viewer/images/loadingImage.gif';
+/* ]]> */
+</script>
+	<link rel="stylesheet" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/thumbnailviewer.css" type="text/css" media="screen">
+	<script src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/thumbnailviewer.js" type="text/javascript">
+	</script><script type="text/javascript" charset="UTF-8" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/MlLZQwNEOOXSdBSftzpwlju77AJrMmRI0dYMu9vZD4k.js"></script><!-- begin SI CAPTCHA Anti-Spam - comment form style --><style type="text/css">div#captchaImgDiv { display:block; }.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }label#captcha_code_label { margin:0; }input#captcha_code { width:65px; }</style><!-- end SI CAPTCHA Anti-Spam - comment form style --><style type="text/css">.recaptchatable td img{display:block}.recaptchatable .recaptcha_image_cell center img{height:57px}.recaptchatable .recaptcha_image_cell center{height:57px}.recaptchatable .recaptcha_image_cell{background-color:white;height:57px;padding:7px!important}.recaptchatable,#recaptcha_area tr,#recaptcha_area td,#recaptcha_area th{margin:0!important;border:0!important;border-collapse:collapse!important;vertical-align:middle!important}.recaptchatable *{margin:0;padding:0;border:0;color:black;position:static;top:auto;left:auto;right:auto;bottom:auto}.recaptchatable #recaptcha_image{position:relative;margin:auto;border:1px solid #dfdfdf!important}.recaptchatable #recaptcha_image #recaptcha_challenge_image{display:block}.recaptchatable #recaptcha_image #recaptcha_ad_image{display:block;position:absolute;top:0}.recaptchatable a img{border:0}.recaptchatable a,.recaptchatable a:hover{cursor:pointer;outline:none;border:0!important;padding:0!important;text-decoration:none;color:blue;background:none!important;font-weight:normal}.recaptcha_input_area{position:relative!important;background:none!important}.recaptchatable label.recaptcha_input_area_text{border:1px solid #dfdfdf!important;margin:0!important;padding:0!important;position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}.recaptcha_theme_red label.recaptcha_input_area_text,.recaptcha_theme_white label.recaptcha_input_area_text{color:black!important}.recaptcha_theme_blackglass label.recaptcha_input_area_text{color:white!important}.recaptchatable #recaptcha_response_field{font-size:11pt}.recaptcha_theme_blackglass #recaptcha_response_field,.recaptcha_theme_white #recaptcha_response_field{border:1px solid gray}.recaptcha_theme_red #recaptcha_response_field{border:1px solid #cca940}.recaptcha_audio_cant_hear_link{font-size:7pt;color:black}.recaptchatable{line-height:1em;border:1px solid #dfdfdf!important}.recaptcha_error_text{color:red}.recaptcha_only_if_privacy{float:right;text-align:right;margin-right:7px}#recaptcha-ad-choices{position:absolute;height:15px;top:0;right:0}#recaptcha-ad-choices img{height:15px}.recaptcha-ad-choices-collapsed{width:30px;height:15px;display:block}.recaptcha-ad-choices-expanded{width:75px;height:15px;display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-collapsed{display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-expanded{display:block}
+
+.recaptcha_is_showing_audio .recaptcha_only_if_image,.recaptcha_isnot_showing_audio .recaptcha_only_if_audio,.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol,.recaptcha_nothad_incorrect_sol .recaptcha_only_if_incorrect_sol{display:none !important}</style><script type="text/javascript" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/reload"></script></head><body class="single single-post postid-10 single-format-standard"><div id="thumbBox" onclick="thumbnailviewer.closeit()"><div id="thumbImage"></div><div class="footerbar">CLOSE X</div></div><div id="thumbLoading"><img src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/loadingImage.gif"> Loading Image...</div>
+<link rel="stylesheet" type="text/css" href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/recaptcha.css"><link id="MediaRSS" rel="alternate" type="application/rss+xml" title="NextGEN Gallery RSS Feed" href="http://codeescape.com/blog/wp-content/plugins/nextgen-gallery/xml/media-rss.php">
+
+<!-- Fluid Blue customized styles generated by functions.php -->
+<style type="text/css">
+#header {
+	background-color: #6d97b7;
+}
+#headerlogo h1 a {
+	color: #d0e0f0;
+}
+#headerlogo div.description {
+	color: #ffffff;
+}
+#container {
+	padding-right: 240px;
+	padding-left: 0;
+}
+#wrapper {
+	border-right-width: 240px;
+	margin-right: -240px;
+	border-left: 0;
+	margin-left: 0;
+}
+#sidebar_right {
+	width: 200px;
+	margin-right: -240px;
+	font-size: 1em;
+}
+#sidebar_left {
+	font-size: 1em;
+}
+.postentry p {
+	font-size: 1em;
+}
+.postentry ul {
+	font-size: 1em;
+}
+.postentry ol {
+	font-size: 1em;
+}
+</style>
+<meta id="syntaxhighlighteranchor" name="syntaxhighlighter-version" content="3.1.5">
+<!-- Google Analytics Tracking by Google Analyticator 6.4.1: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+	var analyticsFileTypes = [''];
+	var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19877004-1']);
+        _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google 
+        
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+
+
+
+<div id="page">
+
+<div id="header">
+	<div id="headerlogo">
+		<h1><a href="http://codeescape.com/" title="Code Escape: Escaping reality through code . . .">Code Escape</a></h1>
+		<div class="description">Escaping reality through code . . .</div>
+	</div> 
+</div>
+
+<div id="hmenu"> <!-- Horizontal navigation menu -->
+<a style="display:none;" href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/#content">Skip to content</a>
+<ul>
+	<li><a href="http://codeescape.com/">Home</a></li>
+	<li class="page_item page-item-2"><a href="http://codeescape.com/about/">About</a></li>
+<li class="page_item page-item-8"><a href="http://codeescape.com/contact/">Contact</a></li>
+	<li class="hmenu_rss"><a href="http://codeescape.com/feed/">Feed</a></li>
+</ul>
+</div>
+
+<div id="container">
+<div id="wrapper">
+
+	<div id="content">
+
+			
+		<div class="navigation">
+			<div class="alignleft">« <a href="http://codeescape.com/2007/10/yelo-halo-1-xbox-trainer/" rel="prev">Yelo: Halo 1 Xbox Trainer</a></div>
+			<div class="alignright"><a href="http://codeescape.com/2010/11/yelo-halo-2-xbox-trainer-hack/" rel="next">Yelo: Halo 2 Xbox Trainer</a> »</div>
+		</div><div style="clear:both">&nbsp;</div>
+		<div class="post-10 post type-post status-publish format-standard hentry category-code-snippet category-optimization" id="post-10">
+			<h2 class="posttitle">Optimized C# Halo 2 Map Signing Algorithm</h2>
+			<div class="postmetadata">
+								Posted by&nbsp;<span class="postauthor"><a href="http://codeescape.com/author/Mike/" title="Posts by Mike" rel="author">Mike</a></span> on								<span class="postdate">28 May 2009, 4:26 pm</span>
+			</div>
+			<div class="postentry">
+				<p>I was working on an efficient map modification library and figured that this could benefit lots of other people.  This small optimization lesson will walk you through different variations of the same snippet of code, each one more optimal than the last, ultimately leading to huge benefits in performance.</p>
+<p>For those of you who are unfamiliar with the Halo 2 map format, every map file contains a 32 bit hash 720 bytes into the header, which allows the game engine to detect any modifications that have been made to the map.  They do this by scanning the map file during initialization and XORing every integer after the map header and comparing their result with the hash.  If they do not match, the level will “fail to load”.</p>
+<p>For starters, we will be looking at this basic signing algorithm that I see is used quite frequently among the community.  Some of these examples below assume 16-byte alignment for the map size, although the game requires much more than that in order to properly load, so these assumptions should be fair ones to make.  Benchmarks were performed by executing an optimized release build outside of the debugger, although you will most likely see different results depending on your particular setup.  Please also keep in mind that you will need to slightly modify these code samples to use your own information, instead of my MapHeader.SizeOf, Header.FileSize, Header.Signature, and Stream stuff…but you get the idea ;)</p>
+<pre class="brush: csharp; title: ; notranslate" title="">public void Sign()
+{
+    // initial declarations
+    uint checksum = 0;
+    Stream.Position = MapHeader.SizeOf;
+
+    // loop through the map hashing one integer at a time
+    for (int i = 0; i &lt; Header.FileSize - MapHeader.SizeOf; i += 4)
+        checksum ^= Stream.ReadUInt32();
+
+    // save the final signature
+    Header.Signature = checksum;
+}
+</pre>
+<p>As you can see, it starts reading data after the header and XORing one integer at a time until the end of the map is reached.</p>
+<p>Some of you may now be thinking, “well how much more efficient can you get than that?  It is just a simple XOR of each integer after all…”  To answer that question, you will need to understand a little more about what is going on behind the scenes.  Every operation, you access the file (SLOW), update the checksum, compute the hash range size, check if its finished, and branch accordingly.  The main performance killer here is too much file IO, although the others can and do slightly affect the performance as well.</p>
+<p>So first off, how do we minimize the amount of file accesses? We will start to buffer our reads.  The trick here is to pick a buffer big enough to decrease the amount of file accesses, yet small enough to not thrash the CPU cache when working with the larger amount of data.  For these reasons, I chose a moderately sized buffer of 64 kilobytes.  If you have newer hardware it may be more beneficial to increase this size even further, depending on your HDD and CPU cache sizes.  With these facts in mind, here is our new result…</p>
+<pre class="brush: csharp; title: ; notranslate" title="">public void Sign()
+{
+    // initial declarations
+    uint checksum = 0;
+    int blockSize = 0x10000;    // 64kb
+    byte[] block = new byte[blockSize];
+    int hashSize = (int)(Header.FileSize - MapHeader.SizeOf);
+    int fullPassses = hashSize / blockSize;
+    int remainder = hashSize % blockSize;
+    Stream.Position = MapHeader.SizeOf;
+
+    // loop through the map hashing one full block at a time
+    for (int i = 0; i &lt; fullPassses; i++)
+    {
+        Stream.Read(block, 0, blockSize);
+        for (int j = 0; j &lt; blockSize; j += 4)
+            checksum ^= BitConverter.ToUInt32(block, j);
+    }
+
+    // hash the remainder
+    Stream.Read(block, 0, remainder);
+    for (int j = 0; j &lt; remainder; j += 4)
+        checksum ^= BitConverter.ToUInt32(block, j);
+
+    // save the final signature
+    Header.Signature = checksum;
+}
+</pre>
+<p>Just by blocking your file IO, you can obtain a dramatic increase in performance.  This algorithm should outperform the other one above by being at least 6 times faster.</p>
+<p>To push our performance gains even further, instead of calling BitConverter.ToUInt32() thousands of times introducing lots of unneeded overhead, we can try dealing with the data on a much lower level by using unsafe code.  Working with pointers and fixed buffers allow us to speed things up even further as demonstrated by this next piece of code.</p>
+<pre class="brush: csharp; title: ; notranslate" title="">unsafe public void Sign()
+{
+    // initial declarations
+    uint checksum = 0;
+    int blockSize = 0x10000;    // 64kb
+    byte[] block = new byte[blockSize];
+    int hashSize = (int)(Header.FileSize - MapHeader.SizeOf);
+    int fullPassses = hashSize / blockSize;
+    int blockPasses = blockSize / 4;
+    int remainder = hashSize % blockSize;
+    int remainingPasses = remainder / 4;
+    Stream.Position = MapHeader.SizeOf;
+
+    fixed (byte* buf = &amp;block[0])
+    {
+        uint* p = (uint*)buf;
+
+        // loop through the map hashing one full block at a time
+        for (int i = 0; i &lt; fullPassses; i++)
+        {
+            Stream.Read(block, 0, blockSize);
+            for (int j = 0; j &lt; blockPasses; j++)
+                checksum ^= p[j];
+        }
+
+        // hash the remainder
+        Stream.Read(block, 0, remainder);
+        for (int j = 0; j &lt; remainingPasses; j++)
+            checksum ^= p[j];
+
+        // save the final signature
+        Header.Signature = checksum;
+    }
+}
+</pre>
+<p>Here, I’m seeing performance gains around 11 times faster than the original form.  Not too shabby, but still, more can be done to help speed things up even further.  This last technique is commonly referred to as loop unrolling, which will help to decrease some of the loop overhead, and can become quite beneficial in small tighter loops such as these.</p>
+<pre class="brush: csharp; title: ; notranslate" title="">unsafe public void Sign()
+{
+    // initial declarations
+    uint checksum = 0;
+    int blockSize = 0x10000;    // 64kb
+    byte[] block = new byte[blockSize];
+    int hashSize = (int)(Header.FileSize - MapHeader.SizeOf);
+    int blockCount = hashSize / blockSize;
+    int blockPasses = blockSize / 16;
+    int remainder = hashSize % blockSize;
+    int remainingPasses = remainder / 16;
+    Stream.Position = MapHeader.SizeOf;
+
+    fixed (byte* buf = &amp;block[0])
+    {
+        // loop through the map hashing one full block at a time
+        uint* p;
+        for (int i = 0; i &lt; blockCount; i++)
+        {
+            p = (uint*)buf;
+            Stream.Read(block, 0, blockSize);
+            for (int j = 0; j &lt; blockPasses; j++)
+            {
+                checksum ^= p[0];
+                checksum ^= p[1];
+                checksum ^= p[2];
+                checksum ^= p[3];
+                p += 4;
+            }
+        }
+
+        // hash the remainder
+        p = (uint*)buf;
+        Stream.Read(block, 0, remainder);
+        for (int j = 0; j &lt; remainingPasses; j++)
+        {
+            checksum ^= p[0];
+            checksum ^= p[1];
+            checksum ^= p[2];
+            checksum ^= p[3];
+            p += 4;
+        }
+
+        // save the final signature
+        Header.Signature = checksum;
+    }
+}
+</pre>
+<p>This one clocks in at being around 23 times faster than our original algorithm…can’t get much better than that without delving into c++ and harnessing the power of SIMD and assembly.</p>
+<p>Many of these optimization practices are not limited to just this algorithm, but can be used in many different situations, and are capable of producing much more efficient code at the unfortunate expense of decreased readability.  Through buffered IO, unsafe code, loop unrolling, and other minor optimizations, we were able to increase the performance of our generic piece of code making it 20 times faster.</p>
+<p>Now, these types of optimizations should really only be done after properly profiling your application to determine where it spends the most of its time, and this was more or less just a lesson on some of the optimization techniques you have at your disposal when required to do so.</p>
+							</div>
+	
+			<div class="postmetadata">
+				<div class="posttagscat">
+								<span class="postcat">Filed under&nbsp;<a href="http://codeescape.com/category/code-snippet/" title="View all posts in Code Snippet" rel="category tag">Code Snippet</a>, <a href="http://codeescape.com/category/optimization/" title="View all posts in Optimization" rel="category tag">Optimization</a></span>
+												</div>
+				<span class="postcomment"><a href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/#respond">Comment</a> (<a href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/feed/">RSS</a>)				&nbsp;|&nbsp;&nbsp;<a href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/trackback/" rel="trackback">Trackback</a>				</span>
+				<span class="permalink">&nbsp;|&nbsp;&nbsp;<a href="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/Optimized C# Halo 2 Map Signing Algorithm   Code Escape.htm" rel="bookmark" title="Permanent Link to Optimized C# Halo 2 Map Signing Algorithm">Permalink</a></span>
+						</div>
+	</div>
+	
+
+<div id="comments">
+
+
+
+
+<div id="respond">
+
+<h3>Leave a Reply</h3>
+
+<div class="cancel-comment-reply">
+	<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/#respond" style="display:none;">Click here to cancel reply.</a></small>
+</div>
+
+
+<form action="http://codeescape.com/blog/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea><div id="captchaImgDiv">
+
+<div class="captchaSizeDivLarge"><img id="si_image_com" class="si-captcha" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/securimage_show.php" width="175" height="60" alt="CAPTCHA Image" title="CAPTCHA Image">
+    <input id="si_code_com" name="si_code_com" type="hidden" value="bRItIrn92HEp53NS">
+    <input name="si_tok_com" type="hidden" value="1365495941">
+    <input name="email_com" type="hidden" value="" style="display:none;">
+    <div id="si_refresh_com">
+<a href="http://codeescape.com/2009/05/optimized-c-halo-2-map-signing-algorithm/#" rel="nofollow" title="Refresh Image" onclick="si_captcha_refresh(&#39;si_image_com&#39;,&#39;com&#39;,&#39;/blog/wp-content/plugins/si-captcha-for-wordpress/captcha&#39;,&#39;http://codeescape.com/blog/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?difficulty=2&amp;si_form_id=com&amp;prefix=&#39;); return false;">
+      <img class="captchaImgRefresh" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/refresh.png" width="22" height="20" alt="Refresh Image" onclick="this.blur();"></a>
+  </div>
+  </div>
+<div id="captchaInputDiv"><input id="captcha_code" name="captcha_code" type="text" value="" tabindex="4">
+ <label id="captcha_code_label" for="captcha_code">CAPTCHA Code</label><span class="required"> *</span>
+ </div>
+</div></p>
+
+<p>
+<input type="hidden" name="comment_post_ID" value="10" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+
+
+      <script type="text/javascript">
+          var sUrlInput = document.getElementById("comment");
+                  var oParent = sUrlInput.parentNode;
+          var sSubstitue = document.getElementById("captchaImgDiv");
+                  oParent.appendChild(sSubstitue, sUrlInput);
+      </script>
+            <noscript>
+          &lt;style type='text/css'&gt;#submit {display:none;}&lt;/style&gt;&lt;br /&gt;           &lt;input name="submit" type="submit" id="submit-alt" tabindex="6" value="Submit Comment" /&gt;
+          </noscript>
+                  <script type="text/javascript">
+                    var RecaptchaOptions = { theme : 'clean', lang : 'en' , tabindex : 5 };
+                </script><script type="text/javascript" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/challenge"></script><script type="text/javascript" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/recaptcha.js"></script><div id="recaptcha_widget_div" class=" recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio"><div id="recaptcha_area"><table id="recaptcha_table" class="recaptchatable recaptcha_theme_clean"> <tbody><tr height="73"> <td class="recaptcha_image_cell" width="302"><center><div id="recaptcha_image" style="width: 300px; height: 57px;"><img id="recaptcha_challenge_image" alt="reCAPTCHA challenge image" height="57" width="300" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/image"></div></center></td> <td style="padding: 10px 7px 7px 7px;"> <a id="recaptcha_reload_btn" title="Get a new challenge" tabindex="6"><img id="recaptcha_reload" width="25" height="18" alt="Get a new challenge" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/refresh(1).png"></a> <a id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image" title="Get an audio challenge" tabindex="7"><img id="recaptcha_switch_audio" width="25" height="15" alt="Get an audio challenge" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/audio.png"></a><a id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio" title="Get a visual challenge" tabindex="8"><img id="recaptcha_switch_img" width="25" height="15" alt="Get a visual challenge" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/text.png"></a> <a id="recaptcha_whatsthis_btn" title="Help" tabindex="9"><img id="recaptcha_whatsthis" width="25" height="16" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/help.png" alt="Help"></a> </td> <td style="padding: 18px 7px 18px 7px;"> <img id="recaptcha_logo" alt="" width="71" height="36" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/logo.png"> </td> </tr> <tr> <td style="padding-left: 7px;"> <div class="recaptcha_input_area" style="padding-top: 2px; padding-bottom: 7px;"> <span id="recaptcha_challenge_field_holder" style="display: none;"><input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" value="03AHJ_VusH6VHb-1vTlwg8G1ApzYs4UDUUY4IKE9zkIHrctLK8IlZWmtmiltzWcvg3p8Rk1g33fyh96JbYnRoqgf_4pyI-mHj2HG29CZgziHnf2P5xNGslRGK3j2UkgiW3OVJaf6BvCju-KWuAHwJp_2RrGXy_CqEo-liZxzMmTvakcbXT3rmsSstBzsWLDyylvBypFvTxoE0l"></span><input style="border: 1px solid #3c3c3c; width: 302px;" name="recaptcha_response_field" id="recaptcha_response_field" type="text" placeholder="Type the text" autocomplete="off" tabindex="5"> </div> </td> <td colspan="2"><span id="recaptcha_privacy" class="recaptcha_only_if_privacy" tabindex="9"><a href="http://www.google.com/intl/en/policies/" target="_blank">Privacy &amp; Terms</a></span></td> </tr> </tbody></table> </div></div>
+
+	<noscript>
+  		&lt;iframe src="http://www.google.com/recaptcha/api/noscript?k=6Lefd8ESAAAAAK2oXb8H8M98Vbk8T69f3wWT-pnU" height="300" width="500" frameborder="0"&gt;&lt;/iframe&gt;&lt;br/&gt;
+  		&lt;textarea name="recaptcha_challenge_field" rows="3" cols="40"&gt;&lt;/textarea&gt;
+  		&lt;input type="hidden" name="recaptcha_response_field" value="manual_challenge"/&gt;
+	</noscript>                        <div id="recaptcha-submit-btn-area">&nbsp;<input name="submit" type="submit" id="submit" tabindex="6" value="Submit Comment"></div>
+                        <noscript>
+                         &lt;style type='text/css'&gt;#submit {display:none;}&lt;/style&gt;
+                         &lt;input name="submit" type="submit" id="submit-alt" tabindex="6" value="Submit Comment"/&gt; 
+                        </noscript>
+</form>
+
+</div>
+</div>
+
+
+	
+		<div class="navigation">
+			<div class="alignleft">« <a href="http://codeescape.com/2007/10/yelo-halo-1-xbox-trainer/" rel="prev">Yelo: Halo 1 Xbox Trainer</a></div>
+			<div class="alignright"><a href="http://codeescape.com/2010/11/yelo-halo-2-xbox-trainer-hack/" rel="next">Yelo: Halo 2 Xbox Trainer</a> »</div>
+		</div>	
+	
+	
+	</div>
+
+	<div id="sidebar_right" class="sidebar">
+		<ul>
+			
+			<li id="tag_cloud-3" class="widget widget_tag_cloud"><h2 class="widgettitle">Keywords</h2>
+<div class="tagcloud"><a href="http://codeescape.com/tag/net/" class="tag-link-25" title="5 topics" style="font-size: 22pt;">.NET</a>
+<a href="http://codeescape.com/tag/application/" class="tag-link-12" title="5 topics" style="font-size: 22pt;">Application</a>
+<a href="http://codeescape.com/tag/c-sharp/" class="tag-link-14" title="5 topics" style="font-size: 22pt;">C#</a>
+<a href="http://codeescape.com/tag/extraction/" class="tag-link-5" title="3 topics" style="font-size: 13.6pt;">Extraction</a>
+<a href="http://codeescape.com/tag/forza/" class="tag-link-4" title="3 topics" style="font-size: 13.6pt;">Forza</a>
+<a href="http://codeescape.com/tag/halo/" class="tag-link-23" title="2 topics" style="font-size: 8pt;">Halo</a>
+<a href="http://codeescape.com/tag/open-source/" class="tag-link-28" title="5 topics" style="font-size: 22pt;">Open Source</a>
+<a href="http://codeescape.com/tag/tool/" class="tag-link-6" title="4 topics" style="font-size: 18.266666666667pt;">Tool</a>
+<a href="http://codeescape.com/tag/utility/" class="tag-link-7" title="3 topics" style="font-size: 13.6pt;">Utility</a>
+<a href="http://codeescape.com/tag/visual-studios/" class="tag-link-17" title="2 topics" style="font-size: 8pt;">Visual Studios</a>
+<a href="http://codeescape.com/tag/x86-assembly/" class="tag-link-33" title="2 topics" style="font-size: 8pt;">x86 Assembly</a>
+<a href="http://codeescape.com/tag/xbox/" class="tag-link-31" title="2 topics" style="font-size: 8pt;">Xbox</a></div>
+</li>
+<li id="tag_cloud-4" class="widget widget_tag_cloud"><h2 class="widgettitle">Categories</h2>
+<div class="tagcloud"><a href="http://codeescape.com/category/application/" class="tag-link-12" title="5 topics" style="font-size: 22pt;">Application</a>
+<a href="http://codeescape.com/category/code-snippet/" class="tag-link-29" title="1 topic" style="font-size: 8pt;">Code Snippet</a>
+<a href="http://codeescape.com/category/halo/" class="tag-link-23" title="1 topic" style="font-size: 8pt;">Halo</a>
+<a href="http://codeescape.com/category/open-source/" class="tag-link-28" title="3 topics" style="font-size: 16.75pt;">Open Source</a>
+<a href="http://codeescape.com/category/optimization/" class="tag-link-20" title="1 topic" style="font-size: 8pt;">Optimization</a>
+<a href="http://codeescape.com/category/reverse-engineering/" class="tag-link-30" title="2 topics" style="font-size: 13.25pt;">Reverse Engineering</a>
+<a href="http://codeescape.com/category/uncategorized/" class="tag-link-1" title="1 topic" style="font-size: 8pt;">Uncategorized</a>
+<a href="http://codeescape.com/category/xbox/" class="tag-link-31" title="1 topic" style="font-size: 8pt;">Xbox</a>
+<a href="http://codeescape.com/category/xbox-360/" class="tag-link-3" title="2 topics" style="font-size: 13.25pt;">Xbox 360</a></div>
+</li>
+<li id="archives-3" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href="http://codeescape.com/2012/05/" title="May 2012">May 2012</a>&nbsp;(1)</li>
+	<li><a href="http://codeescape.com/2011/09/" title="September 2011">September 2011</a>&nbsp;(1)</li>
+	<li><a href="http://codeescape.com/2011/01/" title="January 2011">January 2011</a>&nbsp;(1)</li>
+	<li><a href="http://codeescape.com/2010/11/" title="November 2010">November 2010</a>&nbsp;(3)</li>
+	<li><a href="http://codeescape.com/2009/05/" title="May 2009">May 2009</a>&nbsp;(1)</li>
+	<li><a href="http://codeescape.com/2007/10/" title="October 2007">October 2007</a>&nbsp;(1)</li>
+		</ul>
+</li>
+<li id="meta-3" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>
+			<ul>
+			<li><a href="http://codeescape.com/blog/wp-login.php?action=register">Register</a></li>			<li><a href="http://codeescape.com/blog/wp-login.php">Log in</a></li>
+			<li><a href="http://codeescape.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://codeescape.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</li>
+		</ul>
+	</div>
+
+<div style="margin-bottom: 25px; text-align: center;"><div class="wp-pagenavi">
+<span class="pages">Page 1 of 1</span><span class="current">1</span>
+</div></div>
+
+
+</div> <!-- wrapper -->
+</div> <!-- container -->
+<div id="footer">
+	<div>©&nbsp;2011&nbsp;Code Escape</div>
+	<div id="footer_credit">
+	Powered by <a href="http://wordpress.org/" title="Powered by WordPress.">WordPress</a>. Theme <a href="http://srinig.com/wordpress/themes/f2/">F2</a>.</div> 
+	<!-- 43 queries. 0.623 seconds. -->
+	<script type="text/javascript">
+//<![CDATA[
+var si_captcha_styles = "\
+<!-- begin SI CAPTCHA Anti-Spam - comment form style -->\
+<style type='text/css'>\
+div#captchaImgDiv { display:block; }\
+.captchaSizeDivSmall { width:175px; height:45px; padding-top:10px; }\
+.captchaSizeDivLarge { width:250px; height:60px; padding-top:10px; }\
+img#si_image_com,#si_image_reg,#si_image_log,#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }\
+.captchaImgRefresh { border-style:none; margin:0; vertical-align:bottom; }\
+div#captchaInputDiv { display:block; padding-top:15px; padding-bottom:5px; }\
+label#captcha_code_label { margin:0; }\
+input#captcha_code { width:65px; }\
+</style>\
+<!-- end SI CAPTCHA Anti-Spam - comment form style -->\
+";
+jQuery(document).ready(function($) {
+$('head').append(si_captcha_styles);
+});
+//]]>
+</script>
+                <script type="text/javascript">
+                var sub = document.getElementById('submit');
+                document.getElementById('recaptcha-submit-btn-area').appendChild (sub);
+                document.getElementById('submit').tabIndex = 6;
+                if ( typeof _recaptcha_wordpress_savedcomment != 'undefined') {
+                        document.getElementById('comment').value = _recaptcha_wordpress_savedcomment;
+                }
+                document.getElementById('recaptcha_table').style.direction = 'ltr';
+                </script><script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://codeescape.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shCore.css?ver=2.1.364";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://codeescape.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/styles/shThemeDefault.css?ver=2.1.364";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://codeescape.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter2/scripts/clipboard.swf';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./Optimized C# Halo 2 Map Signing Algorithm   Code Escape_files/saved_resource(3)"></script>
+</div>
+</div> <!-- page -->
+
+
+	
+
+<!-- Dynamic page generated in 0.594 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2013-04-09 02:25:41 -->
+
+<!-- super cache --><iframe src="about:blank" style="height: 0px; width: 0px; visibility: hidden; border: none;">This frame prevents back/forward cache problems in Safari.</iframe></body></html>

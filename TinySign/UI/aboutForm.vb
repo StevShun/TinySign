@@ -1,4 +1,4 @@
-﻿Public NotInheritable Class AboutBox
+﻿Public NotInheritable Class aboutForm
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Set the title of the form.
@@ -21,6 +21,11 @@
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
         Me.Close()
+    End Sub
+
+    'Focus on mainForm when aboutBoxForm is closed by user
+    Private Sub mainForm_focus(sender As Object, e As EventArgs) Handles Me.FormClosed
+        mainForm.Activate()
     End Sub
 
 End Class

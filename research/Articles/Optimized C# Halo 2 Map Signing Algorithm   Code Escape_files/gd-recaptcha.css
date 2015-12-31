@@ -1,0 +1,25 @@
+/*
+
+CSS file for the reCAPTCHA Form WordPress plugin
+Copyright 2012 The Computer Rebooter Ltd.
+
+This CSS file provides the styling information for the reCAPTCHA Form WordPress plugin.
+Edit this file only if you are comfortable with editing CSS files!
+
+*/
+
+/* Form Wrapper */
+#gd_recaptcha_form { margin: 0px; }
+
+/* Form Objects */
+input.recaptcha_form_input { width: 200px; }
+fieldset.recaptcha_form_fieldset { border: 0px; margin: 0px; padding: 0px; }
+p.recaptcha_form_p { text-align: left; }
+textarea.recaptcha_form_textarea { width: 350px; }
+
+/* Error/Information Messages */
+p.recaptcha_form_p_error { background-color: white; border: 1px solid black; color: red; font-weight: bold; padding: 10px; }
+p.recaptcha_form_p_info { background-color: white; border: 1px solid black; color: green; font-weight: bold; padding: 10px; }
+
+/* reCAPTCHA Box */
+.recaptcha_form_captcha_box { height: 300px; overflow: hidden; width: 500px; }

@@ -61,7 +61,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TinySign_Windows_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Media\Icons\AppIcons\TinySign_Windows_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -91,23 +91,23 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aboutBoxForm.Designer.vb">
-      <DependentUpon>aboutBoxForm.vb</DependentUpon>
+    <Compile Include="UI\aboutForm.Designer.vb">
+      <DependentUpon>aboutForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="aboutBoxForm.vb">
+    <Compile Include="UI\aboutForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mapHandler.vb" />
-    <Compile Include="mapInfoForm.Designer.vb">
+    <Compile Include="UI\mapInfoForm.Designer.vb">
       <DependentUpon>mapInfoForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="mapInfoForm.vb">
+    <Compile Include="UI\mapInfoForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainForm.vb">
+    <Compile Include="UI\mainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainForm.Designer.vb">
+    <Compile Include="UI\mainForm.Designer.vb">
       <DependentUpon>mainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -128,16 +128,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="aboutBoxForm.resx">
-      <DependentUpon>aboutBoxForm.vb</DependentUpon>
+    <EmbeddedResource Include="UI\aboutForm.resx">
+      <DependentUpon>aboutForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mapInfoForm.resx">
+    <EmbeddedResource Include="UI\mapInfoForm.resx">
       <DependentUpon>mapInfoForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mainForm.en.resx">
+    <EmbeddedResource Include="UI\mainForm.en.resx">
       <DependentUpon>mainForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mainForm.resx">
+    <EmbeddedResource Include="UI\mainForm.resx">
       <DependentUpon>mainForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -161,139 +161,139 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Unknown_Map.JPG" />
+    <None Include="Media\Icons\MapIcons\Unknown_Map.JPG" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mapDB.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_00a_introduction.JPG" />
+    <None Include="Media\Icons\MapIcons\_00a_introduction.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_01a_tutorial.JPG" />
+    <None Include="Media\Icons\MapIcons\_01a_tutorial.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_01b_spacestation.JPG" />
+    <None Include="Media\Icons\MapIcons\_01b_spacestation.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_03a_oldmombasa.JPG" />
+    <None Include="Media\Icons\MapIcons\_03a_oldmombasa.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_03b_newmombasa.JPG" />
+    <None Include="Media\Icons\MapIcons\_03b_newmombasa.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_04a_gasgiant.JPG" />
+    <None Include="Media\Icons\MapIcons\_04a_gasgiant.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_04b_floodlab.JPG" />
+    <None Include="Media\Icons\MapIcons\_04b_floodlab.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_05a_deltaapproach.JPG" />
+    <None Include="Media\Icons\MapIcons\_05a_deltaapproach.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_05b_deltatowers.JPG" />
+    <None Include="Media\Icons\MapIcons\_05b_deltatowers.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_06a_sentinelwalls.JPG" />
+    <None Include="Media\Icons\MapIcons\_06a_sentinelwalls.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_06b_floodzone.JPG" />
+    <None Include="Media\Icons\MapIcons\_06b_floodzone.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_07a_highcharity.JPG" />
+    <None Include="Media\Icons\MapIcons\_07a_highcharity.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_07b_forerunnership.JPG" />
+    <None Include="Media\Icons\MapIcons\_07b_forerunnership.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_08a_deltacliffs.JPG" />
+    <None Include="Media\Icons\MapIcons\_08a_deltacliffs.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_08b_deltacontrol.JPG" />
+    <None Include="Media\Icons\MapIcons\_08b_deltacontrol.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_ascension.JPG" />
+    <None Include="Media\Icons\MapIcons\_ascension.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_backwash.JPG" />
+    <None Include="Media\Icons\MapIcons\_backwash.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_beavercreek.JPG" />
+    <None Include="Media\Icons\MapIcons\_beavercreek.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_burial_mounds.JPG" />
+    <None Include="Media\Icons\MapIcons\_burial_mounds.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_coagulation.JPG" />
+    <None Include="Media\Icons\MapIcons\_coagulation.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_colossus.JPG" />
+    <None Include="Media\Icons\MapIcons\_colossus.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_containment.JPG" />
+    <None Include="Media\Icons\MapIcons\_containment.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_cyclotron.JPG" />
+    <None Include="Media\Icons\MapIcons\_cyclotron.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_deltatap.JPG" />
+    <None Include="Media\Icons\MapIcons\_deltatap.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_derelict.JPG" />
+    <None Include="Media\Icons\MapIcons\_derelict.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_dune.JPG" />
+    <None Include="Media\Icons\MapIcons\_dune.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_elongation.JPG" />
+    <None Include="Media\Icons\MapIcons\_elongation.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_foundation.JPG" />
+    <None Include="Media\Icons\MapIcons\_foundation.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_gemini.JPG" />
+    <None Include="Media\Icons\MapIcons\_gemini.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_headlong.JPG" />
+    <None Include="Media\Icons\MapIcons\_headlong.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_highplains2.JPG" />
+    <None Include="Media\Icons\MapIcons\_highplains2.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_lockout.JPG" />
+    <None Include="Media\Icons\MapIcons\_lockout.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_mainmenu.JPG" />
+    <None Include="Media\Icons\MapIcons\_mainmenu.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_midship.JPG" />
+    <None Include="Media\Icons\MapIcons\_midship.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_shared.JPG" />
+    <None Include="Media\Icons\MapIcons\_shared.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_single_player_shared.JPG" />
+    <None Include="Media\Icons\MapIcons\_single_player_shared.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_triplicate.JPG" />
+    <None Include="Media\Icons\MapIcons\_triplicate.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_turf.JPG" />
+    <None Include="Media\Icons\MapIcons\_turf.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_warlock.JPG" />
+    <None Include="Media\Icons\MapIcons\_warlock.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_waterworks.JPG" />
+    <None Include="Media\Icons\MapIcons\_waterworks.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\_zanzibar.JPG" />
+    <None Include="Media\Icons\MapIcons\_zanzibar.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TinySign_256x256.png" />
+    <None Include="Media\Icons\MapIcons\TinySign_256x256.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TinySign_512x512.png" />
+    <None Include="Media\Icons\MapIcons\TinySign_512x512.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -313,7 +313,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TinySign_Windows_Icon.ico" />
+    <None Include="Media\Icons\AppIcons\TinySign_256x256.png" />
+    <None Include="Media\Icons\AppIcons\TinySign_512x512.png" />
+    <Content Include="Media\Icons\AppIcons\TinySign_Windows_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -241,7 +241,7 @@ Public Class mainForm
     End Sub
 
     Private Sub aboutMenuItem_click(sender As Object, e As EventArgs) Handles aboutMenuItem.Click
-        aboutBoxForm.Show()
+        aboutForm.Show()
     End Sub
 
 End Class

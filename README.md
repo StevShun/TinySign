@@ -1,4 +1,4 @@
 TinySign
 ========
 
-Halo 2 map resigner
+A lightweight Halo 2 map resigner written in VB.Net. 
